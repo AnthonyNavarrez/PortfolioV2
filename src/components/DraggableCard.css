@@ -1,0 +1,21 @@
+.draggable-card__container {
+  perspective: 3000px;
+}
+
+.draggable-card__body {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 2px 7px 13px 4px rgba(0, 0, 0, 0.25);
+  transform-style: preserve-3d;
+  cursor: grab;
+}
+
+.draggable-card__glare {
+  position: absolute;
+  inset: 0;
+  background-color: #fff;
+  pointer-events: none;
+  user-select: none;
+}

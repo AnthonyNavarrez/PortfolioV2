@@ -1,0 +1,215 @@
+/* ProjectCard — synced from Figma (rest: node 308:609, hover: node 459:635) */
+
+.project-card-slot {
+  position: relative;
+  aspect-ratio: 463 / 647;
+  /* Capped so an expanded card can never exceed the viewport, no
+     matter which direction it grows from. Siblings pushed aside by
+     that growth are NOT capped — they're allowed to go off-screen. */
+  --card-hover-width: min(1300px, calc(100vw - 160px));
+  transition: transform 0.4s ease;
+}
+
+/* Empty project slot — synced from Figma (node 308:621) */
+.project-card-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 10px;
+  border: 3px solid #17123a;
+  background-color: #302e3f;
+  cursor: pointer;
+  transition:
+    width 0.4s ease,
+    border-width 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.project-card-placeholder:hover {
+  z-index: 10;
+  border-width: 0;
+  border-color: transparent;
+}
+
+/* Anchored at its own center at all times (rest and hover alike) —
+   only width animates, so growth is always symmetric with no catch-up. */
+.project-card-placeholder--center {
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+}
+
+/* Anchored to its right edge at all times — left is "auto" in both
+   states, so the browser solves it from width every frame instead of
+   transitioning a separate property, keeping the right edge pinned. */
+.project-card-placeholder--left {
+  left: auto;
+  right: 0;
+  width: 100%;
+}
+
+.project-card-placeholder--center:hover,
+.project-card-placeholder--left:hover {
+  width: var(--card-hover-width);
+}
+
+.project-card {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 3px solid #17123a;
+  background-color: #1f1e33;
+  background-size: cover;
+  background-position: center;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    border-width 0.7s ease,
+    border-color 0.7s ease;
+}
+
+.project-card:hover {
+  width: var(--card-hover-width);
+  z-index: 10;
+  border-width: 0;
+  border-color: transparent;
+}
+
+/* Sits just below the slot, spanning the full hover width — only
+   shown while the card inside this slot is in stage 2. */
+.project-card__carousel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: var(--card-hover-width);
+  margin-top: 20px;
+  z-index: 9;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.project-card-slot:has(> .project-card:hover) .project-card__carousel {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* A real screenshot, not part of the tinted icon/text group — sits
+   above it with normal blending. Starts pushed down and invisible so
+   the card's own overflow: hidden clips it out of view, then slides
+   up into the frame as the card opens into stage 2. */
+.project-card__mockup {
+  position: absolute;
+  bottom: -15%;
+  width: 22%;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(40%);
+  pointer-events: none;
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease;
+}
+
+.project-card:hover .project-card__mockup {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card__mockup--0 {
+  right: 60%;
+}
+
+.project-card__mockup--1 {
+  right: 36%;
+  bottom: -25%;
+  transform: translateY(40%) rotate(30deg);
+  transition-delay: 0.08s;
+}
+
+.project-card:hover .project-card__mockup--1 {
+  transform: translateY(0) rotate(-7deg);
+}
+
+.project-card__overlay {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: overlay;
+}
+
+/* Stage 1: big, centered icon — slides/shrinks to the top-left corner
+   for stage 2 (node 469:801's layout), with the move itself animated
+   rather than just revealed by the card's own width transition. */
+.project-card__icon {
+  position: absolute;
+  left: 8.6%;
+  top: 24.3%;
+  width: 70%;
+  color: #2e0800;
+  transition:
+    left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .project-card__icon {
+  left: 1%;
+  top: 3.6%;
+  width: 30.4%;
+}
+
+.project-card__icon svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Stage 1: the single "HOMIE" string sits large and far enough right
+   that the narrow card's overflow: hidden only shows the leading "H" —
+   it then slides up/left into the stage-2 spot as the card widens. */
+.project-card__content {
+  position: absolute;
+  left: 65%;
+  top: 49%;
+  width: 70%;
+  transition:
+    left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .project-card__content {
+  left: 26%;
+  top: 29%;
+}
+
+.project-card__title {
+  display: block;
+  font-family: 'Readex Pro', sans-serif;
+  font-weight: 700;
+  font-size: 144px;
+  line-height: 1.04;
+  color: #2e0800;
+  white-space: nowrap;
+  transition: font-size 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .project-card__title {
+  font-size: 158px;
+}
+
+.project-card__description {
+  width: 45%;
+  margin: 8px 0 0 auto;
+  text-align: left;
+  white-space: pre-line;
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 131%;
+  letter-spacing: -0.4px;
+  color: #000;
+}

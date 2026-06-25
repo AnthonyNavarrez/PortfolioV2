@@ -1,0 +1,208 @@
+/* About — synced from Figma (node 502:6536) */
+
+.about {
+  position: relative;
+  z-index: 0;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding: 120px 80px 120px 220px;
+  box-sizing: border-box;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 64px 24px;
+  }
+}
+
+.about__content {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  text-align: left;
+}
+
+.about__heading {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: 50px;
+  line-height: 1.06;
+  color: var(--color-text-heading);
+  text-align: left;
+
+  @media (max-width: 1024px) {
+    font-size: 34px;
+  }
+}
+
+.about__heading--contact {
+  margin-top: 56px;
+}
+
+.about__subtitle {
+  margin: 8px 0 24px;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  font-size: 20px;
+  color: var(--color-primary);
+  text-align: left;
+
+  @media (max-width: 1024px) {
+    font-size: 17px;
+  }
+}
+
+.about__bio {
+  margin: 0 0 24px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 130%;
+  color: var(--color-text-heading);
+  text-align: left;
+}
+
+.about__links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.about__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  font-size: 16px;
+  color: var(--color-text-heading);
+  text-decoration: none;
+  text-align: left;
+}
+
+.about__link:hover {
+  color: var(--color-primary);
+}
+
+.about__link-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.about__cards {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 540px;
+  height: 720px;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    max-width: 420px;
+    height: 560px;
+    margin-top: 64px;
+  }
+}
+
+.draggable-card__body.about__card {
+  position: absolute;
+  width: 205px;
+  height: 310px;
+}
+
+/* Polaroid-style inset — synced from Figma (node 507:839) */
+.about__photo-inset {
+  position: absolute;
+  left: 8.35%;
+  top: 4.84%;
+  width: 84.1%;
+  height: 81.7%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.about__card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  pointer-events: none;
+}
+
+.about__card-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4%;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: 17px;
+  color: #2c2a55;
+  pointer-events: none;
+}
+
+.about__card--1 .about__card-image {
+  transform: scale(1.4);
+  object-position: center;
+}
+
+.about__card--5 .about__card-image {
+  transform: scale(1.2);
+  object-position: 10% 40%;
+}
+
+/* Scattered positions synced from Figma (node 508:843), scaled down
+   from its 198px-wide reference cards to this component's 180px cards
+   (×0.909), using each card's rotated center as the basis (rotation
+   itself is applied via the `rotate` prop on DraggableCardBody, not
+   CSS — Framer Motion manages `transform` directly via inline style,
+   which silently overrides any CSS `transform` on the same element). */
+.about__card--1 {
+  top: 0px;
+  left: 5px;
+  z-index: 10;
+}
+
+.about__card--2 {
+  top: 50px;
+  left: 200px;
+}
+
+.about__card--3 {
+  top: 250px;
+  left: -100px;
+}
+
+.about__card--4 {
+  top: 250px;
+  left: 39px;
+}
+
+.about__card--5 {
+  top: 50px;
+  left: -150px;
+}
+
+.about__card--6 {
+  top: 400px;
+  left: 180px;
+}
+
+.about__card--7 {
+  top: 500px;
+  left: -50px;
+}

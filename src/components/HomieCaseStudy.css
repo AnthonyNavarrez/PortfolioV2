@@ -1,0 +1,167 @@
+.homie-case-study {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  margin-inline: calc(50% - 50vw);
+  padding: 80px 80px 120px;
+  box-sizing: border-box;
+  background-color: var(--color-background);
+
+  @media (max-width: 1024px) {
+    padding: 56px 24px 80px;
+  }
+}
+
+.homie-case-study__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.homie-case-study__back {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  font-size: 15px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.homie-case-study__back:hover {
+  color: var(--color-text-heading);
+}
+
+.homie-case-study__hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.homie-case-study__mockup-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.homie-case-study__actions {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-left: 16px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (max-width: 768px) {
+    position: static;
+    margin: 32px 0 0;
+    transform: none;
+    align-items: center;
+  }
+}
+
+.homie-case-study__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 173px;
+  height: 62px;
+  border: 2px solid #53453a;
+  border-radius: 999px;
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.6px;
+  color: #53453a;
+  text-decoration: none;
+  outline: none;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.homie-case-study__button:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.homie-case-study__button:focus-visible {
+  outline: 2px solid #53453a;
+  outline-offset: 4px;
+}
+
+.homie-case-study__button--filled {
+  background-color: #fcf5ee;
+}
+
+.homie-case-study__button--outline {
+  background-color: transparent;
+}
+
+.homie-case-study__description {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+  margin-top: 260px;
+  margin-left: 80px;
+  text-align: left;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 140px;
+    margin-left: 0;
+  }
+}
+
+.homie-case-study__description-text-col {
+  max-width: 628px;
+}
+
+.homie-case-study__description-mockup {
+  flex-shrink: 0;
+  width: 380px;
+
+  @media (max-width: 1024px) {
+    width: 280px;
+  }
+}
+
+.homie-case-study__description-label {
+  margin: 96px 0 7px;
+  font-family: 'Readex Pro', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 130%;
+  color: #53453a;
+}
+
+.homie-case-study__description-label:first-child {
+  margin-top: 0;
+}
+
+.homie-case-study__description-text {
+  margin: 0 0 16px;
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 131%;
+  letter-spacing: -0.48px;
+  color: #53453a;
+}
+
+.homie-case-study__description-text:last-child {
+  margin-bottom: 0;
+}
+
+.homie-case-study__description-text strong {
+  font-weight: 700;
+}

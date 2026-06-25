@@ -1,0 +1,30 @@
+/* Stars — ported from Animate UI's StarsBackground, without its bg gradient */
+
+.stars {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stars__parallax--static {
+  pointer-events: none;
+}
+
+.star-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2000px;
+}
+
+.star-layer__dot {
+  position: absolute;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.star-layer__dot--offset {
+  top: 2000px;
+}

@@ -1,0 +1,36 @@
+.homie-watermark {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.1;
+  color: #2e0800;
+  font-size: clamp(200px, 26vw, 380px);
+  padding-bottom: 18%;
+}
+
+.homie-watermark__icon {
+  display: block;
+  width: 1.49em;
+  flex-shrink: 0;
+  margin-right: -0.37em;
+  margin-bottom: 0.27em;
+}
+
+.homie-watermark__icon svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.homie-watermark__text {
+  font-family: 'Readex Pro', sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1;
+  white-space: nowrap;
+  color: currentColor;
+}

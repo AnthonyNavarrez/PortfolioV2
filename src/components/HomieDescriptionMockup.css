@@ -1,0 +1,42 @@
+/* Synced from Figma: frame = node 489:5559 (chrome only, opaque black
+   screen rectangle baked in), screen content sits on top and is sized
+   to exactly cover that black rectangle, matching node 489:5564's
+   (Mask) bounds relative to the frame. */
+.homie-description-mockup {
+  position: relative;
+  width: 100%;
+  /* Matches the frame image's natural ratio (671x1356) so the box has
+     a correct height immediately on render, instead of waiting for
+     the image to load — GSAP measures this in an effect right after
+     mount, before a slow-loading image would otherwise resolve. */
+  aspect-ratio: 671 / 1356;
+}
+
+.homie-description-mockup__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.homie-description-mockup__screen {
+  position: absolute;
+  left: 5.4%;
+  top: 2.4%;
+  width: 89%;
+  height: 95.1%;
+  overflow: hidden;
+  border-radius: 11%;
+}
+
+.homie-description-mockup__screen-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.homie-description-mockup__screen-img--overlay {
+  position: absolute;
+  inset: 0;
+  transform: translateY(100%);
+}

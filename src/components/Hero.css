@@ -1,0 +1,186 @@
+/* Hero — synced from Figma (nodes 433:570, 293:908) */
+
+.hero {
+  position: relative;
+  z-index: 0;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  padding: 152px 80px;
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
+    min-height: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 64px 24px 48px;
+  }
+}
+
+.hero__lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, black 0, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0, black 70%, transparent 100%);
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.hero__bracket {
+  position: absolute;
+  border-style: solid;
+  border-width: 0;
+  border-color: rgba(130, 123, 182, 0.33);
+}
+
+.hero__bracket--top {
+  top: 17.9%;
+  left: 66%;
+  width: 17.9%;
+  height: 66.5%;
+  border-top-width: 2px;
+  border-right-width: 2px;
+}
+
+.hero__bracket--bottom {
+  top: 43%;
+  left: 12.6%;
+  width: 11.1%;
+  height: 51.3%;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+
+.hero__fx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100% + 500px);
+  z-index: -1;
+  overflow: hidden;
+  /* Extends past the hero's own box, then fades to transparent over
+     the same distance the portrait uses, so everything in the
+     hero dissolves into the page background together as you scroll. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - 500px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - 500px),
+    transparent 100%
+  );
+
+  @media (max-width: 1024px) {
+    height: 100%;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+.hero__aurora {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  height: 75%;
+  pointer-events: none;
+}
+
+.hero__aurora-flip {
+  width: 100%;
+  height: 100%;
+  transform: scaleY(-1);
+}
+
+.hero__portrait {
+  position: absolute;
+  left: 50%;
+  top: 36%;
+  transform: translateX(-50%);
+  width: 68.4%;
+  max-width: 900px;
+  height: auto;
+  /* Stays fully visible through the part that sits inside the hero
+     viewport (0 to 64vh, since top:36% leaves 64vh of hero below it),
+     then fades out over a fixed distance so it dissolves into the
+     projects section below instead of being hard-clipped. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black 64vh,
+    transparent calc(64vh + 500px)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black 64vh,
+    transparent calc(64vh + 500px)
+  );
+
+  @media (max-width: 1024px) {
+    position: static;
+    width: 100%;
+    max-width: 420px;
+    margin: 32px auto 0;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__name {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    letter-spacing: -1.8px;
+  }
+}
+
+.hero__tagline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  font-size: 25px;
+  letter-spacing: -1.25px;
+  line-height: 1.22;
+  color: var(--color-text-heading);
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+    font-size: 18px;
+    letter-spacing: -0.9px;
+  }
+}
+
+.hero__tagline-tick {
+  flex-shrink: 0;
+  width: 2px;
+  height: 17px;
+  background: var(--color-primary-dark);
+}

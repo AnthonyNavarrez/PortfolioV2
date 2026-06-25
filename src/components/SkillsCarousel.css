@@ -1,0 +1,56 @@
+.skills-carousel {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+}
+
+.skills-carousel__track {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: max-content;
+  animation: skills-carousel-scroll 16s linear infinite;
+}
+
+.skills-carousel__item {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.skills-carousel__icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.skills-carousel__label {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-semibold);
+  font-size: 16px;
+  color: var(--color-text-heading);
+  white-space: nowrap;
+}
+
+@keyframes skills-carousel-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

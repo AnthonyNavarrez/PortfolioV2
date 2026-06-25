@@ -1,0 +1,34 @@
+import {
+  homieBg,
+  homieDescription,
+  homiePhoneMockup,
+  homiePhoneMockup2,
+  homieSkills,
+} from '../data/homie'
+import HomieIcon from './HomieIcon'
+import ProjectCard from './ProjectCard'
+import ProjectCardPlaceholder from './ProjectCardPlaceholder'
+import './Projects.css'
+
+function Projects() {
+  return (
+    <section className="projects">
+      <h2 className="projects__heading">Projects</h2>
+      <div className="projects__grid">
+        <ProjectCard
+          background={homieBg}
+          icon={<HomieIcon />}
+          title="HOMIE"
+          description={homieDescription}
+          skills={homieSkills}
+          mockups={[homiePhoneMockup, homiePhoneMockup2]}
+          href="/homie"
+        />
+        <ProjectCardPlaceholder expand="center" />
+        <ProjectCardPlaceholder expand="left" />
+      </div>
+    </section>
+  )
+}
+
+export default Projects

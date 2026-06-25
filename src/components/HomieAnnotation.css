@@ -1,0 +1,25 @@
+.homie-annotation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  margin-left: -80px;
+}
+
+.homie-annotation__swirl {
+  flex-shrink: 0;
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(0 3px 18px rgba(0, 0, 0, 0.25));
+}
+
+.homie-annotation__label {
+  width: 220px;
+  margin: 0 0 0 -80px;
+  font-family: 'Gowun Batang', serif;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 90%;
+  letter-spacing: -0.75px;
+  color: #53453a;
+}

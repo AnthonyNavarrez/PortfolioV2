@@ -1,0 +1,77 @@
+.projects {
+  position: relative;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding: 480px 80px 96px;
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
+    padding: 160px 24px 56px;
+  }
+}
+
+.projects__heading {
+  text-align: left;
+  margin: 0 0 40px;
+
+  @media (max-width: 1024px) {
+    text-align: center;
+  }
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  --grid-gap: 24px;
+  /* Extra breathing room (beyond the grid's own gap) left between an
+     edge card and the middle card when it gets pushed out of the way. */
+  --push-gap: 64px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card 1 (Homie) grows rightward from its own left edge — cards 2 and
+   3 shift right by exactly the overflow so they stay clear of it. */
+.projects__grid:has(> .project-card-slot:nth-child(1) .project-card:hover)
+  > .project-card-slot:nth-child(2),
+.projects__grid:has(> .project-card-slot:nth-child(1) .project-card:hover)
+  > .project-card-slot:nth-child(3) {
+  transform: translateX(
+    calc(
+      var(--card-hover-width) + var(--push-gap) - 100% - var(--grid-gap)
+    )
+  );
+}
+
+/* Card 2 (center) grows evenly both ways — card 1 shifts left, card 3
+   shifts right by half the excess each. */
+.projects__grid:has(
+    > .project-card-slot:nth-child(2) .project-card-placeholder:hover
+  )
+  > .project-card-slot:nth-child(1) {
+  transform: translateX(calc((100% - var(--card-hover-width)) / 2));
+}
+
+.projects__grid:has(
+    > .project-card-slot:nth-child(2) .project-card-placeholder:hover
+  )
+  > .project-card-slot:nth-child(3) {
+  transform: translateX(calc((var(--card-hover-width) - 100%) / 2));
+}
+
+/* Card 3 (right) grows leftward from its own right edge — cards 1 and
+   2 shift left by exactly the overflow so they stay clear of it. */
+.projects__grid:has(> .project-card-slot:nth-child(3) .project-card-placeholder:hover)
+  > .project-card-slot:nth-child(1),
+.projects__grid:has(> .project-card-slot:nth-child(3) .project-card-placeholder:hover)
+  > .project-card-slot:nth-child(2) {
+  transform: translateX(
+    calc(
+      100% + var(--grid-gap) - var(--card-hover-width) - var(--push-gap)
+    )
+  );
+}
+
