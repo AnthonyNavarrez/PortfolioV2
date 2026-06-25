@@ -1,0 +1,427 @@
+/* MomentoCaseStudy — synced from Figma (node 273:647) */
+
+.momento-case-study {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  margin-inline: calc(50% - 50vw);
+  padding-bottom: 100px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #000;
+}
+
+/* Fixed in place — synced from Figma (node 547:980), pinned top-center
+   of the viewport regardless of scroll position. */
+.momento-case-study__back {
+  position: fixed;
+  z-index: 20;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 28px;
+  height: 56px;
+  border: 2px solid #fe9332;
+  border-radius: 999px;
+  background-color: transparent;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.6px;
+  color: #fe9332;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  @media (max-width: 768px) {
+    top: 16px;
+    padding: 0 22px;
+    height: 48px;
+    font-size: 17px;
+  }
+}
+
+.momento-case-study__back:hover {
+  transform: translateX(-50%) translateY(-2px);
+  opacity: 0.85;
+}
+
+.momento-case-study__hero {
+  position: relative;
+  height: 820px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @media (max-width: 1024px) {
+    height: 600px;
+    padding: 0 24px;
+    text-align: center;
+  }
+}
+
+.momento-case-study__hero-fade {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.momento-case-study__logo {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.momento-case-study__logo-icon {
+  display: block;
+  width: 220px;
+  flex-shrink: 0;
+
+  @media (max-width: 1024px) {
+    width: 108px;
+  }
+}
+
+.momento-case-study__logo-icon svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.momento-case-study__logo-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 116px;
+  line-height: 1;
+  letter-spacing: -5.8px;
+  white-space: nowrap;
+  background-image: linear-gradient(160.111deg, #ff7a33 79.359%, #fda831 155.39%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  @media (max-width: 1024px) {
+    font-size: 56px;
+    letter-spacing: -2.8px;
+  }
+}
+
+.momento-case-study__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 20px;
+}
+
+.momento-case-study__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 16px 34px;
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.54px;
+  text-decoration: none;
+  outline: none;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.momento-case-study__button:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.momento-case-study__button--filled {
+  background-color: #3b7dd8;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.momento-case-study__button--outline {
+  background-color: transparent;
+  border: 2px solid #3b7dd8;
+  color: #3b7dd8;
+}
+
+.momento-case-study__problem {
+  margin-top: 48px;
+
+  @media (max-width: 1024px) {
+    margin-top: 24px;
+  }
+}
+
+.momento-case-study__problem-panel {
+  background-color: #3b7dd8;
+  padding: 64px 80px;
+  text-align: center;
+  transform-origin: center top;
+
+  @media (max-width: 1024px) {
+    padding: 48px 24px;
+  }
+}
+
+.momento-case-study__problem-heading {
+  margin: 0 0 40px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: -0.78px;
+  color: #fff;
+}
+
+.momento-case-study__problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  max-width: 1060px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.momento-case-study__problem-title {
+  margin: 0 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.51px;
+  color: #fff;
+}
+
+.momento-case-study__problem-body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.51px;
+  color: #fff;
+}
+
+.momento-case-study__solution {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+  padding: 80px;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    padding: 56px 24px;
+    gap: 40px;
+  }
+}
+
+.momento-case-study__polaroid {
+  position: relative;
+  flex-shrink: 0;
+  width: 252px;
+}
+
+/* Soft map-texture vignette sitting behind the polaroid — synced from
+   Figma (node 544:968): the map image masked through a radial gradient
+   so it fades out at the edges instead of ending in a hard circle. */
+.momento-case-study__polaroid-glow {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: 716px;
+  height: 707px;
+  transform: translate(calc(-50% - 47px), calc(-50% - 20px));
+  background-size: 280% auto;
+  background-position: 35% 45%;
+  opacity: 0.78;
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+
+  @media (max-width: 1024px) {
+    width: 420px;
+    height: 415px;
+    transform: translate(calc(-50% - 28px), calc(-50% - 12px));
+  }
+}
+
+.momento-case-study__polaroid-card {
+  position: relative;
+  z-index: 1;
+  transform: rotate(7deg);
+  background-color: #fff;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.18);
+  border-radius: 2px;
+  padding: 14px 14px 24px;
+  box-sizing: border-box;
+}
+
+.momento-case-study__polaroid-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 172 / 243;
+  object-fit: cover;
+}
+
+.momento-case-study__polaroid-caption {
+  margin: 16px 0 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  text-align: center;
+  color: #000;
+  white-space: pre-line;
+}
+
+.momento-case-study__polaroid-pin {
+  position: absolute;
+  z-index: 2;
+  top: -22px;
+  left: 50%;
+  width: 22px;
+  height: 42px;
+  transform: translateX(-50%);
+}
+
+.momento-case-study__solution-text {
+  max-width: 600px;
+  text-align: left;
+}
+
+.momento-case-study__solution-heading {
+  margin: 0 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: -0.78px;
+  color: #ff7a33;
+}
+
+.momento-case-study__solution-paragraph {
+  margin: 0 0 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 140%;
+  color: #000;
+}
+
+.momento-case-study__solution-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.momento-case-study__solution-paragraph strong {
+  font-weight: 700;
+}
+
+.momento-case-study__tech {
+  padding: 24px 80px 0;
+
+  @media (max-width: 1024px) {
+    padding: 24px 24px 0;
+  }
+}
+
+.momento-case-study__tech-heading {
+  margin: 0 0 32px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  text-align: center;
+  color: #ff7a33;
+}
+
+.momento-case-study__tech-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  padding: 24px 0;
+  border-top: 1px solid #eee;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.momento-case-study__tech-label {
+  flex-shrink: 0;
+  width: 100px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #000;
+}
+
+.momento-case-study__tech-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.momento-case-study__tech-item {
+  width: 180px;
+}
+
+.momento-case-study__tech-item-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.momento-case-study__tech-item-head img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.momento-case-study__tech-item-head span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #000;
+}
+
+.momento-case-study__tech-item p {
+  margin: 8px 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 140%;
+  text-align: center;
+  color: #6b6b6b;
+}

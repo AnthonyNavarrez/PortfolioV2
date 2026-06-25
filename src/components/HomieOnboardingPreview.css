@@ -1,0 +1,33 @@
+.homie-onboarding-preview {
+  position: relative;
+  width: 260px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  @media (max-width: 1024px) {
+    width: 220px;
+  }
+}
+
+.homie-onboarding-preview:hover {
+  transform: scale(1.03);
+}
+
+/* Kept in the layout (not display: none) so the browser keeps
+   decoding frames — just visually imperceptible and out of the way. */
+.homie-onboarding-preview__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.homie-onboarding-preview__canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
+}

@@ -11,6 +11,7 @@ interface ProjectCardProps {
   skills?: Skill[]
   mockups?: string[]
   href?: string
+  variant?: string
 }
 
 function ProjectCard({
@@ -21,7 +22,12 @@ function ProjectCard({
   skills,
   mockups,
   href,
+  variant,
 }: ProjectCardProps) {
+  const cardClassName = variant
+    ? `project-card project-card--${variant}`
+    : 'project-card'
+
   const cardContent = (
     <>
       <div className="project-card__overlay">
@@ -48,14 +54,14 @@ function ProjectCard({
       {href ? (
         <Link
           to={href}
-          className="project-card"
+          className={cardClassName}
           style={{ backgroundImage: `url(${background})` }}
         >
           {cardContent}
         </Link>
       ) : (
         <div
-          className="project-card"
+          className={cardClassName}
           style={{ backgroundImage: `url(${background})` }}
         >
           {cardContent}

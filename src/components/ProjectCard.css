@@ -8,6 +8,9 @@
      that growth are NOT capped — they're allowed to go off-screen. */
   --card-hover-width: min(1300px, calc(100vw - 160px));
   transition: transform 0.4s ease;
+  /* Lets cqw/cqh units size Momento's background art off the slot's
+     own (never-resizing) box instead of the card's — see below. */
+  container-type: size;
 }
 
 /* Empty project slot — synced from Figma (node 308:621) */
@@ -93,6 +96,15 @@
   transition: opacity 0.3s ease;
 }
 
+/* Momento's card itself grows from center (left: 50% + translateX),
+   not from the slot's left edge like Homie's — so its carousel needs
+   the same centering to stay aligned under the expanded card's full
+   width instead of trailing off partway across it. */
+.project-card--momento ~ .project-card__carousel {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .project-card-slot:has(> .project-card:hover) .project-card__carousel {
   opacity: 1;
   pointer-events: auto;
@@ -120,8 +132,18 @@
   transform: translateY(0);
 }
 
-.project-card__mockup--0 {
+.project-card--homie .project-card__mockup--0 {
   right: 60%;
+}
+
+.project-card--momento .project-card__mockup--0 {
+  left: 50%;
+  width: 48%;
+  transform: translateX(-50%) translateY(40%);
+}
+
+.project-card--momento:hover .project-card__mockup--0 {
+  transform: translateX(-50%) translateY(0);
 }
 
 .project-card__mockup--1 {
@@ -138,6 +160,9 @@
 .project-card__overlay {
   position: absolute;
   inset: 0;
+}
+
+.project-card--homie .project-card__overlay {
   mix-blend-mode: overlay;
 }
 
@@ -146,14 +171,23 @@
    rather than just revealed by the card's own width transition. */
 .project-card__icon {
   position: absolute;
-  left: 8.6%;
-  top: 24.3%;
-  width: 70%;
-  color: #2e0800;
   transition:
     left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     top 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card--homie .project-card__icon {
+  left: 8.6%;
+  top: 24.3%;
+  width: 70%;
+  color: #2e0800;
+}
+
+.project-card--momento .project-card__icon {
+  left: 4.3%;
+  top: 24.9%;
+  width: 60.8%;
 }
 
 .project-card:hover .project-card__icon {
@@ -168,17 +202,25 @@
   height: auto;
 }
 
-/* Stage 1: the single "HOMIE" string sits large and far enough right
-   that the narrow card's overflow: hidden only shows the leading "H" —
-   it then slides up/left into the stage-2 spot as the card widens. */
+/* Stage 1: the title string sits large and far enough right that the
+   narrow card's overflow: hidden only shows the leading letter — it
+   then slides up/left into the stage-2 spot as the card widens. */
 .project-card__content {
   position: absolute;
   left: 65%;
-  top: 49%;
   width: 70%;
   transition:
     left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     top 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card--homie .project-card__content {
+  top: 49%;
+}
+
+.project-card--momento .project-card__content {
+  left: 64.5%;
+  top: 36%;
 }
 
 .project-card:hover .project-card__content {
@@ -186,15 +228,51 @@
   top: 29%;
 }
 
+.project-card--momento:hover .project-card__content {
+  left: 30%;
+}
+
+.project-card--momento:hover .project-card__description {
+  margin-left: 5%;
+}
+
 .project-card__title {
   display: block;
+  line-height: 1.04;
+  white-space: nowrap;
+  transition: font-size 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card--homie .project-card__title {
   font-family: 'Readex Pro', sans-serif;
   font-weight: 700;
   font-size: 144px;
-  line-height: 1.04;
   color: #2e0800;
+}
+
+.project-card--momento .project-card__description {
+  margin-left: 0;
   white-space: nowrap;
-  transition: font-size 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  font-size: 17px;
+  color: #7e7e7e;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+}
+
+.project-card--momento:hover .project-card__description {
+  opacity: 1;
+}
+
+.project-card--momento .project-card__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 150px;
+  letter-spacing: -7.5px;
+  background-image: linear-gradient(160.111deg, #ff7a33 79.359%, #fda831 155.39%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .project-card:hover .project-card__title {
@@ -212,4 +290,29 @@
   line-height: 131%;
   letter-spacing: -0.4px;
   color: #000;
+}
+
+/* Momento's card art is a real map photo (node 308:616) rather than a
+   tintable icon, so it's zoomed/positioned to match Figma exactly and
+   muted with a white wash so the logo on top still pops. Also
+   anchored at its own center at all times (rest and hover alike, like
+   .project-card-placeholder--center) so it grows evenly left/right. */
+.project-card--momento {
+  left: 50%;
+  right: auto;
+  width: 100%;
+  transform: translateX(-50%);
+  /* Sized/positioned in cqw/cqh (relative to the slot, which never
+     resizes) rather than % (relative to this element, which balloons
+     on hover) — so hover reveals more map instead of zooming in. */
+  background-size: 245.97cqw 100cqh;
+  background-position: -2.02cqw 0.14cqh;
+}
+
+.project-card--momento::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.48);
+  pointer-events: none;
 }

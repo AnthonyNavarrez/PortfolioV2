@@ -18,19 +18,45 @@
   z-index: 0;
 }
 
+/* Fixed in place — synced from Figma (node 547:976), pinned top-center
+   of the viewport regardless of scroll position. */
 .homie-case-study__back {
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-weight: var(--font-weight-medium);
-  font-size: 15px;
-  color: var(--color-text);
+  position: fixed;
+  z-index: 20;
+  top: 37px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 32px;
+  height: 62px;
+  border: 2px solid #53453a;
+  border-radius: 999px;
+  background-color: transparent;
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 600;
+  font-size: 23px;
+  letter-spacing: -0.69px;
+  color: #53453a;
   text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  @media (max-width: 768px) {
+    top: 16px;
+    padding: 0 24px;
+    height: 52px;
+    font-size: 18px;
+  }
 }
 
 .homie-case-study__back:hover {
-  color: var(--color-text-heading);
+  transform: translateX(-50%) translateY(-2px);
+  opacity: 0.85;
 }
 
 .homie-case-study__hero {
@@ -123,6 +149,9 @@
 }
 
 .homie-case-study__description-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
   max-width: 628px;
 }
 
@@ -164,4 +193,46 @@
 
 .homie-case-study__description-text strong {
   font-weight: 700;
+}
+
+.homie-case-study__features {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
+  text-align: center;
+
+  @media (max-width: 1024px) {
+    margin-top: 80px;
+  }
+}
+
+.homie-case-study__features-title {
+  text-align: center;
+  margin: 0;
+}
+
+.homie-case-study__features .homie-case-study__description-text {
+  max-width: 480px;
+  margin: 0 0 40px;
+}
+
+.homie-case-study__tech-stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
+
+  @media (max-width: 1024px) {
+    margin-top: 80px;
+  }
+}
+
+.homie-case-study__tech-stack-title {
+  text-align: center;
+  margin: 0 0 48px;
 }

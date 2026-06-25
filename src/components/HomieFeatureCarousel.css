@@ -1,0 +1,62 @@
+.homie-feature-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  margin-top: 48px;
+  padding: 20px 0 24px;
+}
+
+.homie-feature-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 220px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease;
+
+  @media (max-width: 1024px) {
+    width: 180px;
+  }
+}
+
+.homie-feature-card:hover {
+  transform: scale(1.03);
+}
+
+.homie-feature-card__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.homie-feature-card__canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
+}
+
+.homie-feature-card__title {
+  margin: 16px 0 6px;
+  font-family: 'Readex Pro', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.36px;
+  color: #53453a;
+}
+
+.homie-feature-card__description {
+  margin: 0;
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -0.28px;
+  color: #53453a;
+}

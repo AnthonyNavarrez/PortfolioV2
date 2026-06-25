@@ -5,7 +5,14 @@ import {
   homiePhoneMockup2,
   homieSkills,
 } from '../data/homie'
+import {
+  momentoBg,
+  momentoDescription,
+  momentoLandingScreen,
+  momentoSkills,
+} from '../data/momento'
 import HomieIcon from './HomieIcon'
+import MomentoIcon from './MomentoIcon'
 import ProjectCard from './ProjectCard'
 import ProjectCardPlaceholder from './ProjectCardPlaceholder'
 import './Projects.css'
@@ -23,8 +30,18 @@ function Projects() {
           skills={homieSkills}
           mockups={[homiePhoneMockup, homiePhoneMockup2]}
           href="/homie"
+          variant="homie"
         />
-        <ProjectCardPlaceholder expand="center" />
+        <ProjectCard
+          background={momentoBg}
+          icon={<MomentoIcon />}
+          title="MOMENTO"
+          description={momentoDescription}
+          skills={momentoSkills}
+          mockups={[momentoLandingScreen]}
+          href="/momento"
+          variant="momento"
+        />
         <ProjectCardPlaceholder expand="left" />
       </div>
     </section>

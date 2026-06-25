@@ -48,16 +48,12 @@
 
 /* Card 2 (center) grows evenly both ways — card 1 shifts left, card 3
    shifts right by half the excess each. */
-.projects__grid:has(
-    > .project-card-slot:nth-child(2) .project-card-placeholder:hover
-  )
+.projects__grid:has(> .project-card-slot:nth-child(2) .project-card:hover)
   > .project-card-slot:nth-child(1) {
   transform: translateX(calc((100% - var(--card-hover-width)) / 2));
 }
 
-.projects__grid:has(
-    > .project-card-slot:nth-child(2) .project-card-placeholder:hover
-  )
+.projects__grid:has(> .project-card-slot:nth-child(2) .project-card:hover)
   > .project-card-slot:nth-child(3) {
   transform: translateX(calc((var(--card-hover-width) - 100%) / 2));
 }

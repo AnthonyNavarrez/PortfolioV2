@@ -1,13 +1,31 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedContent from './AnimatedContent'
 import Grainient from './Grainient'
 import HomieAnnotation from './HomieAnnotation'
 import HomieDescriptionMockup from './HomieDescriptionMockup'
 import HomieHeroMockup from './HomieHeroMockup'
+import HomieFeatureCarousel from './HomieFeatureCarousel'
+import HomieTechStack from './HomieTechStack'
 import HomieWatermark from './HomieWatermark'
 import './HomieCaseStudy.css'
 
 function HomieCaseStudy() {
+  const solutionRef = useRef<HTMLDivElement>(null)
+  const [showGetStarted, setShowGetStarted] = useState(false)
+
+  useEffect(() => {
+    const target = solutionRef.current
+    if (!target) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowGetStarted(entry.isIntersecting),
+      { threshold: 0.3, rootMargin: '0px 0px -25% 0px' }
+    )
+    observer.observe(target)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <article className="homie-case-study">
       <div className="homie-case-study__background" aria-hidden="true">
@@ -38,34 +56,41 @@ function HomieCaseStudy() {
       </div>
 
       <Link className="homie-case-study__back" to="/">
-        ← Back to projects
+        Back to Projects
       </Link>
 
       <section className="homie-case-study__hero">
         <HomieWatermark />
 
         <div className="homie-case-study__mockup-wrap">
-          <HomieHeroMockup />
+          <AnimatedContent direction="vertical" distance={60} duration={0.9} threshold={0.01} delay={0.1}>
+            <HomieHeroMockup />
+          </AnimatedContent>
 
           <div className="homie-case-study__actions">
-            <HomieAnnotation />
-
-            <a
-              className="homie-case-study__button homie-case-study__button--filled"
-              href="https://homie-d6km.onrender.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Try it Live
-            </a>
-            <a
-              className="homie-case-study__button homie-case-study__button--outline"
-              href="https://github.com/AnthonyNavarrez/CL_Homie"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
+            <AnimatedContent direction="horizontal" distance={50} duration={0.7} threshold={0.01} delay={0.3}>
+              <HomieAnnotation />
+            </AnimatedContent>
+            <AnimatedContent direction="horizontal" distance={50} duration={0.7} threshold={0.01} delay={0.45}>
+              <a
+                className="homie-case-study__button homie-case-study__button--filled"
+                href="https://homie-d6km.onrender.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Try it Live
+              </a>
+            </AnimatedContent>
+            <AnimatedContent direction="horizontal" distance={50} duration={0.7} threshold={0.01} delay={0.55}>
+              <a
+                className="homie-case-study__button homie-case-study__button--outline"
+                href="https://github.com/AnthonyNavarrez/CL_Homie"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </AnimatedContent>
           </div>
         </div>
       </section>
@@ -94,21 +119,23 @@ function HomieCaseStudy() {
             </p>
           </AnimatedContent>
 
-          <AnimatedContent
-            direction="vertical"
-            distance={60}
-            duration={0.9}
-            threshold={0.3}
-          >
-            <p className="homie-case-study__description-label">Solution</p>
-            <p className="homie-case-study__description-text">
-              Homie is a mobile app designed for roommates to organize all
-              household logistics in one place. Through features such as a
-              chore tracker, a shared calendar for the house, and a combined
-              shopping list, Homie creates a space for accountability and
-              clear management.
-            </p>
-          </AnimatedContent>
+          <div ref={solutionRef}>
+            <AnimatedContent
+              direction="vertical"
+              distance={60}
+              duration={0.9}
+              threshold={0.3}
+            >
+              <p className="homie-case-study__description-label">Solution</p>
+              <p className="homie-case-study__description-text">
+                Homie is a mobile app designed for roommates to organize all
+                household logistics in one place. Through features such as a
+                chore tracker, a shared calendar for the house, and a combined
+                shopping list, Homie creates a space for accountability and
+                clear management.
+              </p>
+            </AnimatedContent>
+          </div>
         </div>
 
         <AnimatedContent
@@ -119,7 +146,32 @@ function HomieCaseStudy() {
           delay={0.15}
           threshold={0.2}
         >
-          <HomieDescriptionMockup />
+          <HomieDescriptionMockup showGetStarted={showGetStarted} />
+        </AnimatedContent>
+      </section>
+
+      <section className="homie-case-study__features">
+        <AnimatedContent direction="vertical" distance={60} duration={0.9} threshold={0.2}>
+          <p className="homie-case-study__description-label homie-case-study__features-title">Features</p>
+        </AnimatedContent>
+
+        <AnimatedContent
+          direction="vertical"
+          distance={40}
+          duration={0.9}
+          threshold={0.2}
+        >
+          <HomieFeatureCarousel />
+        </AnimatedContent>
+      </section>
+
+      <section className="homie-case-study__tech-stack">
+        <AnimatedContent direction="vertical" distance={60} duration={0.9} threshold={0.2}>
+          <p className="homie-case-study__description-label homie-case-study__tech-stack-title">Tech Stack</p>
+        </AnimatedContent>
+
+        <AnimatedContent direction="vertical" distance={40} duration={0.9} delay={0.1} threshold={0.2}>
+          <HomieTechStack />
         </AnimatedContent>
       </section>
     </article>

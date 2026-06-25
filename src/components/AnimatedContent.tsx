@@ -16,8 +16,10 @@ interface AnimatedContentProps extends HTMLAttributes<HTMLDivElement> {
   initialOpacity?: number
   animateOpacity?: boolean
   scale?: number
+  borderRadius?: string
   threshold?: number
   delay?: number
+  once?: boolean
   onComplete?: () => void
   disappearAfter?: number
   disappearDuration?: number
@@ -37,8 +39,10 @@ function AnimatedContent({
   initialOpacity = 0,
   animateOpacity = true,
   scale = 1,
+  borderRadius,
   threshold = 0.1,
   delay = 0,
+  once = true,
   disappearAfter = 0,
   disappearDuration = 0.5,
   disappearEase = 'power3.in',
@@ -69,6 +73,7 @@ function AnimatedContent({
       scale,
       opacity: animateOpacity ? initialOpacity : 1,
       visibility: 'visible',
+      ...(borderRadius ? { borderRadius } : {}),
     })
 
     const tl = gsap.timeline({
@@ -96,14 +101,16 @@ function AnimatedContent({
       opacity: 1,
       duration,
       ease,
+      ...(borderRadius ? { borderRadius: '0px' } : {}),
     })
 
     const st = ScrollTrigger.create({
       trigger: el,
       scroller: scrollerTarget,
       start: `top ${startPct}%`,
-      once: true,
+      once,
       onEnter: () => tl.play(),
+      onLeaveBack: once ? undefined : () => tl.reverse(),
     })
 
     return () => {
@@ -120,8 +127,10 @@ function AnimatedContent({
     initialOpacity,
     animateOpacity,
     scale,
+    borderRadius,
     threshold,
     delay,
+    once,
     disappearAfter,
     disappearDuration,
     disappearEase,
