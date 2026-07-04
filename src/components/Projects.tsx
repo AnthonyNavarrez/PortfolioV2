@@ -11,6 +11,14 @@ import {
   momentoLandingScreen,
   momentoSkills,
 } from '../data/momento'
+import {
+  homebodyBg,
+  homebodyBgHover,
+  homebodyDescription,
+  homebodyLogo,
+  homebodyMushroom,
+  homebodySkills,
+} from '../data/homebody'
 import HomieIcon from './HomieIcon'
 import MomentoIcon from './MomentoIcon'
 import ProjectCard from './ProjectCard'
@@ -42,7 +50,17 @@ function Projects() {
           href="/momento"
           variant="momento"
         />
-        <ProjectCardPlaceholder expand="left" />
+        <ProjectCardPlaceholder
+          expand="left"
+          background={homebodyBg}
+          hoverBackground={homebodyBgHover}
+          logo={homebodyLogo}
+          logoAlt="Homebody"
+          description={homebodyDescription}
+          mockup={homebodyMushroom}
+          skills={homebodySkills}
+          href="/homebody"
+        />
       </div>
     </section>
   )

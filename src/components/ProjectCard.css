@@ -13,14 +13,20 @@
   container-type: size;
 }
 
-/* Empty project slot — synced from Figma (node 308:621) */
+/* Empty project slot — synced from Figma (node 308:621). Renders as a
+   Link when href is passed, so reset anchor defaults the same way
+   .project-card does. */
 .project-card-placeholder {
   position: absolute;
   inset: 0;
   z-index: 1;
+  display: block;
+  overflow: hidden;
   border-radius: 10px;
   border: 3px solid #17123a;
   background-color: #302e3f;
+  color: inherit;
+  text-decoration: none;
   cursor: pointer;
   transition:
     width 0.4s ease,
@@ -32,6 +38,135 @@
   z-index: 10;
   border-width: 0;
   border-color: transparent;
+}
+
+/* Homebody stage-1 teaser art (node 308:621) — sized in plain %
+   (self-relative to the placeholder, which does resize) rather than
+   the cqw/cqh trick used for Momento's background, so it scales up
+   with the box on hover instead of trying to "reveal more" of a
+   fixed-size crop — there's no zoom/pan relationship between this art
+   and the stage-2 art, they're two different images that crossfade. */
+.project-card-placeholder__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 451.09% 180.16%;
+  /* background-position % is (container - image) * percent, not a
+     direct offset — converted from Figma's -235.65%/-7.79% length
+     offsets so the same crop window holds at every size. */
+  background-position: 67.12% 9.72%;
+}
+
+/* Stage-2 background (node 593:844) — the full illustrated scene,
+   already sized to match the card's own aspect ratio, so a plain
+   cover/center is all it needs. Crossfades in over the stage-1 art. */
+.project-card-placeholder__bg--hover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.project-card-placeholder:hover .project-card-placeholder__bg--hover {
+  opacity: 1;
+}
+
+/* Oversized and left-flush so only its leading letters show past the
+   narrow stage-1 card, mirroring how HOMIE/MOMENTO's huge title text
+   is mostly clipped by the card's own overflow at rest — then shrinks
+   and settles into the stage-2 wordmark spot (node 593:844) on hover. */
+.project-card-placeholder__logo {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 300%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition:
+    left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card-placeholder:hover .project-card-placeholder__logo {
+  left: 17.4%;
+  top: 6%;
+  width: 60%;
+  transform: translateY(0);
+}
+
+/* Stage-2 description text (node 595:845) — fades in once the logo has
+   started settling into place. Vertical spacing here is re-tuned
+   rather than a direct Figma % copy: the card's hover box only ever
+   grows wider (its height stays pinned to the slot's rest height), so
+   it ends up proportionally wider/shorter than node 593:844's own
+   1178x721 frame, and reusing that frame's fractions verbatim crowds
+   the logo/description/mockup into overlap. */
+.project-card-placeholder__description {
+  position: absolute;
+  left: 35.57%;
+  top: 39%;
+  width: 28.78%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #2f1910;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease 0.2s;
+}
+
+.project-card-placeholder:hover .project-card-placeholder__description {
+  opacity: 1;
+}
+
+/* Stage-2 character mockup (node 565:884) — slides up from below like
+   HOMIE/MOMENTO's phone/map mockups. Centered horizontally (left:50% +
+   translateX) rather than a fixed left%, since shrinking its width to
+   fit the card's shorter hover aspect (see comment above) would
+   otherwise leave it off-center — the left edge would stay anchored
+   while the freed-up space piled up on the right. */
+.project-card-placeholder__mockup {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: 48%;
+  opacity: 0;
+  transform: translate(-50%, 40%);
+  pointer-events: none;
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease;
+}
+
+.project-card-placeholder:hover .project-card-placeholder__mockup {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Sits just below the slot, spanning the full hover width — mirrors
+   .project-card__carousel, but right-anchored since this slot's card
+   grows leftward from its own right edge (expand="left") rather than
+   Homie's leftward-anchored growth. */
+.project-card-placeholder__carousel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: var(--card-hover-width);
+  margin-top: 20px;
+  z-index: 9;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.project-card-slot:has(> .project-card-placeholder:hover) .project-card-placeholder__carousel {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Anchored at its own center at all times (rest and hover alike) —

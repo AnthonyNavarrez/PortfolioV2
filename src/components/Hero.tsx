@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
-import heroPortrait from '../assets/hero-portrait-full.webp'
+import heroPortraitSilhouette from '../assets/hero-portrait-silhouette.svg'
+import heroPortraitPhoto from '../assets/hero-portrait-photo.png'
 import Aurora from './Aurora'
 import './Hero.css'
 
@@ -14,10 +15,23 @@ const PARALLAX_SPEED = {
 const PORTRAIT_SCALE_PER_PIXEL = 0.0006
 const PORTRAIT_MAX_SCALE = 1.4
 
+// Rects the scan box cycles through, as percentages of the portrait
+// box — each roughly frames a different part of the outfit. Kept
+// within the top 40% of the portrait.
+const SCAN_BOXES = [
+  { top: '1%', left: '31%', width: '27%', height: '12%' },
+  { top: '14%', left: '55%', width: '24%', height: '13%' },
+  { top: '10%', left: '10%', width: '36%', height: '8%' },
+  { top: '3%', left: '62%', width: '23%', height: '13%' },
+]
+const SCAN_INTERVAL_MS = 2500
+
 function Hero() {
   const linesRef = useRef<HTMLDivElement>(null)
   const auroraRef = useRef<HTMLDivElement>(null)
-  const portraitRef = useRef<HTMLImageElement>(null)
+  const portraitRef = useRef<HTMLDivElement>(null)
+  const scanBoxRef = useRef<HTMLDivElement>(null)
+  const photoRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
     let frame = 0
@@ -54,6 +68,35 @@ function Hero() {
     }
   }, [])
 
+  useEffect(() => {
+    let index = 0
+
+    const applyScanBox = () => {
+      const box = scanBoxRef.current
+      const photo = photoRef.current
+      if (!box || !photo) return
+      const { top, left, width, height } = SCAN_BOXES[index]
+      box.style.top = top
+      box.style.left = left
+      box.style.width = width
+      box.style.height = height
+
+      const t = parseFloat(top)
+      const l = parseFloat(left)
+      const w = parseFloat(width)
+      const h = parseFloat(height)
+      photo.style.clipPath = `inset(${t}% ${100 - l - w}% ${100 - t - h}% ${l}%)`
+    }
+
+    applyScanBox()
+    const id = setInterval(() => {
+      index = (index + 1) % SCAN_BOXES.length
+      applyScanBox()
+    }, SCAN_INTERVAL_MS)
+
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <section className="hero">
       <div className="hero__fx" aria-hidden="true">
@@ -74,12 +117,21 @@ function Hero() {
         <span className="hero__bracket hero__bracket--bottom" aria-hidden="true" />
       </div>
 
-      <img
-        className="hero__portrait"
-        ref={portraitRef}
-        src={heroPortrait}
-        alt="Portrait of Anthony Navarrez"
-      />
+      <div className="hero__portrait" ref={portraitRef}>
+        <img
+          className="hero__portrait-img"
+          src={heroPortraitSilhouette}
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className="hero__portrait-img hero__portrait-img--photo"
+          ref={photoRef}
+          src={heroPortraitPhoto}
+          alt="Portrait of Anthony Navarrez"
+        />
+        <div className="hero__scan-box" ref={scanBoxRef} aria-hidden="true" />
+      </div>
 
       <div className="hero__content">
         <h1 className="hero__name">
