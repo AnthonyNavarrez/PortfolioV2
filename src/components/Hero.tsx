@@ -46,11 +46,16 @@ function Hero() {
         auroraRef.current.style.transform = `translateY(${y * (1 - PARALLAX_SPEED.aurora)}px)`
       }
       if (portraitRef.current) {
-        const scale = Math.min(
-          PORTRAIT_MAX_SCALE,
-          1 + y * PORTRAIT_SCALE_PER_PIXEL,
-        )
-        portraitRef.current.style.transform = `translate(-50%, ${y * (1 - PARALLAX_SPEED.portrait)}px) scale(${scale})`
+        const isMobile = window.matchMedia('(max-width: 1024px)').matches
+        if (isMobile) {
+          portraitRef.current.style.transform = ''
+        } else {
+          const scale = Math.min(
+            PORTRAIT_MAX_SCALE,
+            1 + y * PORTRAIT_SCALE_PER_PIXEL,
+          )
+          portraitRef.current.style.transform = `translate(-50%, ${y * (1 - PARALLAX_SPEED.portrait)}px) scale(${scale})`
+        }
       }
     }
 
@@ -75,6 +80,7 @@ function Hero() {
       const box = scanBoxRef.current
       const photo = photoRef.current
       if (!box || !photo) return
+
       const { top, left, width, height } = SCAN_BOXES[index]
       box.style.top = top
       box.style.left = left
