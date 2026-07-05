@@ -15,6 +15,12 @@ const PARALLAX_SPEED = {
 const PORTRAIT_SCALE_PER_PIXEL = 0.0006
 const PORTRAIT_MAX_SCALE = 1.4
 
+const PORTRAIT_MOBILE_SCALE_PER_PIXEL = 0.0004
+const PORTRAIT_MOBILE_MAX_SCALE = 1.12
+const PORTRAIT_MOBILE_FADE_DISTANCE = 700
+
+const AURORA_MOBILE_FADE_DISTANCE = 500
+
 // Rects the scan box cycles through, as percentages of the portrait
 // box — each roughly frames a different part of the outfit. Kept
 // within the top 40% of the portrait.
@@ -44,17 +50,32 @@ function Hero() {
       }
       if (auroraRef.current) {
         auroraRef.current.style.transform = `translateY(${y * (1 - PARALLAX_SPEED.aurora)}px)`
+
+        const isMobileAurora = window.matchMedia('(max-width: 1024px)').matches
+        if (isMobileAurora) {
+          const opacity = Math.max(0, 1 - y / AURORA_MOBILE_FADE_DISTANCE)
+          auroraRef.current.style.opacity = `${opacity}`
+        } else {
+          auroraRef.current.style.opacity = ''
+        }
       }
       if (portraitRef.current) {
         const isMobile = window.matchMedia('(max-width: 1024px)').matches
         if (isMobile) {
-          portraitRef.current.style.transform = ''
+          const scale = Math.min(
+            PORTRAIT_MOBILE_MAX_SCALE,
+            1 + y * PORTRAIT_MOBILE_SCALE_PER_PIXEL,
+          )
+          const opacity = Math.max(0, 1 - y / PORTRAIT_MOBILE_FADE_DISTANCE)
+          portraitRef.current.style.transform = `scale(${scale})`
+          portraitRef.current.style.opacity = `${opacity}`
         } else {
           const scale = Math.min(
             PORTRAIT_MAX_SCALE,
             1 + y * PORTRAIT_SCALE_PER_PIXEL,
           )
           portraitRef.current.style.transform = `translate(-50%, ${y * (1 - PARALLAX_SPEED.portrait)}px) scale(${scale})`
+          portraitRef.current.style.opacity = ''
         }
       }
     }

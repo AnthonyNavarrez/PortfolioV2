@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import designIgFireside from '../assets/designs/design-ig-fireside.webp'
 import designIgWeeklyWorkshops from '../assets/designs/design-ig-weeklyworkshops.webp'
 import designW1 from '../assets/designs/design-w1.webp'
@@ -25,14 +26,24 @@ const designImages = [
 ]
 
 function Designs() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 1024px)')
+    const update = () => setIsMobile(mql.matches)
+    update()
+    mql.addEventListener('change', update)
+    return () => mql.removeEventListener('change', update)
+  }, [])
+
   return (
     <section className="designs">
       <h2 className="designs__heading">Designs</h2>
       <div className="designs__field">
         <InfiniteImageField
           images={designImages}
-          imageWidth={216}
-          imageHeight={270}
+          imageWidth={isMobile ? 180 : 216}
+          imageHeight={isMobile ? 225 : 270}
           borderRadius={12}
         />
       </div>

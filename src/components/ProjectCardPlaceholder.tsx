@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useMobileStageTwo } from '../hooks/useMobileStageTwo'
 import SkillsCarousel, { type Skill } from './SkillsCarousel'
 import './ProjectCard.css'
 
@@ -25,7 +26,10 @@ function ProjectCardPlaceholder({
   skills,
   href,
 }: ProjectCardPlaceholderProps) {
+  const { ref, active } = useMobileStageTwo()
+
   const className = `project-card-placeholder project-card-placeholder--${expand}`
+  const stageClassName = active ? `${className} is-stage2` : className
 
   const content = (
     <>
@@ -52,11 +56,13 @@ function ProjectCardPlaceholder({
   return (
     <div className="project-card-slot">
       {href ? (
-        <Link className={className} to={href}>
+        <Link ref={ref} className={stageClassName} to={href}>
           {content}
         </Link>
       ) : (
-        <div className={className}>{content}</div>
+        <div ref={ref} className={stageClassName}>
+          {content}
+        </div>
       )}
 
       {skills && (

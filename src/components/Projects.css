@@ -6,7 +6,9 @@
   box-sizing: border-box;
 
   @media (max-width: 1024px) {
-    padding: 160px 24px 56px;
+    padding: 80px 24px 56px;
+    margin-top: -700px;
+    z-index: 1;
   }
 }
 

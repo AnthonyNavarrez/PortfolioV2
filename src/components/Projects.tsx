@@ -9,6 +9,7 @@ import {
   momentoBg,
   momentoDescription,
   momentoLandingScreen,
+  momentoMockup,
   momentoSkills,
 } from '../data/momento'
 import {
@@ -47,6 +48,7 @@ function Projects() {
           description={momentoDescription}
           skills={momentoSkills}
           mockups={[momentoLandingScreen]}
+          mobileMockup={momentoMockup}
           href="/momento"
           variant="momento"
         />

@@ -34,7 +34,7 @@
     border-color 0.4s ease;
 }
 
-.project-card-placeholder:hover {
+.project-card-placeholder:is(:hover, .is-stage2) {
   z-index: 10;
   border-width: 0;
   border-color: transparent;
@@ -69,7 +69,7 @@
   transition: opacity 0.5s ease;
 }
 
-.project-card-placeholder:hover .project-card-placeholder__bg--hover {
+.project-card-placeholder:is(:hover, .is-stage2) .project-card-placeholder__bg--hover {
   opacity: 1;
 }
 
@@ -91,7 +91,7 @@
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.project-card-placeholder:hover .project-card-placeholder__logo {
+.project-card-placeholder:is(:hover, .is-stage2) .project-card-placeholder__logo {
   left: 17.4%;
   top: 6%;
   width: 60%;
@@ -120,7 +120,7 @@
   transition: opacity 0.3s ease 0.2s;
 }
 
-.project-card-placeholder:hover .project-card-placeholder__description {
+.project-card-placeholder:is(:hover, .is-stage2) .project-card-placeholder__description {
   opacity: 1;
 }
 
@@ -143,7 +143,7 @@
     opacity 0.5s ease;
 }
 
-.project-card-placeholder:hover .project-card-placeholder__mockup {
+.project-card-placeholder:is(:hover, .is-stage2) .project-card-placeholder__mockup {
   opacity: 1;
   transform: translate(-50%, 0);
 }
@@ -164,7 +164,7 @@
   transition: opacity 0.3s ease;
 }
 
-.project-card-slot:has(> .project-card-placeholder:hover) .project-card-placeholder__carousel {
+.project-card-slot:has(> .project-card-placeholder:is(:hover, .is-stage2)) .project-card-placeholder__carousel {
   opacity: 1;
   pointer-events: auto;
 }
@@ -186,8 +186,8 @@
   width: 100%;
 }
 
-.project-card-placeholder--center:hover,
-.project-card-placeholder--left:hover {
+.project-card-placeholder--center:is(:hover, .is-stage2),
+.project-card-placeholder--left:is(:hover, .is-stage2) {
   width: var(--card-hover-width);
 }
 
@@ -210,7 +210,7 @@
     border-color 0.7s ease;
 }
 
-.project-card:hover {
+.project-card:is(:hover, .is-stage2) {
   width: var(--card-hover-width);
   z-index: 10;
   border-width: 0;
@@ -240,7 +240,7 @@
   transform: translateX(-50%);
 }
 
-.project-card-slot:has(> .project-card:hover) .project-card__carousel {
+.project-card-slot:has(> .project-card:is(:hover, .is-stage2)) .project-card__carousel {
   opacity: 1;
   pointer-events: auto;
 }
@@ -262,7 +262,7 @@
     opacity 0.5s ease;
 }
 
-.project-card:hover .project-card__mockup {
+.project-card:is(:hover, .is-stage2) .project-card__mockup {
   opacity: 1;
   transform: translateY(0);
 }
@@ -277,7 +277,7 @@
   transform: translateX(-50%) translateY(40%);
 }
 
-.project-card--momento:hover .project-card__mockup--0 {
+.project-card--momento:is(:hover, .is-stage2) .project-card__mockup--0 {
   transform: translateX(-50%) translateY(0);
 }
 
@@ -288,7 +288,7 @@
   transition-delay: 0.08s;
 }
 
-.project-card:hover .project-card__mockup--1 {
+.project-card:is(:hover, .is-stage2) .project-card__mockup--1 {
   transform: translateY(0) rotate(-7deg);
 }
 
@@ -325,7 +325,7 @@
   width: 60.8%;
 }
 
-.project-card:hover .project-card__icon {
+.project-card:is(:hover, .is-stage2) .project-card__icon {
   left: 1%;
   top: 3.6%;
   width: 30.4%;
@@ -358,16 +358,16 @@
   top: 36%;
 }
 
-.project-card:hover .project-card__content {
+.project-card:is(:hover, .is-stage2) .project-card__content {
   left: 26%;
   top: 29%;
 }
 
-.project-card--momento:hover .project-card__content {
+.project-card--momento:is(:hover, .is-stage2) .project-card__content {
   left: 30%;
 }
 
-.project-card--momento:hover .project-card__description {
+.project-card--momento:is(:hover, .is-stage2) .project-card__description {
   margin-left: 5%;
 }
 
@@ -394,7 +394,7 @@
   transition: opacity 0.3s ease 0.2s;
 }
 
-.project-card--momento:hover .project-card__description {
+.project-card--momento:is(:hover, .is-stage2) .project-card__description {
   opacity: 1;
 }
 
@@ -410,7 +410,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.project-card:hover .project-card__title {
+.project-card:is(:hover, .is-stage2) .project-card__title {
   font-size: 158px;
 }
 
@@ -450,4 +450,201 @@
   inset: 0;
   background-color: rgba(255, 255, 255, 0.48);
   pointer-events: none;
+}
+
+/* Mobile-only mockup — hidden on desktop entirely; Momento's mobile
+   stage 2 turns it on below. A single pre-composited device image
+   (frame + screenshot already baked in), unlike `.project-card__mockup`
+   which is the flat desktop-hover screenshot. */
+.project-card__device-mockup {
+  display: none;
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(8px 3px 4.05px rgba(0, 0, 0, 0.25));
+}
+
+@media (max-width: 1024px) {
+  /* The skills carousel is position: absolute (so it doesn't affect
+     desktop's hover-driven layout), meaning it doesn't push the grid
+     row taller on its own — reserve room below the slot while its
+     card is in stage 2 so it doesn't overlap the next card. */
+  .project-card-slot:has(.is-stage2) {
+    margin-bottom: 64px;
+    transition: margin-bottom 0.3s ease;
+  }
+
+  /* Mobile stage 2 reuses the desktop hover's width-growth rule (via
+     :is(:hover, .is-stage2)), but there's no room to expand into on a
+     single-column mobile layout — pin it back to the slot's own width.
+     `--card-hover-width` (min(1300px, 100vw - 160px)) can compute
+     smaller than the card's own rest width on mobile, which was
+     shrinking it instead of growing it. */
+  .project-card.is-stage2,
+  .project-card-placeholder.is-stage2 {
+    width: 100%;
+  }
+
+  /* Homie stage 2 on mobile (Figma node 608:993) — a simplified
+     icon + wordmark treatment, sized/positioned for the single-column
+     mobile card rather than reusing the desktop hover's expanded
+     info-panel layout. */
+  .project-card--homie.is-stage2 .project-card__icon {
+    left: 6.48%;
+    top: 5.15%;
+    width: 39.84%;
+  }
+
+  .project-card--homie.is-stage2 .project-card__content {
+    left: 35.52%;
+    top: 21.98%;
+    width: 57.6%;
+  }
+
+  .project-card--homie.is-stage2 .project-card__title {
+    font-size: 60px;
+    letter-spacing: 4.8px;
+    line-height: 1.3;
+  }
+
+  /* Phone mockups (Figma nodes 608:1029, 608:1038) pop up from the
+     bottom, unrotated — unlike desktop hover, which slides them up
+     small and tilted from the card's edges. */
+  .project-card--homie.is-stage2 .project-card__mockup {
+    bottom: auto;
+    right: auto;
+    opacity: 1;
+  }
+
+  .project-card--homie.is-stage2 .project-card__mockup--0 {
+    left: 8.64%;
+    top: 49.97%;
+    width: 41.28%;
+    transform: translateY(0);
+  }
+
+  .project-card--homie.is-stage2 .project-card__mockup--1 {
+    left: 48.77%;
+    top: 56.71%;
+    width: 48.4%;
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  /* Description (Figma node 608:1028) sits directly under the HOMIE
+     wordmark. Positioned in % relative to .project-card__content (its
+     containing block, itself 57.6% of the card) so it scales with the
+     card's width like the icon/wordmark; top is a fixed px offset
+     since that containing block's height is auto and can't resolve a
+     percentage top. */
+  .project-card--homie.is-stage2 .project-card__description {
+    position: absolute;
+    left: -41.65%;
+    top: 78px;
+    width: 134.15%;
+    margin: 0;
+    text-align: center;
+    font-family: 'Albert Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.31;
+    letter-spacing: -0.48px;
+    color: #2e0800;
+    opacity: 1;
+  }
+
+  /* Momento stage 2 on mobile (Figma node 612:1071) — icon + wordmark
+     shrunk down and moved into a single-column-friendly spot, with the
+     description made visible and centered underneath instead of the
+     desktop hover's huge nowrap title + side-margin description. */
+  .project-card--momento.is-stage2 .project-card__icon {
+    left: 4.32%;
+    top: 12.61%;
+    width: 19.9%;
+  }
+
+  .project-card--momento.is-stage2 .project-card__content {
+    left: 27.89%;
+    top: 15.63%;
+    width: 64.81%;
+  }
+
+  .project-card--momento.is-stage2 .project-card__title {
+    font-size: 50px;
+    letter-spacing: -2.5px;
+  }
+
+  .project-card--momento.is-stage2 .project-card__description {
+    width: 100%;
+    margin: 8px 0 0;
+    white-space: normal;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.9px;
+    color: #696969;
+  }
+
+  /* The old flat screenshot mockup is replaced by the device-frame
+     mockup below for mobile stage 2. */
+  .project-card--momento.is-stage2 .project-card__mockup--0 {
+    opacity: 0;
+  }
+
+  /* Device mockup pops up from the bottom, same transition language
+     as Homie's phone mockups. Centered horizontally in the card
+     (Figma's own off-right placement didn't read well on the
+     single-column mobile layout). */
+  .project-card--momento .project-card__device-mockup {
+    display: block;
+    left: 50%;
+    top: 43.63%;
+    width: 90%;
+    aspect-ratio: 384 / 296;
+    opacity: 0;
+    transform: translateX(-50%) translateY(40%);
+    transition:
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s ease;
+  }
+
+  .project-card--momento.is-stage2 .project-card__device-mockup {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Homebody stage 2 on mobile (Figma node 615:1136) — the logo and
+     mushroom character are shown at their natural aspect ratio (both
+     assets' own w/h ratios match the Figma frame's crop exactly, so
+     no cropping/zooming is happening there, just plain oversized
+     placement), overflowing the card's edges like Homie/Momento's
+     stage-2 elements, clipped by the card's own overflow: hidden. */
+  .project-card-placeholder--left.is-stage2 .project-card-placeholder__logo {
+    left: 2.5%;
+    top: 10%;
+    width: 95%;
+  }
+
+  .project-card-placeholder--left .project-card-placeholder__description {
+    left: 50%;
+    top: 29.96%;
+    width: 80%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  /* Rest (hidden) position is overridden too, alongside the
+     stage-2 one below, so the transform only ever animates
+     translateY — the base rule's translateX(-50%) doesn't apply
+     since this isn't centered like Homie/Momento's mockups. */
+  .project-card-placeholder--left .project-card-placeholder__mockup {
+    left: -29.89%;
+    top: 34.59%;
+    bottom: auto;
+    width: 158.1%;
+    transform: translateY(40%);
+  }
+
+  .project-card-placeholder--left.is-stage2 .project-card-placeholder__mockup {
+    transform: translateY(0);
+  }
 }

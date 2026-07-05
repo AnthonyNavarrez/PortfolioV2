@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { useMobileStageTwo } from '../hooks/useMobileStageTwo'
 import SkillsCarousel, { type Skill } from './SkillsCarousel'
 import './ProjectCard.css'
 
@@ -10,6 +11,9 @@ interface ProjectCardProps {
   description: string
   skills?: Skill[]
   mockups?: string[]
+  // Mobile-only stage-2 treatment — hidden on desktop, where
+  // `mockups` is used instead.
+  mobileMockup?: string
   href?: string
   variant?: string
 }
@@ -21,12 +25,16 @@ function ProjectCard({
   description,
   skills,
   mockups,
+  mobileMockup,
   href,
   variant,
 }: ProjectCardProps) {
+  const { ref, active } = useMobileStageTwo()
+
   const cardClassName = variant
     ? `project-card project-card--${variant}`
     : 'project-card'
+  const stageClassName = active ? `${cardClassName} is-stage2` : cardClassName
 
   const cardContent = (
     <>
@@ -46,6 +54,10 @@ function ProjectCard({
           key={mockup}
         />
       ))}
+
+      {mobileMockup && (
+        <img className="project-card__device-mockup" src={mobileMockup} alt="" />
+      )}
     </>
   )
 
@@ -53,15 +65,17 @@ function ProjectCard({
     <div className="project-card-slot">
       {href ? (
         <Link
+          ref={ref}
           to={href}
-          className={cardClassName}
+          className={stageClassName}
           style={{ backgroundImage: `url(${background})` }}
         >
           {cardContent}
         </Link>
       ) : (
         <div
-          className={cardClassName}
+          ref={ref}
+          className={stageClassName}
           style={{ backgroundImage: `url(${background})` }}
         >
           {cardContent}

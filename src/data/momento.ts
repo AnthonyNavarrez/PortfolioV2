@@ -1,5 +1,6 @@
 import momentoBg from '../assets/momento-bg.webp'
 import momentoLandingScreen from '../assets/momento-landing-screen.svg'
+import momentoMockup from '../assets/momento-mockup.svg'
 import momentoPolaroidPhoto from '../assets/momento-polaroid-photo.webp'
 import momentoPin from '../assets/momento-pin.svg'
 import reactIcon from '../assets/skills/skill-react.webp'
@@ -15,7 +16,13 @@ import reactLeafletIcon from '../assets/skills/skill-react-leaflet.webp'
 import viteIcon from '../assets/skills/skill-vite.webp'
 import jwtIcon from '../assets/skills/skill-jwt-bcrypt.svg'
 
-export { momentoBg, momentoLandingScreen, momentoPolaroidPhoto, momentoPin }
+export {
+  momentoBg,
+  momentoLandingScreen,
+  momentoMockup,
+  momentoPolaroidPhoto,
+  momentoPin,
+}
 
 export const momentoDescription =
   'web app to pin your memories on an interactive LA map'

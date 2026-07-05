@@ -95,6 +95,10 @@
   bottom: 100px;
   height: 75%;
   pointer-events: none;
+
+  @media (max-width: 1024px) {
+    bottom: 340px;
+  }
 }
 
 .hero__aurora-flip {
@@ -173,7 +177,7 @@
 
   @media (max-width: 1024px) {
     order: 0;
-    margin-top: 40px;
+    margin-top: 100px;
   }
 }
 

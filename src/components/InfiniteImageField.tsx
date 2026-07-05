@@ -70,6 +70,7 @@ function InfiniteImageField({
   const velRef = useRef({ x: 0, y: 0 })
   const mouseRef = useRef({ x: 0.5, y: 0.5 })
   const isInsideRef = useRef(false)
+  const dragRef = useRef({ active: false, lastX: 0, lastY: 0 })
   const rafRef = useRef<number>(0)
 
   // Pre-load images
@@ -120,6 +121,36 @@ function InfiniteImageField({
     canvas.addEventListener('mousemove', onMove)
     canvas.addEventListener('mouseenter', onEnter)
     canvas.addEventListener('mouseleave', onLeave)
+
+    // Touch: drag directly pans the camera (finger-follows-content),
+    // instead of the desktop hover's cursor-offset-driven drift.
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return
+      const t = e.touches[0]
+      dragRef.current = { active: true, lastX: t.clientX, lastY: t.clientY }
+      velRef.current = { x: 0, y: 0 }
+    }
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!dragRef.current.active || e.touches.length !== 1) return
+      e.preventDefault()
+      const t = e.touches[0]
+      const dx = t.clientX - dragRef.current.lastX
+      const dy = t.clientY - dragRef.current.lastY
+      camRef.current.x -= dx
+      camRef.current.y -= dy
+      dragRef.current.lastX = t.clientX
+      dragRef.current.lastY = t.clientY
+    }
+
+    const onTouchEnd = () => {
+      dragRef.current.active = false
+    }
+
+    canvas.addEventListener('touchstart', onTouchStart, { passive: true })
+    canvas.addEventListener('touchmove', onTouchMove, { passive: false })
+    canvas.addEventListener('touchend', onTouchEnd)
+    canvas.addEventListener('touchcancel', onTouchEnd)
 
     const draw = () => {
       const { w: W, h: H } = dimsRef.current
@@ -206,6 +237,10 @@ function InfiniteImageField({
       canvas.removeEventListener('mousemove', onMove)
       canvas.removeEventListener('mouseenter', onEnter)
       canvas.removeEventListener('mouseleave', onLeave)
+      canvas.removeEventListener('touchstart', onTouchStart)
+      canvas.removeEventListener('touchmove', onTouchMove)
+      canvas.removeEventListener('touchend', onTouchEnd)
+      canvas.removeEventListener('touchcancel', onTouchEnd)
     }
   }, [imageWidth, imageHeight, gap, maxSpeed, smoothing, borderRadius])
 
