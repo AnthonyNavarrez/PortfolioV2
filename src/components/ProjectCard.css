@@ -484,6 +484,61 @@
     width: 100%;
   }
 
+  /* Tapping a card still in stage 1 can trigger `:hover` on mobile
+     browsers (tap-triggered sticky hover) right as the Link starts
+     navigating — since `:is(:hover, .is-stage2)` throughout this file
+     treats real hover the same as `.is-stage2`, that snapped the card
+     to its full desktop hover layout (bigger width, repositioned
+     icon/content/title) for an instant even though it never actually
+     reached stage 2. Reset every hover-triggered layout property back
+     to its stage-1 value whenever `.is-stage2` hasn't actually been
+     reached — real desktop `:hover` is unaffected since these rules
+     only exist inside this mobile media query. */
+  .project-card:hover:not(.is-stage2),
+  .project-card-placeholder:hover:not(.is-stage2),
+  .project-card-placeholder--left:hover:not(.is-stage2),
+  .project-card-placeholder--center:hover:not(.is-stage2) {
+    width: 100%;
+  }
+
+  .project-card-placeholder:hover:not(.is-stage2)
+    .project-card-placeholder__logo {
+    left: 0;
+    top: 50%;
+    width: 300%;
+    transform: translateY(-50%);
+  }
+
+  .project-card--homie:hover:not(.is-stage2) .project-card__icon {
+    left: 8.6%;
+    top: 24.3%;
+    width: 70%;
+  }
+
+  .project-card--momento:hover:not(.is-stage2) .project-card__icon {
+    left: 4.3%;
+    top: 24.9%;
+    width: 60.8%;
+  }
+
+  .project-card--homie:hover:not(.is-stage2) .project-card__content {
+    left: 65%;
+    top: 49%;
+  }
+
+  .project-card--momento:hover:not(.is-stage2) .project-card__content {
+    left: 64.5%;
+    top: 36%;
+  }
+
+  .project-card--homie:hover:not(.is-stage2) .project-card__title {
+    font-size: 144px;
+  }
+
+  .project-card--momento:hover:not(.is-stage2) .project-card__title {
+    font-size: 150px;
+  }
+
   /* Homie stage 2 on mobile (Figma node 608:993) — a simplified
      icon + wordmark treatment, sized/positioned for the single-column
      mobile card rather than reusing the desktop hover's expanded
