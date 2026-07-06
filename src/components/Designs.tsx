@@ -1,28 +1,32 @@
 import { useEffect, useState } from 'react'
+import design1 from '../assets/design1.png'
+import design2 from '../assets/design2.png'
+import design3 from '../assets/design3.png'
+import design4 from '../assets/design4.png'
 import designIgFireside from '../assets/designs/design-ig-fireside.webp'
 import designIgWeeklyWorkshops from '../assets/designs/design-ig-weeklyworkshops.webp'
 import designW1 from '../assets/designs/design-w1.webp'
 import designW2 from '../assets/designs/design-w2.webp'
 import designW3 from '../assets/designs/design-w3.webp'
-import designW4 from '../assets/designs/design-w4.webp'
 import designW6 from '../assets/designs/design-w6.webp'
 import designW7 from '../assets/designs/design-w7.webp'
 import designW8 from '../assets/designs/design-w8.webp'
-import designWinterRecap from '../assets/designs/design-winterrecap.webp'
 import InfiniteImageField from './InfiniteImageField'
 import './Designs.css'
 
 const designImages = [
+  design1,
+  design2,
+  design3,
+  design4,
   designW1,
   designW2,
   designW3,
-  designW4,
   designW6,
   designW7,
   designW8,
   designIgFireside,
   designIgWeeklyWorkshops,
-  designWinterRecap,
 ]
 
 function Designs() {

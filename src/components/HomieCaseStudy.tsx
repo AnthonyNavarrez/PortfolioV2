@@ -12,15 +12,22 @@ import './HomieCaseStudy.css'
 
 function HomieCaseStudy() {
   const solutionRef = useRef<HTMLDivElement>(null)
+  const mockupRef = useRef<HTMLDivElement>(null)
   const [showGetStarted, setShowGetStarted] = useState(false)
 
   useEffect(() => {
-    const target = solutionRef.current
+    // On mobile the description stacks the mockup below the text column,
+    // so watching the Solution paragraph flips the mockup's frame before
+    // it has even scrolled into view — watch the mockup itself instead.
+    const isMobile = window.matchMedia('(max-width: 1024px)').matches
+    const target = isMobile ? mockupRef.current : solutionRef.current
     if (!target) return
 
     const observer = new IntersectionObserver(
       ([entry]) => setShowGetStarted(entry.isIntersecting),
-      { threshold: 0.3, rootMargin: '0px 0px -25% 0px' }
+      isMobile
+        ? { threshold: 0, rootMargin: '-50% 0px -50% 0px' }
+        : { threshold: 0.3, rootMargin: '0px 0px -25% 0px' }
     )
     observer.observe(target)
     return () => observer.disconnect()
@@ -138,16 +145,17 @@ function HomieCaseStudy() {
           </div>
         </div>
 
-        <AnimatedContent
-          className="homie-case-study__description-mockup"
-          direction="horizontal"
-          distance={60}
-          duration={0.9}
-          delay={0.15}
-          threshold={0.2}
-        >
-          <HomieDescriptionMockup showGetStarted={showGetStarted} />
-        </AnimatedContent>
+        <div ref={mockupRef} className="homie-case-study__description-mockup">
+          <AnimatedContent
+            direction="horizontal"
+            distance={60}
+            duration={0.9}
+            delay={0.15}
+            threshold={0.2}
+          >
+            <HomieDescriptionMockup showGetStarted={showGetStarted} />
+          </AnimatedContent>
+        </div>
       </section>
 
       <section className="homie-case-study__features">

@@ -9,6 +9,18 @@
 
   @media (max-width: 1024px) {
     padding: 56px 24px 80px;
+    /* HomieWatermark's font-size uses clamp(200px, 26vw, 380px) — the
+       200px floor doesn't shrink further for narrow screens, so the
+       decorative background text/icon bleeds well past the viewport
+       on both sides, causing page-level horizontal scroll. It's
+       already opacity:0.1/pointer-events:none background decoration,
+       so clipping it here just contains the bleed instead of letting
+       it leak into the page. overflow-y is set explicitly too — see
+       the same fix on .hero/.about__cards for why (leaving it at the
+       default 'visible' next to a non-visible overflow-x gets
+       auto-promoted to 'auto', which would show a stray scrollbar). */
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 }
 
@@ -70,6 +82,10 @@
 .homie-case-study__mockup-wrap {
   position: relative;
   z-index: 1;
+
+  @media (max-width: 1024px) {
+    margin-top: 60px;
+  }
 }
 
 .homie-case-study__actions {

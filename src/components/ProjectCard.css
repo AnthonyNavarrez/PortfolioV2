@@ -3,6 +3,13 @@
 .project-card-slot {
   position: relative;
   aspect-ratio: 463 / 647;
+  /* Classic CSS Grid "blowout" bug: a 1fr track is really
+     minmax(auto, 1fr), and 'auto' falls back to the item's
+     min-content size — which WebKit (Safari) inflates for a grid item
+     with aspect-ratio, making the single mobile column (and every card
+     inside it) render wider than the grid itself. min-width: 0
+     overrides that auto minimum so the track actually shrinks to fit. */
+  min-width: 0;
   /* Capped so an expanded card can never exceed the viewport, no
      matter which direction it grows from. Siblings pushed aside by
      that growth are NOT capped — they're allowed to go off-screen. */
@@ -484,6 +491,17 @@
     width: 100%;
   }
 
+  /* The skills carousel below each card is `width: var(--card-hover-
+     width)` unconditionally (not gated by hover/is-stage2 at all) and
+     is a SIBLING of the card, not a child — so it's never clipped by
+     the card's own overflow: hidden. It's invisible at rest, so this
+     oversized, unclipped element only became visible (and noticeable)
+     once stage 2 turned its opacity on. */
+  .project-card__carousel,
+  .project-card-placeholder__carousel {
+    width: 100%;
+  }
+
   /* Tapping a card still in stage 1 can trigger `:hover` on mobile
      browsers (tap-triggered sticky hover) right as the Link starts
      navigating — since `:is(:hover, .is-stage2)` throughout this file
@@ -546,17 +564,17 @@
   .project-card--homie.is-stage2 .project-card__icon {
     left: 6.48%;
     top: 5.15%;
-    width: 39.84%;
+    width: 34%;
   }
 
   .project-card--homie.is-stage2 .project-card__content {
     left: 35.52%;
-    top: 21.98%;
+    top: 17%;
     width: 57.6%;
   }
 
   .project-card--homie.is-stage2 .project-card__title {
-    font-size: 60px;
+    font-size: 52px;
     letter-spacing: 4.8px;
     line-height: 1.3;
   }
@@ -593,7 +611,7 @@
   .project-card--homie.is-stage2 .project-card__description {
     position: absolute;
     left: -41.65%;
-    top: 78px;
+    top: 70px;
     width: 134.15%;
     margin: 0;
     text-align: center;
@@ -613,17 +631,17 @@
   .project-card--momento.is-stage2 .project-card__icon {
     left: 4.32%;
     top: 12.61%;
-    width: 19.9%;
+    width: 17%;
   }
 
   .project-card--momento.is-stage2 .project-card__content {
-    left: 27.89%;
+    left: 24%;
     top: 15.63%;
-    width: 64.81%;
+    width: 74%;
   }
 
   .project-card--momento.is-stage2 .project-card__title {
-    font-size: 50px;
+    font-size: 43px;
     letter-spacing: -2.5px;
   }
 

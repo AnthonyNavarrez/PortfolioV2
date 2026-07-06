@@ -4,6 +4,10 @@
   align-items: center;
   gap: 0;
   margin-left: -8why 0px;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 
 .homie-annotation__swirl {

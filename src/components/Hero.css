@@ -17,6 +17,16 @@
     align-items: center;
     text-align: center;
     padding: 64px 24px 48px;
+    /* The scroll-driven portrait scale-up (transform: scale(...)) grows
+       its painted box past the viewport edges without affecting layout,
+       which otherwise leaks into the page's horizontal scroll area.
+       overflow-y is set explicitly too — leaving it at its default
+       'visible' next to a non-visible overflow-x makes the browser
+       auto-promote it to 'auto', which shows a stray vertical
+       scrollbar on this section whenever the scaled portrait
+       overflows its box. */
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 }
 

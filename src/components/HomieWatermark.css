@@ -10,6 +10,13 @@
   color: #2e0800;
   font-size: clamp(200px, 26vw, 380px);
   padding-bottom: 18%;
+
+  @media (max-width: 1024px) {
+    align-items: flex-start;
+    padding-bottom: 0;
+    padding-top: 4px;
+    font-size: clamp(60px, 15vw, 160px);
+  }
 }
 
 .homie-watermark__icon {
@@ -18,6 +25,17 @@
   flex-shrink: 0;
   margin-right: -0.37em;
   margin-bottom: 0.27em;
+
+  @media (max-width: 1024px) {
+    margin-left: -0.35em;
+    margin-bottom: 0.27em;
+    margin-top: -0.55em;
+    /* justify-content: center on the row absorbs half of any
+       margin-left change to keep the row centered, so a margin
+       tweak barely shifts it — transform isn't subject to that,
+       since it happens after layout. */
+    transform: translateX(-0.2em);
+  }
 }
 
 .homie-watermark__icon svg {

@@ -35,41 +35,49 @@
   }
 }
 
-/* Card 1 (Homie) grows rightward from its own left edge — cards 2 and
-   3 shift right by exactly the overflow so they stay clear of it. */
-.projects__grid:has(> .project-card-slot:nth-child(1) .project-card:hover)
-  > .project-card-slot:nth-child(2),
-.projects__grid:has(> .project-card-slot:nth-child(1) .project-card:hover)
-  > .project-card-slot:nth-child(3) {
-  transform: translateX(
-    calc(
-      var(--card-hover-width) + var(--push-gap) - 100% - var(--grid-gap)
-    )
-  );
-}
+/* Desktop-only: pushes the OTHER cards in the same row aside when one
+   grows via :hover. On mobile these are stacked in a single column
+   (not side by side), and since mobile browsers can trigger :hover on
+   tap/touch-scroll, this was firing on mobile too — shoving an
+   unrelated card (actually positioned above/below, not beside) off
+   screen sideways whenever you touched or scrolled past a card. */
+@media (min-width: 1025px) {
+  /* Card 1 (Homie) grows rightward from its own left edge — cards 2 and
+     3 shift right by exactly the overflow so they stay clear of it. */
+  .projects__grid:has(> .project-card-slot:nth-child(1) .project-card:hover)
+    > .project-card-slot:nth-child(2),
+  .projects__grid:has(> .project-card-slot:nth-child(1) .project-card:hover)
+    > .project-card-slot:nth-child(3) {
+    transform: translateX(
+      calc(
+        var(--card-hover-width) + var(--push-gap) - 100% - var(--grid-gap)
+      )
+    );
+  }
 
-/* Card 2 (center) grows evenly both ways — card 1 shifts left, card 3
-   shifts right by half the excess each. */
-.projects__grid:has(> .project-card-slot:nth-child(2) .project-card:hover)
-  > .project-card-slot:nth-child(1) {
-  transform: translateX(calc((100% - var(--card-hover-width)) / 2));
-}
+  /* Card 2 (center) grows evenly both ways — card 1 shifts left, card 3
+     shifts right by half the excess each. */
+  .projects__grid:has(> .project-card-slot:nth-child(2) .project-card:hover)
+    > .project-card-slot:nth-child(1) {
+    transform: translateX(calc((100% - var(--card-hover-width)) / 2));
+  }
 
-.projects__grid:has(> .project-card-slot:nth-child(2) .project-card:hover)
-  > .project-card-slot:nth-child(3) {
-  transform: translateX(calc((var(--card-hover-width) - 100%) / 2));
-}
+  .projects__grid:has(> .project-card-slot:nth-child(2) .project-card:hover)
+    > .project-card-slot:nth-child(3) {
+    transform: translateX(calc((var(--card-hover-width) - 100%) / 2));
+  }
 
-/* Card 3 (right) grows leftward from its own right edge — cards 1 and
-   2 shift left by exactly the overflow so they stay clear of it. */
-.projects__grid:has(> .project-card-slot:nth-child(3) .project-card-placeholder:hover)
-  > .project-card-slot:nth-child(1),
-.projects__grid:has(> .project-card-slot:nth-child(3) .project-card-placeholder:hover)
-  > .project-card-slot:nth-child(2) {
-  transform: translateX(
-    calc(
-      100% + var(--grid-gap) - var(--card-hover-width) - var(--push-gap)
-    )
-  );
+  /* Card 3 (right) grows leftward from its own right edge — cards 1 and
+     2 shift left by exactly the overflow so they stay clear of it. */
+  .projects__grid:has(> .project-card-slot:nth-child(3) .project-card-placeholder:hover)
+    > .project-card-slot:nth-child(1),
+  .projects__grid:has(> .project-card-slot:nth-child(3) .project-card-placeholder:hover)
+    > .project-card-slot:nth-child(2) {
+    transform: translateX(
+      calc(
+        100% + var(--grid-gap) - var(--card-hover-width) - var(--push-gap)
+      )
+    );
+  }
 }
 

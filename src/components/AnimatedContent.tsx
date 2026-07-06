@@ -5,6 +5,22 @@ import { useEffect, useRef } from 'react'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// ScrollTrigger caches each trigger's scroll position when it's
+// created. Case study pages load mockup/screenshot images after that,
+// shifting the page's layout — without a refresh, some triggers end up
+// pointing at stale positions and their animation never fires, leaving
+// that content stuck at its initial off-screen offset. Refreshing
+// (debounced) whenever the body's rendered size changes keeps every
+// instance's trigger position in sync as images finish loading.
+if (typeof window !== 'undefined' && typeof ResizeObserver !== 'undefined') {
+  let refreshTimeout: ReturnType<typeof setTimeout>
+  const resizeObserver = new ResizeObserver(() => {
+    clearTimeout(refreshTimeout)
+    refreshTimeout = setTimeout(() => ScrollTrigger.refresh(), 150)
+  })
+  resizeObserver.observe(document.body)
+}
+
 interface AnimatedContentProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   container?: string | HTMLElement | null

@@ -166,15 +166,25 @@
   margin-bottom: 0;
 }
 
+/* AnimatedContent's wrapper div has no width of its own — without an
+   explicit width here, it and the screenshot's width: 100% inside it
+   form a circular reference (the wrapper sizing to its content while
+   the image sizes to the wrapper), which left the rendered width
+   indeterminate and overflowing the viewport on mobile. */
+.homebody-case-study__screenshot-wrap {
+  width: 100%;
+  max-width: 702px;
+  flex-shrink: 0;
+}
+
 .homebody-case-study__screenshot {
   display: block;
   width: 100%;
-  max-width: 702px;
   aspect-ratio: 702 / 344;
   object-fit: cover;
   border: 3px solid #55463b;
   border-radius: 20px;
-  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .homebody-case-study__process {

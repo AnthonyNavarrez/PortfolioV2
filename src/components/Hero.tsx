@@ -31,6 +31,12 @@ const SCAN_BOXES = [
   { top: '3%', left: '62%', width: '23%', height: '13%' },
 ]
 const SCAN_INTERVAL_MS = 2500
+const SCAN_INTERVAL_MOBILE_MS = 1500
+
+// Size of the scan box while it's following the cursor (desktop only) —
+// close to the average footprint of the SCAN_BOXES presets above.
+const CURSOR_SCAN_WIDTH = 27
+const CURSOR_SCAN_HEIGHT = 12
 
 function Hero() {
   const linesRef = useRef<HTMLDivElement>(null)
@@ -95,33 +101,99 @@ function Hero() {
   }, [])
 
   useEffect(() => {
-    let index = 0
+    const box = scanBoxRef.current
+    const photo = photoRef.current
+    const portrait = portraitRef.current
+    if (!box || !photo || !portrait) return
 
-    const applyScanBox = () => {
-      const box = scanBoxRef.current
-      const photo = photoRef.current
-      if (!box || !photo) return
-
-      const { top, left, width, height } = SCAN_BOXES[index]
-      box.style.top = top
-      box.style.left = left
-      box.style.width = width
-      box.style.height = height
-
-      const t = parseFloat(top)
-      const l = parseFloat(left)
-      const w = parseFloat(width)
-      const h = parseFloat(height)
-      photo.style.clipPath = `inset(${t}% ${100 - l - w}% ${100 - t - h}% ${l}%)`
+    const applyBox = (top: number, left: number, width: number, height: number) => {
+      box.style.top = `${top}%`
+      box.style.left = `${left}%`
+      box.style.width = `${width}%`
+      box.style.height = `${height}%`
+      photo.style.clipPath = `inset(${top}% ${100 - left - width}% ${100 - top - height}% ${left}%)`
     }
 
-    applyScanBox()
-    const id = setInterval(() => {
-      index = (index + 1) % SCAN_BOXES.length
-      applyScanBox()
-    }, SCAN_INTERVAL_MS)
+    const isMobile = window.matchMedia('(max-width: 1024px)').matches
 
-    return () => clearInterval(id)
+    let index = 0
+    let intervalId: ReturnType<typeof setInterval> | null = null
+
+    const applyPreset = () => {
+      const { top, left, width, height } = SCAN_BOXES[index]
+      applyBox(parseFloat(top), parseFloat(left), parseFloat(width), parseFloat(height))
+    }
+
+    const advance = () => {
+      index = (index + 1) % SCAN_BOXES.length
+      applyPreset()
+    }
+
+    const startCycle = () => {
+      applyPreset()
+      if (isMobile) {
+        // On load, the cycle should feel like it's already 1s in, so
+        // the first move lands 0.5s later instead of a full interval.
+        intervalId = setTimeout(() => {
+          advance()
+          intervalId = setInterval(advance, SCAN_INTERVAL_MOBILE_MS)
+        }, SCAN_INTERVAL_MOBILE_MS - 1000)
+      } else {
+        intervalId = setInterval(advance, SCAN_INTERVAL_MS)
+      }
+    }
+
+    const stopCycle = () => {
+      if (intervalId !== null) {
+        clearTimeout(intervalId)
+        clearInterval(intervalId)
+        intervalId = null
+      }
+    }
+
+    startCycle()
+
+    // Cursor-follow is desktop-only — mobile has no hover, so it just
+    // keeps the auto-cycle running.
+    if (isMobile) {
+      return () => stopCycle()
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = portrait.getBoundingClientRect()
+      const xPct = ((e.clientX - rect.left) / rect.width) * 100
+      const yPct = ((e.clientY - rect.top) / rect.height) * 100
+
+      const left = Math.min(Math.max(xPct - CURSOR_SCAN_WIDTH / 2, 0), 100 - CURSOR_SCAN_WIDTH)
+      const top = Math.min(Math.max(yPct - CURSOR_SCAN_HEIGHT / 2, 0), 100 - CURSOR_SCAN_HEIGHT)
+      applyBox(top, left, CURSOR_SCAN_WIDTH, CURSOR_SCAN_HEIGHT)
+    }
+
+    const handleMouseEnter = (e: MouseEvent) => {
+      stopCycle()
+      // The box/photo transitions are tuned for the slow auto-cycle
+      // glide — disable them so cursor-follow tracks instantly.
+      box.style.transition = 'none'
+      photo.style.transition = 'none'
+      handleMouseMove(e)
+    }
+
+    const handleMouseLeave = () => {
+      box.style.transition = ''
+      photo.style.transition = ''
+      startCycle()
+    }
+
+    portrait.addEventListener('mouseenter', handleMouseEnter)
+    portrait.addEventListener('mousemove', handleMouseMove)
+    portrait.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      stopCycle()
+      portrait.removeEventListener('mouseenter', handleMouseEnter)
+      portrait.removeEventListener('mousemove', handleMouseMove)
+      portrait.removeEventListener('mouseleave', handleMouseLeave)
+    }
   }, [])
 
   return (

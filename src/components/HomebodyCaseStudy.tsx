@@ -63,7 +63,13 @@ function HomebodyCaseStudy() {
           ))}
         </AnimatedContent>
 
-        <AnimatedContent direction="horizontal" distance={50} duration={0.9} threshold={0.2}>
+        <AnimatedContent
+          className="homebody-case-study__screenshot-wrap"
+          direction="horizontal"
+          distance={50}
+          duration={0.9}
+          threshold={0.2}
+        >
           <img
             className="homebody-case-study__screenshot"
             src={homebodyGameplayScreenshot}

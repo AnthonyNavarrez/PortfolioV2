@@ -180,11 +180,24 @@
 .about__card--2 {
   top: 50px;
   left: 200px;
+
+  /* Rest (undragged) positions only — the scattered desktop offsets
+     go negative or past the container's edge, which desktop's wide
+     surrounding padding absorbs but mobile's narrower column doesn't,
+     causing horizontal page overflow before a card is ever touched.
+     Dragging itself stays unconstrained by any container frame. */
+  @media (max-width: 1024px) {
+    left: 130px;
+  }
 }
 
 .about__card--3 {
   top: 250px;
   left: -100px;
+
+  @media (max-width: 1024px) {
+    left: 10px;
+  }
 }
 
 .about__card--4 {
@@ -195,14 +208,26 @@
 .about__card--5 {
   top: 50px;
   left: -150px;
+
+  @media (max-width: 1024px) {
+    left: -10px;
+  }
 }
 
 .about__card--6 {
   top: 400px;
   left: 180px;
+
+  @media (max-width: 1024px) {
+    left: 110px;
+  }
 }
 
 .about__card--7 {
   top: 500px;
   left: -50px;
+
+  @media (max-width: 1024px) {
+    left: 0px;
+  }
 }

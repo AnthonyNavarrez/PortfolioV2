@@ -83,6 +83,7 @@ interface FeatureCardProps {
 }
 
 function FeatureCard({ src, title, description }: FeatureCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef<number | null>(null)
@@ -144,6 +145,30 @@ function FeatureCard({ src, title, description }: FeatureCardProps) {
     }
   }, [])
 
+  // Mobile has no hover, so the mouseenter-triggered play() below never
+  // fires. Instead, play each video only while its card is on screen so
+  // off-screen features aren't silently burning CPU/battery.
+  useEffect(() => {
+    const card = cardRef.current
+    const video = videoRef.current
+    if (!card || !video) return
+    if (!window.matchMedia('(max-width: 1024px)').matches) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          void video.play()
+        } else {
+          video.pause()
+        }
+      },
+      { threshold: 0.5 }
+    )
+    observer.observe(card)
+
+    return () => observer.disconnect()
+  }, [])
+
   const handleMouseEnter = () => {
     const video = videoRef.current
     if (!video) return
@@ -157,6 +182,7 @@ function FeatureCard({ src, title, description }: FeatureCardProps) {
 
   return (
     <div
+      ref={cardRef}
       className="homie-feature-card"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

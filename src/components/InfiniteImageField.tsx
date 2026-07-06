@@ -30,6 +30,36 @@ export interface InfiniteImageFieldProps
   borderRadius?: number
 }
 
+// Crops to the box's aspect ratio (like CSS `object-fit: cover`)
+// instead of stretching — source images keep their native pixels,
+// only the visible crop window changes.
+function drawImageCover(
+  ctx: CanvasRenderingContext2D,
+  img: HTMLImageElement,
+  dx: number,
+  dy: number,
+  dWidth: number,
+  dHeight: number,
+) {
+  const imgRatio = img.naturalWidth / img.naturalHeight
+  const boxRatio = dWidth / dHeight
+
+  let sx = 0
+  let sy = 0
+  let sWidth = img.naturalWidth
+  let sHeight = img.naturalHeight
+
+  if (imgRatio > boxRatio) {
+    sWidth = img.naturalHeight * boxRatio
+    sx = (img.naturalWidth - sWidth) / 2
+  } else {
+    sHeight = img.naturalWidth / boxRatio
+    sy = (img.naturalHeight - sHeight) / 2
+  }
+
+  ctx.drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+}
+
 function drawRoundedRect(
   ctx: CanvasRenderingContext2D,
   x: number,
@@ -208,7 +238,7 @@ function InfiniteImageField({
           ctx.clip()
 
           if (img && img.complete && img.naturalWidth > 0) {
-            ctx.drawImage(img, sx, sy, imageWidth, imageHeight)
+            drawImageCover(ctx, img, sx, sy, imageWidth, imageHeight)
           } else {
             // Placeholder while loading — semi-transparent so background shows
             ctx.fillStyle = 'rgba(0,0,0,0.15)'
