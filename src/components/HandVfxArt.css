@@ -1,0 +1,87 @@
+/* Hand VFX card — Figma nodes 628:1338 (rest) / 623:900 (hover).
+   Sized/positioned in cqw/cqh (relative to the slot, which never
+   resizes, like Momento's map) rather than % of the card, which
+   balloons on hover — so hover reveals more of the scene instead of
+   stretching it. Values are Figma px over the 463x647 rest frame. */
+
+.project-card-placeholder--hand-vfx {
+  background-color: #06221e;
+}
+
+.hand-vfx-art__bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 255.51cqw; /* 1183 */
+  height: 108.35cqh; /* 701 */
+  max-width: none;
+  pointer-events: none;
+}
+
+.hand-vfx-art__title {
+  position: absolute;
+  left: 33.26cqw; /* 154 */
+  top: 23.03cqh; /* 149 */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 64.79cqw; /* 300px */
+  letter-spacing: -3.24cqw; /* -15px */
+  line-height: normal;
+  white-space: nowrap;
+  background-image: linear-gradient(154.1deg, #fff 12.755%, #999 68.06%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  transition:
+    left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Motion-tracking quad with corner dots, drawn over the title. */
+.hand-vfx-art__tracker {
+  position: absolute;
+  left: 10.37cqw; /* 48 */
+  top: 15.46cqh; /* 100 */
+  width: 239.55cqw; /* 1109.13 */
+  height: 74.57cqh; /* 482.45 */
+  max-width: none;
+  pointer-events: none;
+  transition:
+    left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Stage 2: the tracker quad + full "Hand VFX" wordmark are laid out as
+   one group and centered in the expanded card. --u is one Figma px —
+   the rest-frame scale, or smaller if the group (1109px wide plus a
+   40px margin each side) wouldn't fit the hover width, which is capped
+   at 1300px and so can be narrower than the rest-scaled quad on wide
+   screens. Title offsets are relative to the quad's top-left.
+   Desktop only — mobile stage 2 doesn't widen the card. */
+@media (min-width: 1025px) {
+  .project-card-placeholder--hand-vfx {
+    --u: min(calc(100cqw / 463), calc(var(--card-hover-width) / 1189));
+    --group-x: calc((var(--card-hover-width) - 1109.13 * var(--u)) / 2);
+    --group-y: calc(50cqh - 241.22 * var(--u));
+  }
+
+  .project-card-placeholder--hand-vfx:is(:hover, .is-stage2) .hand-vfx-art__tracker {
+    left: var(--group-x);
+    top: var(--group-y);
+    width: calc(1109.13 * var(--u));
+    height: calc(482.45 * var(--u));
+  }
+
+  .project-card-placeholder--hand-vfx:is(:hover, .is-stage2) .hand-vfx-art__title {
+    left: calc(var(--group-x) + 67 * var(--u));
+    top: calc(var(--group-y) + 128 * var(--u));
+    font-size: calc(180 * var(--u));
+    letter-spacing: calc(-9 * var(--u));
+  }
+}

@@ -1,0 +1,19 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1183" height="701" viewBox="0 0 1183 701" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mask group">
+<mask id="mask0_0_7" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1183" height="701">
+<rect id="hand VFX bg" width="1183" height="701" rx="10" fill="#06221E"/>
+</mask>
+<g mask="url(#mask0_0_7)">
+<g id="Vector 2925" filter="url(#filter0_f_0_7)">
+<path d="M1090 25C1090 25 990.353 111.748 986 226.5C982.534 317.871 969.239 318.971 1021.5 394C1072 466.5 1095.67 435.333 1090 538.5C1084.33 641.667 1076 654.5 1076 654.5C1076 654.5 963.667 743.5 821 739" stroke="#244950" stroke-opacity="0.83" stroke-width="150"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_7" x="649.535" y="-200.637" width="685.432" height="1183.9" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="84.55" result="effect1_foregroundBlur_0_7"/>
+</filter>
+</defs>
+</svg>

@@ -1,0 +1,349 @@
+/* HandVfxCaseStudy — synced from Figma (node 628:1351) */
+
+.hand-vfx-case-study {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  margin-inline: calc(50% - 50vw);
+  box-sizing: border-box;
+  background-color: #031714;
+  color: #fff;
+}
+
+/* Fixed in place, mirroring the other case studies' back button. */
+.hand-vfx-case-study__back {
+  position: fixed;
+  z-index: 20;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 28px;
+  height: 56px;
+  border: 2px solid #5d5d5d;
+  border-radius: 999px;
+  background-color: rgba(3, 23, 20, 0.9);
+  backdrop-filter: blur(4px);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.6px;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  @media (max-width: 768px) {
+    top: 16px;
+    padding: 0 22px;
+    height: 48px;
+    font-size: 17px;
+  }
+}
+
+.hand-vfx-case-study__back:hover {
+  transform: translateX(-50%) translateY(-2px);
+  opacity: 0.85;
+}
+
+/* Shared dark, outlined pill used by the hero buttons and tool names. */
+.hand-vfx-case-study__pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 75px;
+  padding: 12px 32px 13px 31px;
+  border: 2px solid #5d5d5d;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.54);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+  letter-spacing: -2px;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hand-vfx-case-study__hero {
+  position: relative;
+  height: 875px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 276px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 620px;
+    padding-top: 200px;
+  }
+}
+
+.hand-vfx-case-study__hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.63;
+  pointer-events: none;
+}
+
+.hand-vfx-case-study__hero-fade {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 84.906%, #031714);
+  pointer-events: none;
+}
+
+.hand-vfx-case-study__title {
+  position: relative;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 130px;
+  letter-spacing: -6.5px;
+  line-height: normal;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: 72px;
+    letter-spacing: -3.6px;
+  }
+}
+
+.hand-vfx-case-study__hero-actions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 228px;
+  margin-top: 60px;
+
+  @media (max-width: 768px) {
+    margin-top: 56px;
+  }
+}
+
+.hand-vfx-case-study__hero-button {
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+a.hand-vfx-case-study__hero-button:hover,
+.hand-vfx-case-study__tool-name:hover {
+  transform: translateY(-2px);
+  border-color: #8a8a8a;
+}
+
+.hand-vfx-case-study__hero-button--live {
+  width: 100%;
+  font-size: 35px;
+  letter-spacing: -1.75px;
+}
+
+.hand-vfx-case-study__hero-button--github {
+  width: 204px;
+}
+
+.hand-vfx-case-study__overview {
+  /* Stacks above the hero while it's pulled up to peek over it. */
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  box-sizing: border-box;
+  width: min(1173px, calc(100% - 48px));
+  margin: 60px auto 0;
+  padding: 12px 97px 34px;
+  border: 2px solid #5d5d5d;
+  border-radius: 20px;
+  background-color: rgba(74, 70, 70, 0.21);
+  text-align: center;
+
+  @media (max-width: 1024px) {
+    padding: 16px 24px 28px;
+  }
+}
+
+.hand-vfx-case-study__overview-heading {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 60px;
+  letter-spacing: -3px;
+  line-height: normal;
+
+  @media (max-width: 768px) {
+    font-size: 44px;
+    letter-spacing: -2.2px;
+  }
+}
+
+.hand-vfx-case-study__overview-text {
+  max-width: 961px;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  letter-spacing: -1.25px;
+  line-height: normal;
+
+  @media (max-width: 768px) {
+    font-size: 19px;
+    letter-spacing: -0.8px;
+  }
+}
+
+.hand-vfx-case-study__tools {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 111px;
+  box-sizing: border-box;
+  padding: 72px 24px 0;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+  }
+}
+
+.hand-vfx-case-study__tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 43px;
+  width: 493px;
+  max-width: 100%;
+
+  @media (max-width: 768px) {
+    gap: 28px;
+  }
+}
+
+.hand-vfx-case-study__tool-name {
+  width: 255px;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.hand-vfx-case-study__tool-description {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: -1.25px;
+  line-height: normal;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 19px;
+    letter-spacing: -0.8px;
+  }
+}
+
+/* Full-bleed band — Figma's 1486px box sits 20px past both edges so
+   its 1px outline only shows on the top and bottom. */
+.hand-vfx-case-study__tech {
+  margin-top: 115px;
+  padding: 39px 24px 100px;
+  border-block: 1px solid #5d5d5d;
+  background-color: rgba(0, 0, 0, 0.54);
+}
+
+.hand-vfx-case-study__tech-heading {
+  margin: 0;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 45px;
+  letter-spacing: -2.25px;
+  line-height: normal;
+}
+
+.hand-vfx-case-study__tech-rows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  max-width: 1100px;
+  margin: 38px auto 0;
+}
+
+.hand-vfx-case-study__tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  row-gap: 32px;
+}
+
+.hand-vfx-case-study__tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  /* 220px columns, widening only for a chip that needs more room
+     (React Three Fiber's, which Figma gives a 250px column). */
+  width: max-content;
+  min-width: 220px;
+}
+
+.hand-vfx-case-study__tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 45px;
+  padding: 0 12px;
+  border-radius: 10px;
+  background-color: rgba(217, 217, 217, 0.07);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.hand-vfx-case-study__tech-icon {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.hand-vfx-case-study__tech-icon img {
+  position: absolute;
+  max-width: none;
+}
+
+.hand-vfx-case-study__tech-icon-img--cover {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hand-vfx-case-study__tech-item p {
+  width: 217px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: -1px;
+  line-height: normal;
+  text-align: center;
+}

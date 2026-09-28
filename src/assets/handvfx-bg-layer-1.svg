@@ -1,0 +1,23 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1183" height="701" viewBox="0 0 1183 701" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mask group">
+<mask id="mask0_0_10" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1183" height="701">
+<g id="Group 631922">
+<g id="Group 631920">
+<rect id="homie-bg" width="1183" height="701" rx="10" fill="#06221E"/>
+</g>
+</g>
+</mask>
+<g mask="url(#mask0_0_10)">
+<g id="Vector 2924" filter="url(#filter0_f_0_10)">
+<path d="M463.5 25C463.5 25 531.078 213.251 439.5 186.5C347.922 159.749 283.5 92 205 118C126.5 144 110.096 161.441 84 216.5C52.7361 282.462 153.617 350.39 102.5 402.5C72.8356 432.741 0 438 0 438" stroke="#183D35" stroke-width="150"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_10" x="-157.155" y="-151.812" width="871.186" height="816.115" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="75.75" result="effect1_foregroundBlur_0_10"/>
+</filter>
+</defs>
+</svg>

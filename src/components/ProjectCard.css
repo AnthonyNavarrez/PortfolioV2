@@ -171,6 +171,19 @@
   transition: opacity 0.3s ease;
 }
 
+/* Carousel follows its card's growth direction so it stays aligned
+   under the expanded card's full width. */
+.project-card-placeholder__carousel--right {
+  left: 0;
+  right: auto;
+}
+
+.project-card-placeholder__carousel--center {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
 .project-card-slot:has(> .project-card-placeholder:is(:hover, .is-stage2)) .project-card-placeholder__carousel {
   opacity: 1;
   pointer-events: auto;
@@ -193,9 +206,33 @@
   width: 100%;
 }
 
+/* Anchored to its left edge at all times — mirrors --left, so the
+   card grows rightward like Homie's. */
+.project-card-placeholder--right {
+  left: 0;
+  right: auto;
+  width: 100%;
+}
+
+.project-card-placeholder--right:is(:hover, .is-stage2),
 .project-card-placeholder--center:is(:hover, .is-stage2),
 .project-card-placeholder--left:is(:hover, .is-stage2) {
   width: var(--card-hover-width);
+}
+
+/* Temporary label for slots still waiting on Figma art — stays
+   centered as the card grows. */
+.project-card-placeholder__label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
 }
 
 .project-card {
@@ -515,7 +552,8 @@
   .project-card:hover:not(.is-stage2),
   .project-card-placeholder:hover:not(.is-stage2),
   .project-card-placeholder--left:hover:not(.is-stage2),
-  .project-card-placeholder--center:hover:not(.is-stage2) {
+  .project-card-placeholder--center:hover:not(.is-stage2),
+  .project-card-placeholder--right:hover:not(.is-stage2) {
     width: 100%;
   }
 

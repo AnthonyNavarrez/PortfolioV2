@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
+import HandVfxCaseStudy from './components/HandVfxCaseStudy'
 import HomieCaseStudy from './components/HomieCaseStudy'
 import HomebodyCaseStudy from './components/HomebodyCaseStudy'
 import MomentoCaseStudy from './components/MomentoCaseStudy'
@@ -14,6 +15,7 @@ function App() {
         <Route path="/homie" element={<HomieCaseStudy />} />
         <Route path="/momento" element={<MomentoCaseStudy />} />
         <Route path="/homebody" element={<HomebodyCaseStudy />} />
+        <Route path="/handvfx" element={<HandVfxCaseStudy />} />
       </Routes>
     </>
   )

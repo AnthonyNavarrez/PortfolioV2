@@ -1,0 +1,52 @@
+/* Row 2 middle card — Figma node 631:1673 (rest). Sized in cqw/cqh
+   (relative to the slot, which never resizes) so hover reveals more of
+   the screenshot instead of stretching it. Figma places the 886x701
+   image at (-186, -17) over the 463x647 card, i.e. its center sits
+   25.5px (5.51cqw) right of the card's center — anchored to the card's
+   center here since this card grows evenly both ways on hover. The
+   0.59 opacity comes from Figma's alpha mask (fill-opacity 0.59). */
+.acm-design-art__bg {
+  position: absolute;
+  left: calc(50% - 90.17cqw); /* center + 5.51cqw - half of 191.36cqw */
+  top: -2.63cqh; /* -17 */
+  width: 191.36cqw; /* 886 */
+  height: 108.35cqh; /* 701 */
+  max-width: none;
+  opacity: 0.59;
+  filter: blur(4.25cqw); /* 19.7px */
+  pointer-events: none;
+}
+
+/* "In Development / coming soon" (node 631:1676) — Figma puts its
+   307px box at (92, 281) on the card, 14px (3.02cqw) right of center;
+   centered off the card's middle like the image so it stays put as
+   the card grows both ways. */
+.acm-design-art__status {
+  position: absolute;
+  left: calc(50% + 3.02cqw);
+  top: 43.43cqh; /* 281 */
+  width: 66.31cqw; /* 307 */
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.acm-design-art__status-title {
+  font-weight: 600;
+  font-size: 8.64cqw; /* 40px */
+  letter-spacing: -0.43cqw; /* -2px */
+  color: #fff;
+}
+
+.acm-design-art__status-subtitle {
+  font-weight: 500;
+  font-size: 6.48cqw; /* 30px */
+  letter-spacing: -0.32cqw; /* -1.5px */
+  color: #62f5ff;
+}

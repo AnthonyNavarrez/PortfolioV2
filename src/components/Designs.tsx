@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react'
 import design1 from '../assets/design1.png'
-import design2 from '../assets/design2.png'
 import design3 from '../assets/design3.png'
 import design4 from '../assets/design4.png'
+import designFrame14 from '../assets/designs/design-frame14.webp'
+import designFrame8 from '../assets/designs/design-frame8.webp'
+import designFrame5a from '../assets/designs/design-frame5-1.webp'
+import designFrame5b from '../assets/designs/design-frame5-2.webp'
+import designPost1 from '../assets/designs/design-post1.webp'
+import designPost2 from '../assets/designs/design-post2.webp'
 import designIgFireside from '../assets/designs/design-ig-fireside.webp'
 import designIgWeeklyWorkshops from '../assets/designs/design-ig-weeklyworkshops.webp'
 import designW1 from '../assets/designs/design-w1.webp'
@@ -16,7 +21,6 @@ import './Designs.css'
 
 const designImages = [
   design1,
-  design2,
   design3,
   design4,
   designW1,
@@ -27,6 +31,12 @@ const designImages = [
   designW8,
   designIgFireside,
   designIgWeeklyWorkshops,
+  designFrame14,
+  designFrame8,
+  designFrame5b,
+  designFrame5a,
+  designPost2,
+  designPost1,
 ]
 
 function Designs() {

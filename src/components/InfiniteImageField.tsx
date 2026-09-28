@@ -60,6 +60,48 @@ function drawImageCover(
   ctx.drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
 }
 
+// Image layout for the infinite grid: image = order[(col + stride * row)
+// mod n]. Every row cycles through all n images, and each row is offset
+// from the last by `stride`. Two cells show the same image only when
+// (dCol + stride * dRow) is a multiple of n, so the stride is picked to
+// make the closest such pair as far apart as possible — no neighbours
+// (sideways, vertical or diagonal) ever match once n >= 5.
+function pickRowStride(n: number): number {
+  if (n < 3) return 1
+  const reach = 8
+  let best = 1
+  let bestDist = -1
+  for (let stride = 2; stride < n - 1; stride++) {
+    let closest = Infinity
+    for (let dRow = 0; dRow <= reach; dRow++) {
+      for (let dCol = -reach; dCol <= reach; dCol++) {
+        if (dRow === 0 && dCol <= 0) continue
+        if ((((dCol + stride * dRow) % n) + n) % n === 0) {
+          closest = Math.min(closest, dCol * dCol + dRow * dRow)
+        }
+      }
+    }
+    if (closest > bestDist) {
+      bestDist = closest
+      best = stride
+    }
+  }
+  return best
+}
+
+// Fixed (seeded) shuffle so the rows don't just replay the images in
+// the order they were listed — stays the same across renders/reloads.
+function shuffledOrder(n: number): number[] {
+  const order = Array.from({ length: n }, (_, i) => i)
+  let seed = 0x9e3779b9
+  for (let i = n - 1; i > 0; i--) {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
+    const j = seed % (i + 1)
+    ;[order[i], order[j]] = [order[j], order[i]]
+  }
+  return order
+}
+
 function drawRoundedRect(
   ctx: CanvasRenderingContext2D,
   x: number,
@@ -102,6 +144,7 @@ function InfiniteImageField({
   const isInsideRef = useRef(false)
   const dragRef = useRef({ active: false, lastX: 0, lastY: 0 })
   const rafRef = useRef<number>(0)
+  const layoutRef = useRef({ n: 0, stride: 1, order: [] as number[] })
 
   // Pre-load images
   useEffect(() => {
@@ -196,6 +239,14 @@ function InfiniteImageField({
       const cellH = imageHeight + gap
       const imgs = loadedImagesRef.current
       const numImages = imgs.length
+      if (layoutRef.current.n !== numImages) {
+        layoutRef.current = {
+          n: numImages,
+          stride: pickRowStride(numImages),
+          order: shuffledOrder(numImages),
+        }
+      }
+      const { stride, order } = layoutRef.current
 
       // Physics — cursor offset from center drives velocity
       const tx = isInsideRef.current
@@ -228,10 +279,10 @@ function InfiniteImageField({
           const sx = col * cellW - camX + W / 2 - imageWidth / 2
           const sy = row * cellH - camY + H / 2 - imageHeight / 2
 
-          // Deterministic image assignment — same cell always gets same image
-          const imgIdx =
-            Math.abs(col * 7 + row * 13 + ((col * row * 3) | 0)) % numImages
-          const img = imgs[imgIdx]
+          // Deterministic image assignment — same cell always gets same
+          // image, and no two neighbouring cells match (see pickRowStride).
+          const slot = (((col + stride * row) % numImages) + numImages) % numImages
+          const img = imgs[order[slot]]
 
           ctx.save()
           drawRoundedRect(ctx, sx, sy, imageWidth, imageHeight, borderRadius)

@@ -1,10 +1,11 @@
+import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { useMobileStageTwo } from '../hooks/useMobileStageTwo'
 import SkillsCarousel, { type Skill } from './SkillsCarousel'
 import './ProjectCard.css'
 
 interface ProjectCardPlaceholderProps {
-  expand: 'center' | 'left'
+  expand: 'right' | 'center' | 'left'
   background?: string
   hoverBackground?: string
   logo?: string
@@ -13,6 +14,11 @@ interface ProjectCardPlaceholderProps {
   mockup?: string
   skills?: Skill[]
   href?: string
+  // Shown centered on the card until real Figma art is supplied.
+  label?: string
+  // Card-specific art rendered inside the card, above the backgrounds.
+  children?: ReactNode
+  variant?: string
 }
 
 function ProjectCardPlaceholder({
@@ -25,10 +31,15 @@ function ProjectCardPlaceholder({
   mockup,
   skills,
   href,
+  label,
+  children,
+  variant,
 }: ProjectCardPlaceholderProps) {
   const { ref, active } = useMobileStageTwo()
 
-  const className = `project-card-placeholder project-card-placeholder--${expand}`
+  const className = variant
+    ? `project-card-placeholder project-card-placeholder--${expand} project-card-placeholder--${variant}`
+    : `project-card-placeholder project-card-placeholder--${expand}`
   const stageClassName = active ? `${className} is-stage2` : className
 
   const content = (
@@ -45,10 +56,12 @@ function ProjectCardPlaceholder({
           style={{ backgroundImage: `url(${hoverBackground})` }}
         />
       )}
+      {children}
       {logo && <img className="project-card-placeholder__logo" src={logo} alt={logoAlt ?? ''} />}
       {description && (
         <p className="project-card-placeholder__description">{description}</p>
       )}
+      {label && <span className="project-card-placeholder__label">{label}</span>}
       {mockup && <img className="project-card-placeholder__mockup" src={mockup} alt="" />}
     </>
   )
@@ -66,7 +79,9 @@ function ProjectCardPlaceholder({
       )}
 
       {skills && (
-        <div className="project-card-placeholder__carousel">
+        <div
+          className={`project-card-placeholder__carousel project-card-placeholder__carousel--${expand}`}
+        >
           <SkillsCarousel skills={skills} />
         </div>
       )}
