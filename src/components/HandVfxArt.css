@@ -63,25 +63,31 @@
    40px margin each side) wouldn't fit the hover width, which is capped
    at 1300px and so can be narrower than the rest-scaled quad on wide
    screens. Title offsets are relative to the quad's top-left.
-   Desktop only — mobile stage 2 doesn't widen the card. */
-@media (min-width: 1025px) {
+   Mobile stage 2 doesn't widen the card, so there the group is fit to
+   the card's own width instead (--hv-w). */
+.project-card-placeholder--hand-vfx {
+  --hv-w: var(--card-hover-width);
+  --u: min(calc(100cqw / 463), calc(var(--hv-w) / 1189));
+  --group-x: calc((var(--hv-w) - 1109.13 * var(--u)) / 2);
+  --group-y: calc(50cqh - 241.22 * var(--u));
+}
+
+@media (max-width: 1024px) {
   .project-card-placeholder--hand-vfx {
-    --u: min(calc(100cqw / 463), calc(var(--card-hover-width) / 1189));
-    --group-x: calc((var(--card-hover-width) - 1109.13 * var(--u)) / 2);
-    --group-y: calc(50cqh - 241.22 * var(--u));
+    --hv-w: 100cqw;
   }
+}
 
-  .project-card-placeholder--hand-vfx:is(:hover, .is-stage2) .hand-vfx-art__tracker {
-    left: var(--group-x);
-    top: var(--group-y);
-    width: calc(1109.13 * var(--u));
-    height: calc(482.45 * var(--u));
-  }
+.project-card-placeholder--hand-vfx:is(:hover, .is-stage2) .hand-vfx-art__tracker {
+  left: var(--group-x);
+  top: var(--group-y);
+  width: calc(1109.13 * var(--u));
+  height: calc(482.45 * var(--u));
+}
 
-  .project-card-placeholder--hand-vfx:is(:hover, .is-stage2) .hand-vfx-art__title {
-    left: calc(var(--group-x) + 67 * var(--u));
-    top: calc(var(--group-y) + 128 * var(--u));
-    font-size: calc(180 * var(--u));
-    letter-spacing: calc(-9 * var(--u));
-  }
+.project-card-placeholder--hand-vfx:is(:hover, .is-stage2) .hand-vfx-art__title {
+  left: calc(var(--group-x) + 67 * var(--u));
+  top: calc(var(--group-y) + 128 * var(--u));
+  font-size: calc(180 * var(--u));
+  letter-spacing: calc(-9 * var(--u));
 }
