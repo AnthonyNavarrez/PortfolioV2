@@ -1,0 +1,266 @@
+/* Fitzi card — Figma nodes 653:1392 (rest) / 653:1389 (hover).
+   Rest values are Figma px over the 463x647 frame, in cqw/cqh (relative
+   to the slot, which never resizes). Stage-2 values are Figma px over
+   the 1178x721 hover frame, times --u: that frame scaled to fit inside
+   the expanded card and centered in it (--group-x/y is its top-left).
+   The swoosh uses --uc instead, the cover scale, so it still spans the
+   whole card when the card is wider than the frame. */
+
+.project-card-placeholder--fitzi {
+  --fitzi-w: var(--card-hover-width);
+  --u: min(calc(100cqh / 721), calc(var(--fitzi-w) / 1178));
+  --uc: max(calc(100cqh / 721), calc(var(--fitzi-w) / 1178));
+  --group-x: calc((var(--fitzi-w) - 1178 * var(--u)) / 2);
+  --group-y: calc(50cqh - 360.5 * var(--u));
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  background-color: #fff;
+  background-image: linear-gradient(162.93deg, #fff 8.69%, #b2e5ff 96.54%);
+}
+
+/* Mobile stage 2 doesn't widen the card, so the hover frame is fit
+   into the card's own width. */
+@media (max-width: 1024px) {
+  .project-card-placeholder--fitzi {
+    --fitzi-w: 100cqw;
+  }
+}
+
+/* Stage-2 gradient (node 641:1072), crossfaded over the rest one. */
+.fitzi-art__bg-hover {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(168.12deg, #fff 12.79%, #d8e9ff 88.89%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.project-card-placeholder--fitzi:is(:hover, .is-stage2) .fitzi-art__bg-hover {
+  opacity: 1;
+}
+
+/* Swoosh (IMG_1842 layers) — each image is stretched to its layer's
+   box, as in Figma. */
+.fitzi-art__swoosh {
+  position: absolute;
+  left: 0;
+  top: 26.43cqh; /* 171 */
+  width: 153.78cqw; /* 712 */
+  height: 103.29cqh; /* 668.26 */
+  opacity: 0.23;
+  pointer-events: none;
+  transition:
+    left 0.7s var(--ease),
+    top 0.7s var(--ease),
+    width 0.7s var(--ease),
+    height 0.7s var(--ease);
+}
+
+.fitzi-art__swoosh--2 {
+  top: 27.36cqh; /* 177 */
+}
+
+.fitzi-art__swoosh img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  transition: opacity 0.5s ease;
+}
+
+.fitzi-art__swoosh-hover {
+  opacity: 0;
+}
+
+.project-card-placeholder--fitzi:is(:hover, .is-stage2) .fitzi-art__swoosh {
+  left: calc((var(--fitzi-w) - 1178 * var(--uc)) / 2 - 1 * var(--uc));
+  top: calc(50cqh - 336.5 * var(--uc)); /* 24 below the frame's top */
+  width: calc(1179 * var(--uc));
+  height: calc(1106.58 * var(--uc));
+}
+
+.project-card-placeholder--fitzi:is(:hover, .is-stage2) .fitzi-art__swoosh-rest {
+  opacity: 0;
+}
+
+.project-card-placeholder--fitzi:is(:hover, .is-stage2) .fitzi-art__swoosh-hover {
+  opacity: 1;
+}
+
+/* "Fit" at rest (node 641:1113) grows into the "Fitzi" wordmark
+   (node 641:1074) — the "zi" tail fades in as it shrinks into place. */
+.fitzi-art__title {
+  position: absolute;
+  left: 23.54cqw; /* 109 */
+  top: 22.87cqh; /* 148 */
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 64.79cqw; /* 300px */
+  letter-spacing: -3.24cqw; /* -15px */
+  line-height: normal;
+  white-space: nowrap;
+  color: #fff;
+  text-shadow: 1.73cqw 2.38cqw 1.68cqw rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  transition:
+    left 0.7s var(--ease),
+    top 0.7s var(--ease),
+    font-size 0.7s var(--ease),
+    font-weight 0.7s var(--ease),
+    letter-spacing 0.7s var(--ease),
+    text-shadow 0.7s var(--ease);
+}
+
+.fitzi-art__title-tail {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card-placeholder--fitzi:is(:hover, .is-stage2) .fitzi-art__title {
+  left: calc(var(--group-x) + 406 * var(--u));
+  top: calc(var(--group-y) + 184 * var(--u));
+  font-weight: 800;
+  font-size: calc(200 * var(--u));
+  letter-spacing: calc(-10 * var(--u));
+  text-shadow: calc(2 * var(--u)) calc(6 * var(--u)) calc(5.8 * var(--u))
+    rgba(0, 0, 0, 0.41);
+}
+
+.project-card-placeholder--fitzi:is(:hover, .is-stage2) .fitzi-art__title-tail {
+  opacity: 1;
+  transition-delay: 0.15s;
+}
+
+/* "AI Fashion App" (node 641:1076). drop-shadow rather than
+   text-shadow, which would paint over the clipped gradient fill. */
+.fitzi-art__subtitle {
+  position: absolute;
+  left: calc(var(--group-x) + 311 * var(--u));
+  top: calc(var(--group-y) + 393 * var(--u));
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: calc(90 * var(--u));
+  letter-spacing: calc(-4.5 * var(--u));
+  line-height: normal;
+  white-space: nowrap;
+  background-image: linear-gradient(184.09deg, #4395ff 16.73%, #2a93d4 130.5%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(calc(1 * var(--u)) calc(4 * var(--u)) calc(4.85 * var(--u)) rgba(0, 0, 0, 0.25));
+  opacity: 0;
+  transform: translateY(calc(20 * var(--u)));
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    transform 0.7s var(--ease);
+}
+
+.project-card-placeholder--fitzi:is(:hover, .is-stage2) .fitzi-art__subtitle {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.2s;
+}
+
+/* Clothing tiles — white rounded cards with the product image cropped
+   inside. They sit a full card-height below their spot at rest and
+   pop up from the bottom edge in stage 2, staggered by --i, with a
+   slight overshoot. */
+.fitzi-art__clothes {
+  --i: 0;
+  position: absolute;
+  left: calc(var(--group-x) + var(--x) * var(--u));
+  top: calc(var(--group-y) + var(--y) * var(--u));
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+  overflow: hidden;
+  border-radius: calc(var(--r) * var(--u));
+  background-color: #fff;
+  box-shadow: calc(-6 * var(--u)) calc(10.5 * var(--u)) calc(14.4 * var(--u))
+    calc(9 * var(--u)) rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(100cqh);
+  pointer-events: none;
+  transition:
+    transform 0.4s ease-in,
+    opacity 0.3s ease 0.1s;
+}
+
+.project-card-placeholder--fitzi:is(:hover, .is-stage2) .fitzi-art__clothes {
+  opacity: 1;
+  transform: none;
+  transition:
+    transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1) calc(0.15s + var(--i) * 0.07s),
+    opacity 0.2s ease calc(0.15s + var(--i) * 0.07s);
+}
+
+.fitzi-art__clothes img {
+  position: absolute;
+  left: var(--img-l);
+  top: var(--img-t);
+  width: var(--img-w);
+  height: var(--img-h);
+  max-width: none;
+}
+
+/* Blurred background tiles (nodes 641:1103, 641:1101, 641:1107). */
+.fitzi-art__clothes--sunglasses {
+  --i: 3;
+  --x: 284; --y: 125; --w: 130; --h: 118; --r: 13.5;
+  --img-l: 4.53%; --img-t: -1.7%; --img-w: 90.84%; --img-h: 101.76%;
+  filter: blur(calc(1.8 * var(--u)));
+  box-shadow: calc(-5.4 * var(--u)) calc(9.45 * var(--u)) calc(12.96 * var(--u))
+    calc(8.1 * var(--u)) rgba(0, 0, 0, 0.12);
+}
+
+.fitzi-art__clothes--sunglasses img {
+  opacity: 0.6;
+}
+
+.fitzi-art__clothes--necklace {
+  --i: 2;
+  --x: 359; --y: 545; --w: 131; --h: 127; --r: 15;
+  --img-l: 2.41%; --img-t: -0.24%; --img-w: 104.45%; --img-h: 87.77%;
+  filter: blur(calc(3.15 * var(--u)));
+}
+
+.fitzi-art__clothes--shirt {
+  --i: 4;
+  --x: 795; --y: 631; --w: 183; --h: 159; --r: 15;
+  --img-l: 13.02%; --img-t: -10.73%; --img-w: 74.45%; --img-h: 121.16%;
+  filter: blur(calc(3.45 * var(--u)));
+}
+
+/* Foreground tiles (nodes 641:1095, 641:1097, 641:1099, 641:1105). */
+.fitzi-art__clothes--cap {
+  --i: 1;
+  --x: 119; --y: 81; --w: 178.64; --h: 168.56; --r: 8.4;
+  --img-l: 4.42%; --img-t: 3.42%; --img-w: 90.87%; --img-h: 92.91%;
+  box-shadow: calc(-3.36 * var(--u)) calc(5.88 * var(--u)) calc(8.06 * var(--u))
+    calc(5.04 * var(--u)) rgba(0, 0, 0, 0.18);
+}
+
+.fitzi-art__clothes--tee {
+  --i: 5;
+  --x: 842; --y: 99; --w: 231.12; --h: 209.52; --r: 10.8;
+  --img-l: 6.38%; --img-t: -3.14%; --img-w: 89.57%; --img-h: 98.88%;
+  box-shadow: calc(-4.32 * var(--u)) calc(7.56 * var(--u)) calc(10.37 * var(--u))
+    calc(6.48 * var(--u)) rgba(0, 0, 0, 0.12);
+}
+
+.fitzi-art__clothes--boots {
+  --i: 6;
+  --x: 986; --y: 250; --w: 159.3; --h: 144.9; --r: 13.5;
+  --img-l: 13.02%; --img-t: -10.73%; --img-w: 74.45%; --img-h: 121.16%;
+  box-shadow: calc(-5.4 * var(--u)) calc(9.45 * var(--u)) calc(12.96 * var(--u))
+    calc(8.1 * var(--u)) rgba(0, 0, 0, 0.12);
+}
+
+.fitzi-art__clothes--jeans {
+  --i: 0;
+  --x: 12; --y: 258; --w: 178; --h: 168; --r: 15;
+  --img-l: 4.42%; --img-t: 3.42%; --img-w: 90.87%; --img-h: 92.91%;
+  border: calc(2 * var(--u)) solid #4a97d5;
+}

@@ -13,6 +13,7 @@ interface ProjectCardPlaceholderProps {
   description?: string
   mockup?: string
   skills?: Skill[]
+  skillsVariant?: 'chips'
   href?: string
   // Shown centered on the card until real Figma art is supplied.
   label?: string
@@ -30,6 +31,7 @@ function ProjectCardPlaceholder({
   description,
   mockup,
   skills,
+  skillsVariant,
   href,
   label,
   children,
@@ -82,7 +84,7 @@ function ProjectCardPlaceholder({
         <div
           className={`project-card-placeholder__carousel project-card-placeholder__carousel--${expand}`}
         >
-          <SkillsCarousel skills={skills} />
+          <SkillsCarousel skills={skills} variant={skillsVariant} />
         </div>
       )}
     </div>

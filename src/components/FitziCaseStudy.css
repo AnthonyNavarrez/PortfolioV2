@@ -1,0 +1,513 @@
+/* FitziCaseStudy — synced from Figma (node 641:1114). Vertical offsets
+   are Figma px on the 1440-wide frame; --canvas-x centers that frame
+   on wider screens. */
+
+.fitzi-case-study {
+  --canvas-x: max(0px, calc((100vw - 1440px) / 2));
+  /* One Figma px of the hero, which scales with the viewport so the
+     phone mockup always fits. */
+  --s: calc(min(100vw, 1440px) / 1440);
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  margin-inline: calc(50% - 50vw);
+  padding-bottom: 82px;
+  box-sizing: border-box;
+  overflow-x: clip;
+  background-color: #fff;
+  background-image: linear-gradient(
+    to bottom,
+    #fff 0,
+    #58c7ff calc(705 * var(--s)),
+    #fff calc(1814 * var(--s))
+  );
+  color: #000;
+
+  @media (max-width: 768px) {
+    --s: calc(160vw / 1440);
+  }
+}
+
+.fitzi-case-study__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Fixed in place, mirroring the other case studies' back button. */
+.fitzi-case-study__back {
+  position: fixed;
+  z-index: 20;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 28px;
+  height: 56px;
+  border: 2px solid #4a97d5;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.6px;
+  color: #1f6fd1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  @media (max-width: 768px) {
+    top: 16px;
+    padding: 0 22px;
+    height: 48px;
+    font-size: 17px;
+  }
+}
+
+.fitzi-case-study__back:hover {
+  transform: translateX(-50%) translateY(-2px);
+  opacity: 0.85;
+}
+
+/* Hero — the tilted phone (node 641:1115), exported as one image
+   covering the frame's top 1440x1738. The fade (node 641:1166) washes
+   it out to white before the first wave. */
+.fitzi-case-study__hero {
+  position: relative;
+  height: calc(1089.5 * var(--s));
+}
+
+/* Scroll-driven scale + tilt (see FitziCaseStudy.tsx) goes on this
+   wrapper, so it doesn't fight the phone's own load-in animation.
+   Pivots on the phone's center, not the image's. */
+.fitzi-case-study__hero-phone-wrap {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 720 * var(--s));
+  width: calc(1440 * var(--s));
+  transform-origin: 47% 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.fitzi-case-study__hero-phone {
+  display: block;
+  width: 100%;
+  max-width: none;
+  animation: fitzi-hero-phone-rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+/* Rises in from below the bottom of the screen on load. */
+@keyframes fitzi-hero-phone-rise {
+  from {
+    transform: translateY(100vh);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fitzi-case-study__hero-phone {
+    animation: none;
+  }
+}
+
+.fitzi-case-study__hero-fade {
+  position: absolute;
+  top: calc(633 * var(--s));
+  left: 0;
+  width: 100%;
+  height: calc(1060 * var(--s));
+  background-image: linear-gradient(179.84deg, rgba(255, 255, 255, 0) 0.2%, #fff 36.56%);
+  pointer-events: none;
+}
+
+/* Shared type. */
+.fitzi-case-study__heading {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 45px;
+  letter-spacing: -1.35px;
+  line-height: normal;
+  /* Overrides the global h2 heading color. */
+  color: #000;
+
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    letter-spacing: -1.08px;
+  }
+}
+
+.fitzi-case-study__heading--shadow {
+  text-shadow: 0 5px 6.9px rgba(0, 0, 0, 0.25);
+}
+
+.fitzi-case-study__text {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 21px;
+  letter-spacing: -0.63px;
+  line-height: normal;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    letter-spacing: -0.54px;
+  }
+}
+
+/* Sections are the containing blocks for their waves. */
+.fitzi-case-study section {
+  position: relative;
+}
+
+/* White ribbon waves (nodes 642:1169, 642:1170, 650:1375, 650:1376) —
+   stretched to their section, sitting behind its content. Horizontal
+   extents are Figma's, as % of the 1440 frame. */
+.fitzi-case-study__wave {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* Problem / Solution — each text block sits on its own wave, so the
+   wave grows with the text when it wraps onto more lines. */
+.fitzi-case-study__statement {
+  box-sizing: border-box;
+}
+
+.fitzi-case-study__statement-body {
+  position: relative;
+  max-width: 997px;
+}
+
+.fitzi-case-study__statement--problem {
+  min-height: 513px;
+  padding: 130px 24px 120px calc(var(--canvas-x) + 113px);
+}
+
+.fitzi-case-study__statement--problem .fitzi-case-study__wave {
+  left: -2.53%;
+  width: 107.26%;
+}
+
+.fitzi-case-study__statement--problem .fitzi-case-study__heading {
+  margin-bottom: 17px;
+}
+
+/* Overlaps the bottom of the problem wave, as in Figma. */
+.fitzi-case-study__statement--solution {
+  min-height: 499px;
+  margin-top: -157px;
+  padding: 71px 24px 150px calc(var(--canvas-x) + 105px);
+}
+
+.fitzi-case-study__statement--solution .fitzi-case-study__wave {
+  left: -9.68%;
+  width: 112.69%;
+}
+
+.fitzi-case-study__statement--solution .fitzi-case-study__heading {
+  margin: 0 0 49px 33px;
+}
+
+@media (max-width: 1024px) {
+  .fitzi-case-study__statement--problem,
+  .fitzi-case-study__statement--solution {
+    min-height: 0;
+    padding-inline: 40px;
+  }
+
+  .fitzi-case-study__statement--problem {
+    padding-top: 90px;
+  }
+
+  .fitzi-case-study__statement--solution {
+    margin-top: -90px;
+    padding-top: 80px;
+  }
+
+  .fitzi-case-study__statement--solution .fitzi-case-study__heading {
+    margin: 0 0 24px;
+  }
+}
+
+/* Text column + media column sections. Media boxes keep Figma's
+   aspect ratio, with each image placed as a % of the box. */
+.fitzi-case-study__split {
+  display: grid;
+  grid-template-columns: minmax(0, var(--copy-w)) minmax(0, var(--media-w));
+  column-gap: var(--gap);
+  align-items: start;
+  padding: 0 24px 0 calc(var(--canvas-x) + 120px);
+}
+
+.fitzi-case-study__copy,
+.fitzi-case-study__media {
+  position: relative;
+  z-index: 1;
+}
+
+.fitzi-case-study__copy .fitzi-case-study__text + .fitzi-case-study__text {
+  margin-top: 34px;
+}
+
+.fitzi-case-study__media img {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+}
+
+/* Wireframing (text 120..543, media 633..1381, top at y=1894). */
+.fitzi-case-study__split--wireframing {
+  --copy-w: 423px;
+  --media-w: 748px;
+  --gap: 90px;
+  margin-top: -50.5px;
+}
+
+.fitzi-case-study__split--wireframing .fitzi-case-study__copy {
+  padding-top: 121px;
+}
+
+.fitzi-case-study__split--wireframing .fitzi-case-study__heading {
+  margin-bottom: 27px;
+}
+
+.fitzi-case-study__wave--wireframing {
+  top: 626px;
+  left: -2.08%;
+  width: 104.17%;
+  height: 348px;
+}
+
+.fitzi-case-study__media--wireframing {
+  aspect-ratio: 748 / 1091;
+}
+
+.fitzi-case-study__wireframes-a {
+  left: 3.34%;
+  top: 0;
+  width: 96.66%;
+  height: 28.05%;
+}
+
+.fitzi-case-study__wireframes-b {
+  left: 3.34%;
+  top: 28.05%;
+  width: 96.66%;
+  height: 32.54%;
+}
+
+.fitzi-case-study__wireframes-c {
+  left: 47.19%;
+  top: 60.59%;
+  width: 52.81%;
+  height: 28.69%;
+}
+
+/* Competitor screenshots (node 643:1203, 329.6x404). */
+.fitzi-case-study__competitive {
+  position: absolute;
+  left: 0;
+  top: 62.97%;
+  width: 44.07%;
+  height: 37.03%;
+}
+
+.fitzi-case-study__competitive-shot--1 {
+  left: 0.28%;
+  top: 0;
+  width: 50.09%;
+  height: 47.55%;
+}
+
+.fitzi-case-study__competitive-shot--2 {
+  left: 50.37%;
+  top: 0;
+  width: 49.63%;
+  height: 46.32%;
+}
+
+.fitzi-case-study__competitive-shot--3 {
+  left: 0;
+  top: 47.00%;
+  width: 50.38%;
+  height: 53.00%;
+}
+
+.fitzi-case-study__competitive-shot--4 {
+  left: 50.51%;
+  top: 46.36%;
+  width: 49.49%;
+  height: 51.46%;
+}
+
+/* Brand Identity (text 120..497, media 640..1139, top at y=3068). */
+.fitzi-case-study__split--brand {
+  --copy-w: 377px;
+  --media-w: 499px;
+  --gap: 143px;
+  margin-top: 83px;
+}
+
+.fitzi-case-study__split--brand .fitzi-case-study__copy {
+  padding-top: 82px;
+}
+
+.fitzi-case-study__split--brand .fitzi-case-study__heading {
+  margin-bottom: 51px;
+}
+
+.fitzi-case-study__wave--brand {
+  top: 362px;
+  left: -17.99%;
+  width: 121.89%;
+  height: 736px;
+}
+
+.fitzi-case-study__media--brand {
+  aspect-ratio: 499 / 618;
+}
+
+.fitzi-case-study__brand-moodboard {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 70.23%;
+}
+
+.fitzi-case-study__brand-type {
+  left: 0;
+  top: 73.62%;
+  width: 76.35%;
+  height: 26.38%;
+}
+
+/* HI-FI (heading at 120, stacked screens 371..1148, top at y=3798). */
+.fitzi-case-study__split--hifi {
+  --copy-w: 251px;
+  --media-w: 777px;
+  --gap: 0px;
+  margin-top: 112px;
+}
+
+.fitzi-case-study__split--hifi .fitzi-case-study__copy {
+  padding-top: 22px;
+}
+
+.fitzi-case-study__media--hifi {
+  display: flex;
+  flex-direction: column;
+}
+
+.fitzi-case-study__media--hifi img {
+  position: static;
+  width: 100%;
+}
+
+.fitzi-case-study__media--hifi img:first-child {
+  aspect-ratio: 777 / 382;
+}
+
+.fitzi-case-study__media--hifi img:last-child {
+  aspect-ratio: 777 / 404;
+}
+
+@media (max-width: 1024px) {
+  .fitzi-case-study__split {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 32px;
+    padding-inline: 40px;
+  }
+
+  .fitzi-case-study__media {
+    width: 100%;
+    max-width: var(--media-w);
+    justify-self: center;
+  }
+
+  .fitzi-case-study__split--wireframing {
+    margin-top: 40px;
+  }
+
+  .fitzi-case-study__split .fitzi-case-study__copy {
+    padding-top: 0;
+  }
+
+  .fitzi-case-study__split .fitzi-case-study__heading {
+    margin-bottom: 20px;
+  }
+
+  .fitzi-case-study__split--brand,
+  .fitzi-case-study__split--hifi {
+    margin-top: 80px;
+  }
+
+  .fitzi-case-study__wave--wireframing,
+  .fitzi-case-study__wave--brand {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .fitzi-case-study__statement--problem,
+  .fitzi-case-study__statement--solution,
+  .fitzi-case-study__split {
+    padding-inline: 20px;
+  }
+}
+
+/* Marketing Designs (node 650:1372) — four 270px posts, 42px apart. */
+.fitzi-case-study__marketing {
+  margin-top: 176px;
+  padding: 0 24px;
+  text-align: center;
+
+  @media (max-width: 1024px) {
+    margin-top: 80px;
+    padding-inline: 40px;
+  }
+
+  @media (max-width: 768px) {
+    padding-inline: 20px;
+  }
+}
+
+.fitzi-case-study__posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 42px;
+  margin-top: 36px;
+
+  @media (max-width: 1024px) {
+    gap: 24px;
+  }
+}
+
+.fitzi-case-study__post {
+  width: 270px;
+  max-width: calc(50% - 12px);
+
+  @media (min-width: 1025px) {
+    max-width: none;
+  }
+}
+
+.fitzi-case-study__post img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+}

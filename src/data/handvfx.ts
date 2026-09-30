@@ -78,3 +78,6 @@ export const handvfxTechStack: HandvfxTechItem[][] = [
     { icon: viteIcon, name: 'Vite', description: 'dev server with hot reload, production build', iconWidth: 34, iconHeight: 33 },
   ],
 ]
+
+// Same stack, as one row for the home card's stage-2 carousel.
+export const handvfxSkills = handvfxTechStack.flat()

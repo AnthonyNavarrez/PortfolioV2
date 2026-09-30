@@ -1,52 +1,294 @@
-/* Row 2 middle card — Figma node 631:1673 (rest). Sized in cqw/cqh
-   (relative to the slot, which never resizes) so hover reveals more of
-   the screenshot instead of stretching it. Figma places the 886x701
-   image at (-186, -17) over the 463x647 card, i.e. its center sits
-   25.5px (5.51cqw) right of the card's center — anchored to the card's
-   center here since this card grows evenly both ways on hover. The
-   0.59 opacity comes from Figma's alpha mask (fill-opacity 0.59). */
-.acm-design-art__bg {
-  position: absolute;
-  left: calc(50% - 90.17cqw); /* center + 5.51cqw - half of 191.36cqw */
-  top: -2.63cqh; /* -17 */
-  width: 191.36cqw; /* 886 */
-  height: 108.35cqh; /* 701 */
-  max-width: none;
-  opacity: 0.59;
-  filter: blur(4.25cqw); /* 19.7px */
-  pointer-events: none;
+/* Row 2 middle card — Figma nodes 659:1353 (rest) / 659:1354 (hover).
+   Same scheme as FitziArt.css: rest values are Figma px over the 463x647
+   frame, in cqw/cqh (relative to the slot, which never resizes);
+   stage-2 values are Figma px over the 1178x721 hover frame times --u,
+   that frame fit inside the expanded card and centered in it
+   (--group-x/y is its top-left). */
+
+.project-card-placeholder--acm-design {
+  --acm-w: var(--card-hover-width);
+  --u: min(calc(100cqh / 721), calc(var(--acm-w) / 1178));
+  --group-x: calc((var(--acm-w) - 1178 * var(--u)) / 2);
+  --group-y: calc(50cqh - 360.5 * var(--u));
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --pop: cubic-bezier(0.34, 1.4, 0.64, 1);
+  background-image: linear-gradient(162.51deg, #fff 9.2%, #a7daff 86.63%);
 }
 
-/* "In Development / coming soon" (node 631:1676) — Figma puts its
-   307px box at (92, 281) on the card, 14px (3.02cqw) right of center;
-   centered off the card's middle like the image so it stays put as
-   the card grows both ways. */
-.acm-design-art__status {
+/* Mobile stage 2 doesn't widen the card. */
+@media (max-width: 1024px) {
+  .project-card-placeholder--acm-design {
+    --acm-w: 100cqw;
+  }
+}
+
+.acm-design-art__bg-hover {
   position: absolute;
-  left: calc(50% + 3.02cqw);
-  top: 43.43cqh; /* 281 */
-  width: 66.31cqw; /* 307 */
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: 'Montserrat', sans-serif;
-  line-height: normal;
+  inset: 0;
+  background-image: linear-gradient(173.74deg, #fff 7.6%, #d8f2ff 120.38%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.project-card-placeholder--acm-design:is(:hover, .is-stage2) .acm-design-art__bg-hover {
+  opacity: 1;
+}
+
+/* Logo (node 659:1344 → 656:1252). Box is the exported SVG, drop
+   shadow included: 620.76px at (37.3, 35.3) at rest, 443.4px at
+   (50.8, 18.8) in stage 2. */
+.acm-design-art__logo {
+  position: absolute;
+  left: 8.06cqw; /* 37.3 */
+  top: 5.46cqh; /* 35.3 */
+  width: 134.07cqw; /* 620.76 */
+  height: 134.07cqw;
+  pointer-events: none;
+  transition:
+    left 0.7s var(--ease),
+    top 0.7s var(--ease),
+    width 0.7s var(--ease),
+    height 0.7s var(--ease);
+}
+
+.acm-design-art__logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  transition: opacity 0.5s ease;
+}
+
+.acm-design-art__logo-hover {
+  opacity: 0;
+}
+
+.project-card-placeholder--acm-design:is(:hover, .is-stage2) .acm-design-art__logo {
+  left: calc(var(--group-x) + 50.8 * var(--u));
+  top: calc(var(--group-y) + 18.8 * var(--u));
+  width: calc(443.4 * var(--u));
+  height: calc(443.4 * var(--u));
+}
+
+.project-card-placeholder--acm-design:is(:hover, .is-stage2) .acm-design-art__logo-rest {
+  opacity: 0;
+}
+
+.project-card-placeholder--acm-design:is(:hover, .is-stage2) .acm-design-art__logo-hover {
+  opacity: 1;
+}
+
+/* Stage-2-only pieces fade/slide in once the card has started to grow. */
+.acm-design-art__wordmark,
+.acm-design-art__website {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(calc(24 * var(--u)));
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    transform 0.7s var(--ease);
+}
+
+.project-card-placeholder--acm-design:is(:hover, .is-stage2) :is(.acm-design-art__wordmark, .acm-design-art__website) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.2s;
+}
+
+/* "acm.design" wordmark (node 656:1062). */
+.acm-design-art__wordmark {
+  left: calc(var(--group-x) + 388 * var(--u));
+  top: calc(var(--group-y) + 80 * var(--u));
+  width: calc(487.35 * var(--u));
+  height: calc(90.18 * var(--u));
+  max-width: none;
+}
+
+/* "Website" (node 656:1100) — textured fill clipped to the text;
+   drop-shadow rather than text-shadow, which would paint over it. */
+.acm-design-art__website {
+  left: calc(var(--group-x) + 399 * var(--u));
+  top: calc(var(--group-y) + 159 * var(--u));
+  width: calc(481.41 * var(--u));
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: calc(65 * var(--u));
+  line-height: 1.2;
   text-align: center;
   white-space: nowrap;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(calc(5 * var(--u)) calc(4 * var(--u)) calc(3.65 * var(--u)) rgba(0, 0, 0, 0.25));
+}
+
+.project-card-placeholder--acm-design:is(:hover, .is-stage2) .acm-design-art__website {
+  transition-delay: 0.28s;
+}
+
+/* Browser mock, fox and bezier handles are each a full hover-frame
+   layer so their pieces can use frame coordinates directly. */
+.acm-design-art__browser,
+.acm-design-art__fox,
+.acm-design-art__bezier {
+  position: absolute;
+  left: var(--group-x);
+  top: var(--group-y);
+  width: calc(1178 * var(--u));
+  height: calc(721 * var(--u));
   pointer-events: none;
 }
 
-.acm-design-art__status-title {
-  font-weight: 600;
-  font-size: 8.64cqw; /* 40px */
-  letter-spacing: -0.43cqw; /* -2px */
-  color: #fff;
+.acm-design-art__browser > *,
+.acm-design-art__fox > *,
+.acm-design-art__bezier > * {
+  position: absolute;
+  max-width: none;
 }
 
-.acm-design-art__status-subtitle {
+/* Browser window slides up from below the card. */
+.acm-design-art__browser {
+  opacity: 0;
+  transform: translateY(100cqh);
+  transition:
+    transform 0.4s ease-in,
+    opacity 0.3s ease 0.1s;
+}
+
+.project-card-placeholder--acm-design:is(:hover, .is-stage2) .acm-design-art__browser {
+  opacity: 1;
+  transform: none;
+  transition:
+    transform 0.8s var(--ease) 0.1s,
+    opacity 0.2s ease 0.1s;
+}
+
+.acm-design-art__rect--window {
+  left: calc(274 * var(--u));
+  top: calc(277.83 * var(--u));
+  width: calc(620.7 * var(--u));
+  height: calc(391 * var(--u));
+  background-color: #ffeccf;
+}
+
+.acm-design-art__rect--panel {
+  left: calc(491 * var(--u));
+  top: calc(527 * var(--u));
+  width: calc(457 * var(--u));
+  height: calc(194 * var(--u));
+  background-color: #ffe5cf;
+}
+
+.acm-design-art__rect--bar,
+.acm-design-art__rect--tab,
+.acm-design-art__rect--dot {
+  top: calc(314.04 * var(--u));
+  height: calc(66.57 * var(--u));
+  background-color: #ffd9b9;
+}
+
+.acm-design-art__rect--bar {
+  left: calc(402.38 * var(--u));
+  width: calc(249.45 * var(--u));
+}
+
+.acm-design-art__rect--tab {
+  left: calc(345.69 * var(--u));
+  width: calc(42.06 * var(--u));
+}
+
+.acm-design-art__rect--dot {
+  left: calc(317.53 * var(--u));
+  width: calc(13.9 * var(--u));
+}
+
+/* Figma sets this in Westwood Sans, which isn't a web font. */
+.acm-design-art__est {
+  left: calc(274 * var(--u));
+  top: calc(247.47 * var(--u));
+  font-family: 'Westwood Sans', 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 6.48cqw; /* 30px */
-  letter-spacing: -0.32cqw; /* -1.5px */
-  color: #62f5ff;
+  font-size: calc(21.95 * var(--u));
+  line-height: 1.459;
+  white-space: nowrap;
+  color: #ffac30;
+}
+
+/* Fox pops up from the bottom edge just after the browser, with a
+   slight overshoot. */
+.acm-design-art__fox {
+  opacity: 0;
+  transform: translateY(100cqh);
+  transition:
+    transform 0.4s ease-in,
+    opacity 0.3s ease 0.1s;
+}
+
+.project-card-placeholder--acm-design:is(:hover, .is-stage2) .acm-design-art__fox {
+  opacity: 1;
+  transform: none;
+  transition:
+    transform 0.9s var(--pop) 0.25s,
+    opacity 0.2s ease 0.25s;
+}
+
+.acm-design-art__fox-shadow {
+  left: calc(320.08 * var(--u));
+  top: calc(626.04 * var(--u));
+  width: calc(574.24 * var(--u));
+  height: calc(80.47 * var(--u));
+  opacity: 0.6;
+  transform: rotate(-0.52deg);
+}
+
+.acm-design-art__fox-tail {
+  left: calc(640.08 * var(--u));
+  top: calc(284.41 * var(--u));
+  width: calc(158.6 * var(--u));
+  height: calc(284.01 * var(--u));
+}
+
+.acm-design-art__fox-body {
+  left: calc(397.98 * var(--u));
+  top: calc(441.33 * var(--u));
+  width: calc(362.67 * var(--u));
+  height: calc(233.68 * var(--u));
+}
+
+.acm-design-art__fox-head {
+  left: calc(409.47 * var(--u));
+  top: calc(399.99 * var(--u));
+  width: calc(181.08 * var(--u));
+  height: calc(203.6 * var(--u));
+}
+
+/* Bezier handles on the tail (node 656:1233) — a 286x266 group rotated
+   23deg; the SVG overhangs it for its drop shadow. Pops in last. */
+.acm-design-art__bezier > img {
+  left: calc(630.93 * var(--u));
+  top: calc(242.36 * var(--u));
+  width: calc(286.26 * var(--u) * 1.1598);
+  height: calc(265.79 * var(--u) * 1.172);
+  margin: calc(-14.09 * var(--u)) 0 0 calc(-22.84 * var(--u));
+  transform: rotate(23deg) scale(0.6);
+  transform-origin: calc(165.97 * var(--u)) calc(146.99 * var(--u));
+  opacity: 0;
+  transition:
+    transform 0.3s ease-in,
+    opacity 0.2s ease;
+}
+
+.project-card-placeholder--acm-design:is(:hover, .is-stage2) .acm-design-art__bezier > img {
+  opacity: 1;
+  transform: rotate(23deg);
+  transition:
+    transform 0.6s var(--pop) 0.6s,
+    opacity 0.3s ease 0.6s;
 }

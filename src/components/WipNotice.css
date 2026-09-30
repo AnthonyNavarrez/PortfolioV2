@@ -1,0 +1,102 @@
+/* "Work in progress" pop-up (Fitzi, acm.design case studies) — Figma node 653:1388. The card is a
+   963x687 frame; everything inside is sized in cqw off the card's own
+   width so it scales down intact on narrow screens. */
+
+.wip-notice {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  animation: wip-notice-fade-in 0.35s ease both;
+}
+
+.wip-notice.is-closing {
+  animation: wip-notice-fade-out 0.3s ease both;
+}
+
+.wip-notice__card {
+  container-type: inline-size;
+  position: relative;
+  box-sizing: border-box;
+  width: min(963px, 100%);
+  aspect-ratio: 963 / 687;
+  border: 4.5px solid #9f8bb4;
+  border-radius: 60px;
+  background-image: linear-gradient(
+    167.81deg,
+    rgba(7, 5, 22, 0.93) 11.62%,
+    rgba(39, 28, 124, 0.93) 107.42%
+  );
+  box-shadow: 12px 36px 46.5px rgba(0, 0, 0, 0.47);
+  color: #fff;
+  font-family: 'Montserrat Alternates', sans-serif;
+  line-height: normal;
+  /* The app root centers text by default. */
+  text-align: left;
+  outline: none;
+  animation: wip-notice-pop-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @media (max-width: 768px) {
+    border-radius: 32px;
+  }
+}
+
+.wip-notice.is-closing .wip-notice__card {
+  animation: wip-notice-pop-out 0.3s ease both;
+}
+
+.wip-notice__title {
+  position: absolute;
+  left: 7.74cqw; /* 74.5 */
+  top: 6.28cqw; /* 60.5 */
+  margin: 0;
+  font-weight: 600;
+  font-size: 12.98cqw; /* 125px */
+  letter-spacing: -0.65cqw; /* -6.25px */
+  white-space: nowrap;
+}
+
+.wip-notice__text {
+  position: absolute;
+  left: 7.79cqw; /* 75 */
+  top: 23.99cqw; /* 231 */
+  width: 73.21cqw; /* 705 */
+  margin: 0;
+  font-weight: 400;
+  font-size: 6.23cqw; /* 60px */
+  letter-spacing: -0.31cqw; /* -3px */
+}
+
+@keyframes wip-notice-fade-in {
+  from { background-color: rgba(0, 0, 0, 0); }
+}
+
+@keyframes wip-notice-fade-out {
+  to { background-color: rgba(0, 0, 0, 0); }
+}
+
+@keyframes wip-notice-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.94);
+  }
+}
+
+@keyframes wip-notice-pop-out {
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wip-notice,
+  .wip-notice__card {
+    animation-duration: 0.01s !important;
+  }
+}

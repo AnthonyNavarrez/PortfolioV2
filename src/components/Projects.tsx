@@ -20,7 +20,9 @@ import {
   homebodyMushroom,
   homebodySkills,
 } from '../data/homebody'
+import { handvfxSkills } from '../data/handvfx'
 import AcmDesignArt from './AcmDesignArt'
+import FitziArt from './FitziArt'
 import HandVfxArt from './HandVfxArt'
 import HomieIcon from './HomieIcon'
 import MomentoIcon from './MomentoIcon'
@@ -68,13 +70,21 @@ function Projects() {
       </div>
       {/* Second row: placeholders until Figma frames are supplied. */}
       <div className="projects__grid">
-        <ProjectCardPlaceholder expand="right" variant="hand-vfx" href="/handvfx">
+        <ProjectCardPlaceholder
+          expand="right"
+          variant="hand-vfx"
+          href="/handvfx"
+          skills={handvfxSkills}
+          skillsVariant="chips"
+        >
           <HandVfxArt />
         </ProjectCardPlaceholder>
-        <ProjectCardPlaceholder expand="center">
+        <ProjectCardPlaceholder expand="center" variant="acm-design" href="/acm-design">
           <AcmDesignArt />
         </ProjectCardPlaceholder>
-        <ProjectCardPlaceholder expand="left" label="Coming soon" />
+        <ProjectCardPlaceholder expand="left" variant="fitzi" href="/fitzi">
+          <FitziArt />
+        </ProjectCardPlaceholder>
       </div>
     </section>
   )

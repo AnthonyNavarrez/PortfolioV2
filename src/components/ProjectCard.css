@@ -114,13 +114,20 @@
    the logo/description/mockup into overlap. */
 .project-card-placeholder__description {
   position: absolute;
-  left: 35.57%;
-  top: 39%;
-  width: 28.78%;
+  /* Centered directly under the stage-2 logo: the logo spans 17.4%-77.4%
+     of the card's width, starts 6% down and is 60% of the hover width
+     wide at its 1400x353 aspect — so its bottom edge is
+     6% + hover-width * 0.1513. Only visible in stage 2, so the hover
+     width is safe to use here. Nudged right of center and tucked up
+     under the logo by eye. */
+  left: 19.4%;
+  top: calc(6% + var(--card-hover-width) * 0.1513 - 14px);
+  width: 60%;
   margin: 0;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 24px;
+  text-align: center;
   color: #2f1910;
   opacity: 0;
   pointer-events: none;
