@@ -420,8 +420,13 @@
   top: 29%;
 }
 
+/* The title (158px) + description is ~190px tall at any card size, while
+   the mockup's top edge sits at ~58% of the card's height — so anchor
+   the block's bottom just above that line instead of using a fixed top %,
+   which let short cards push the text down into the mockup. */
 .project-card--momento:is(:hover, .is-stage2) .project-card__content {
   left: 30%;
+  top: max(4%, calc(58% - 215px));
 }
 
 .project-card--momento:is(:hover, .is-stage2) .project-card__description {

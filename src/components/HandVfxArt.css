@@ -12,8 +12,13 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 255.51cqw; /* 1183 */
-  height: 108.35cqh; /* 701 */
+  /* 1183x701 at rest scale — but never narrower than the expanded card,
+     which on some screens (narrow slot, wide hover cap) is wider than
+     the rest-scaled scene and left its right side uncovered. Height
+     follows at the scene's own aspect, so it only ever grows. */
+  width: max(255.51cqw, var(--hv-w));
+  height: auto;
+  aspect-ratio: 1183 / 701;
   max-width: none;
   pointer-events: none;
 }
