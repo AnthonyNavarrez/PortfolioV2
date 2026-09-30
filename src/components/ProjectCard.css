@@ -322,9 +322,15 @@
   right: 60%;
 }
 
+/* Width is also capped by the card's height (cqh = the slot, whose
+   height the hover card shares): at 783x604 the screenshot is 0.77x as
+   tall as it is wide, so on short, wide hover cards a width-only size
+   grew tall enough to cover the title and description. The cap keeps
+   its top edge below ~58% of the card. */
 .project-card--momento .project-card__mockup--0 {
   left: 50%;
-  width: 48%;
+  bottom: -22%;
+  width: min(42%, 83cqh);
   transform: translateX(-50%) translateY(40%);
 }
 
