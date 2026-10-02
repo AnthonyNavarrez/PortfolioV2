@@ -203,36 +203,43 @@ function FeatureCard({ src, title, description }: FeatureCardProps) {
   )
 }
 
+// Final Designs (Figma node 671:1426) — in Figma's reading order.
 const FEATURES = [
   {
     src: homieOnboardingVideo,
     title: 'Onboarding',
-    description: 'Get started with the app by setting up your account and creating a new household.',
+    description:
+      'Get started with the app by setting up your account. Create a new household and invite roommates with a room code, or join an existing room. Customize your name and your household name',
   },
   {
     src: dashboardVideo,
     title: 'Dashboard',
-    description: 'See an overview of your household details, notices, and manage your settings.',
+    description:
+      'Each feature shows up as a widget with one glanceable line: "Your chore this week: bathroom," "Milk expires in 2 days," "Game night Monday 7pm." Tap a widget to open the feature. The most important information is readable in two seconds without opening anything.',
   },
   {
     src: shoppingVideo,
     title: 'Shopping List',
-    description: 'Easily add and edit recurring grocery items you purchase to your group shopping list.',
+    description:
+      "Each request holds an item name, who it's for (one roommate or the house), due date, type (grocery, cleaning, etc), who claimed it, and a note. The list sorts by urgency. Marking it bought can record a price, and bought items go into a purchase history.",
   },
   {
     src: pantryVideo,
     title: 'Pantry',
-    description: 'Scan barcodes for expiry dates to keep your current pantry items fresh.',
+    description:
+      'Each item holds a name, quantity, expiration date, and a tag (ex: “throw away”). Users can add items manually or through scanning product bar codes. The overview sorts by soonest expiration.',
   },
   {
     src: choresVideo,
     title: 'Chores',
-    description: "Keep track of your home's completion progress with the statistics at the top of the page.",
+    description:
+      'Adding a chore takes a name, an assignee, a due date, and a frequency (as needed, 3 times a week, and so on). Chores can also be added to household calendar. Completions are represented visually with a donut graph.',
   },
   {
     src: calendarVideo,
     title: 'Calendar',
-    description: 'Tap to easily schedule new tasks, assign them to roommates, and set up automatic reminders.',
+    description:
+      'Each event holds a name, date and time, recurrence, and notes. The calendar has a week view and a month view with arrows to move between periods. Tapping an event opens a detail sheet over the calendar, the owner sees Edit, everyone else sees details.',
   },
 ]
 

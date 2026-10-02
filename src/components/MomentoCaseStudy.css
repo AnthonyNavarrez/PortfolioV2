@@ -1,4 +1,4 @@
-/* MomentoCaseStudy — synced from Figma (node 273:647) */
+/* MomentoCaseStudy — synced from Figma (node 682:2439, 1440 wide) */
 
 .momento-case-study {
   position: relative;
@@ -54,20 +54,19 @@
 
 .momento-case-study__hero {
   position: relative;
-  height: 820px;
+  height: 1015px;
+  padding-top: 239px;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 32px;
   box-sizing: border-box;
   overflow: hidden;
 
   @media (max-width: 1024px) {
     height: 600px;
-    padding: 0 24px;
+    padding: 160px 24px 0;
     text-align: center;
   }
 }
@@ -75,10 +74,13 @@
 .momento-case-study__hero-fade {
   position: absolute;
   inset: 0;
+  /* The map sits at 78% opacity over white, then fades fully to white
+     over the hero's last 271px (node 682:2454). */
   background-image: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0) 55%,
-    rgba(255, 255, 255, 1) 100%
+    rgba(255, 255, 255, 0.22) 0,
+    rgba(255, 255, 255, 0.22) calc(100% - 271px),
+    #fff 100%
   );
 }
 
@@ -88,12 +90,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 17px;
 }
 
 .momento-case-study__logo-icon {
   display: block;
-  width: 220px;
+  width: 281.66px;
   flex-shrink: 0;
 
   @media (max-width: 1024px) {
@@ -110,9 +112,9 @@
 .momento-case-study__logo-text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 116px;
+  font-size: 150px;
   line-height: 1;
-  letter-spacing: -5.8px;
+  letter-spacing: -7.5px;
   white-space: nowrap;
   background-image: linear-gradient(160.111deg, #ff7a33 79.359%, #fda831 155.39%);
   background-clip: text;
@@ -130,7 +132,14 @@
   position: relative;
   z-index: 1;
   display: flex;
-  gap: 20px;
+  gap: 21px;
+  /* Figma tucks the buttons up under the wordmark, inside the logo
+     icon's box (top at y=504, the logo's box ends at y=566). */
+  margin-top: -62px;
+
+  @media (max-width: 1024px) {
+    margin-top: 24px;
+  }
 }
 
 .momento-case-study__button {
@@ -138,12 +147,20 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 16px 34px;
-  border-radius: 999px;
+  width: 173px;
+  height: 62px;
+  border-radius: 30px;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
-  font-size: 18px;
-  letter-spacing: -0.54px;
+  font-size: 23px;
+  line-height: 1.31;
+  letter-spacing: -0.69px;
+
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 52px;
+    font-size: 19px;
+  }
   text-decoration: none;
   outline: none;
   transition:
@@ -169,7 +186,7 @@
 }
 
 .momento-case-study__problem {
-  margin-top: 48px;
+  margin-top: 8px;
 
   @media (max-width: 1024px) {
     margin-top: 24px;
@@ -178,7 +195,7 @@
 
 .momento-case-study__problem-panel {
   background-color: #3b7dd8;
-  padding: 64px 80px;
+  padding: 87px 80px 50px;
   text-align: center;
   transform-origin: center top;
 
@@ -188,20 +205,46 @@
 }
 
 .momento-case-study__problem-heading {
-  margin: 0 0 40px;
+  margin: 0;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 26px;
-  letter-spacing: -0.78px;
+  font-size: 30px;
+  line-height: 1.31;
+  letter-spacing: -0.9px;
   color: #fff;
+}
+
+.momento-case-study__problem-intro {
+  max-width: 1178px;
+  margin: 5px auto 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 1.31;
+  letter-spacing: -0.69px;
+  color: #fff;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+}
+
+.momento-case-study__problem-intro a {
+  color: inherit;
+  text-decoration: underline;
 }
 
 .momento-case-study__problem-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px;
-  max-width: 1060px;
-  margin: 0 auto;
+  grid-template-columns: minmax(0, 308px) minmax(0, 298px) minmax(0, 298px);
+  justify-content: center;
+  gap: 120px;
+  margin: 77px auto 0;
+
+  @media (max-width: 1024px) {
+    gap: 40px;
+    margin-top: 48px;
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -209,30 +252,35 @@
   }
 }
 
-.momento-case-study__problem-title {
-  margin: 0 0 12px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 17px;
-  letter-spacing: -0.51px;
-  color: #fff;
-}
-
+.momento-case-study__problem-title,
 .momento-case-study__problem-body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 17px;
-  letter-spacing: -0.51px;
+  font-size: 23px;
+  line-height: 1.31;
+  letter-spacing: -0.69px;
   color: #fff;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+}
+
+.momento-case-study__problem-title {
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.momento-case-study__problem-body {
+  font-weight: 500;
 }
 
 .momento-case-study__solution {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 64px;
-  padding: 80px;
+  gap: 137px;
+  padding: 87px 80px 0;
 
   @media (max-width: 1024px) {
     flex-direction: column;
@@ -289,7 +337,8 @@
   position: relative;
   z-index: 1;
   transform: rotate(7deg);
-  background-color: #fff;
+  /* Figma's instax frame is white at 50% over the map vignette. */
+  background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.18);
   border-radius: 2px;
   padding: 14px 14px 24px;
@@ -324,26 +373,31 @@
 }
 
 .momento-case-study__solution-text {
-  max-width: 600px;
+  max-width: 705px;
   text-align: left;
 }
 
 .momento-case-study__solution-heading {
-  margin: 0 0 12px;
+  margin: 0 0 38px;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 26px;
-  letter-spacing: -0.78px;
+  font-size: 30px;
+  line-height: 1.31;
+  letter-spacing: -0.9px;
   color: #ff7a33;
 }
 
 .momento-case-study__solution-paragraph {
-  margin: 0 0 16px;
+  margin: 0 0 28px;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 17px;
-  line-height: 140%;
+  font-size: 23px;
+  line-height: normal;
   color: #000;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
 }
 
 .momento-case-study__solution-paragraph:last-child {
@@ -354,76 +408,267 @@
   font-weight: 700;
 }
 
-.momento-case-study__tech {
-  padding: 24px 80px 0;
+/* Orange section headings (Inter SemiBold 30), centered. */
+.momento-case-study__section-heading {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.31;
+  letter-spacing: -0.9px;
+  text-align: center;
+  color: #ff7a33;
 
   @media (max-width: 1024px) {
-    padding: 24px 24px 0;
+    font-size: 26px;
+  }
+}
+
+/* Mapping User Journeys (node 683:2881) — a 1205px table: blue header
+   bar, light-grey body with a blue border, columns 276 / 326 / 384px
+   72px apart, inset 75px from the left, blue rules between rows. */
+.momento-case-study__journeys {
+  margin-top: 137px;
+  padding: 0 24px;
+
+  @media (max-width: 1024px) {
+    margin-top: 80px;
+  }
+}
+
+.momento-case-study__journey-table {
+  width: min(1205px, 100%);
+  margin: 22px auto 0;
+  overflow-x: auto;
+  border: 3px solid #3b7dd8;
+  border-radius: 20px 20px 10px 10px;
+  background-color: #eee;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+}
+
+.momento-case-study__journey-row {
+  display: grid;
+  grid-template-columns: 276px 326px 384px;
+  column-gap: 72px;
+  min-width: 1130px;
+  margin: 0 49px 0 64px;
+  padding: 20px 0 20px 11px;
+  font-size: 23px;
+  line-height: normal;
+  color: #000;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 200px 220px 260px;
+    column-gap: 32px;
+    min-width: 0;
+    margin: 0 24px;
+    padding-left: 0;
+    font-size: 18px;
+  }
+}
+
+.momento-case-study__journey-row + .momento-case-study__journey-row:not(:nth-child(2)) {
+  border-top: 1px solid #3b7dd8;
+}
+
+.momento-case-study__journey-row--head {
+  margin: 0;
+  padding: 47px 49px 12px 75px;
+  background-color: #3b7dd8;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.31;
+  letter-spacing: -0.9px;
+  color: #fff;
+
+  @media (max-width: 1024px) {
+    padding: 24px;
+    font-size: 22px;
+  }
+}
+
+.momento-case-study__journey-row--head + .momento-case-study__journey-row {
+  padding-top: 29px;
+}
+
+.momento-case-study__journey-row:last-child {
+  padding-bottom: 34px;
+}
+
+/* Visual direction (nodes 687:2882, 687:2883). */
+.momento-case-study__visual {
+  margin-top: 96px;
+  padding: 0 24px;
+}
+
+.momento-case-study__visual-text {
+  max-width: 705px;
+  margin: 15px auto 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: normal;
+  text-align: center;
+  color: #000;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+}
+
+/* Design System (nodes 688:2887, 688:2885, 688:2893). */
+.momento-case-study__design-system {
+  margin-top: 15px;
+  padding: 0 24px;
+}
+
+.momento-case-study__design-system-image {
+  display: block;
+  width: min(832px, 100%);
+  height: auto;
+  margin: 24px auto 0;
+}
+
+.momento-case-study__design-system-text {
+  max-width: 705px;
+  margin: 15px auto 0;
+  transform: translateX(-34px);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: normal;
+  text-align: left;
+  color: #000;
+
+  @media (max-width: 1024px) {
+    transform: none;
+    font-size: 18px;
+  }
+}
+
+.momento-case-study__design-system-text p {
+  margin: 0;
+}
+
+.momento-case-study__design-system-text p + p {
+  margin-top: 28px;
+}
+
+.momento-case-study__design-system-text strong {
+  font-weight: 700;
+}
+
+.momento-case-study__hex,
+.momento-case-study__medium {
+  font-weight: 500;
+}
+
+.momento-case-study__hex--orange { color: #ff7a33; }
+.momento-case-study__hex--blue { color: #208bea; }
+.momento-case-study__hex--amber { color: #fda831; }
+.momento-case-study__hex--steel { color: #3b7dd8; }
+
+.momento-case-study__hand {
+  font-family: 'Just Another Hand', cursive;
+  font-size: 40px;
+  letter-spacing: 0.8px;
+  line-height: 1;
+}
+
+/* Tech Stack band (nodes 689:2894, 682:2480-2541) — light grey, with
+   the heading and both rows centered. */
+.momento-case-study__tech {
+  margin-top: 100px;
+  padding: 83px 24px 120px;
+  background-color: #e9e9e9;
+
+  @media (max-width: 1024px) {
+    padding: 56px 24px 80px;
   }
 }
 
 .momento-case-study__tech-heading {
-  margin: 0 0 32px;
+  margin: 0 0 45px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 26px;
+  font-size: 30px;
+  line-height: 1.3;
+  color: #208bea;
   text-align: center;
-  color: #ff7a33;
 }
 
 .momento-case-study__tech-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  gap: 32px;
-  padding: 24px 0;
-  border-top: 1px solid #eee;
+  gap: 51px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
-    align-items: center;
-    gap: 16px;
+    gap: 20px;
   }
 }
 
+.momento-case-study__tech-row + .momento-case-study__tech-row {
+  margin-top: 68px;
+
+  @media (max-width: 1024px) {
+    margin-top: 48px;
+  }
+}
+
+/* Label with a 4px blue rule after it. */
 .momento-case-study__tech-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   flex-shrink: 0;
-  width: 100px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 25px;
+  line-height: 1.3;
   color: #000;
+}
 
-  @media (max-width: 768px) {
-    width: auto;
-    text-align: center;
+.momento-case-study__tech-label::after {
+  content: '';
+  width: 4px;
+  height: 32.5px;
+  margin-left: 9px;
+  background-color: #3b7dd8;
+
+  @media (max-width: 1024px) {
+    display: none;
   }
 }
 
 .momento-case-study__tech-items {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-  }
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px 15px;
 }
 
+/* Figma gives each item its own width (154px unless set in data). */
 .momento-case-study__tech-item {
-  width: 180px;
+  flex: 0 0 auto;
+  width: 154px;
+  text-align: center;
 }
 
 .momento-case-study__tech-item-head {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 9px;
 }
 
 .momento-case-study__tech-item-head img {
-  width: 26px;
-  height: 26px;
+  width: auto;
+  height: 35px;
+  max-width: 61px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -431,16 +676,17 @@
 .momento-case-study__tech-item-head span {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 20px;
+  line-height: 1.3;
   color: #000;
 }
 
 .momento-case-study__tech-item p {
-  margin: 8px 0 0;
+  margin: 4px 0 0;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 140%;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
   text-align: center;
-  color: #6b6b6b;
+  color: #000;
 }

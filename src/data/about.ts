@@ -3,9 +3,10 @@ import iconGmail from '../assets/about/icon-gmail.webp'
 import iconInstagram from '../assets/about/icon-instagram.webp'
 import iconLinkedin from '../assets/about/icon-linkedin.webp'
 
-export const aboutBio = [
-  'Im a designer and developer passionate about blending creative instinct with technical depth. I build full-stack web experiences with attention to UI/UX. I am always reaching for the latest tools and technologies that push whats possible',
-  'Outside of tech, I love to dance, I’ve been dancing competitively for 5 years across many styles including contemporary, hip-hop, jazz, pom, the list goes on. I also love staying active either through working out, running, or hiking (no matter how sunny, I love the sun). Im always on the hunt for bakeries with new pastries to try. My go to drink is an ube milk tea or a mango-strawberry tea',
+// Hero bio (Figma node 666:1485). **word** marks the bold keywords.
+export const heroBio = [
+  'Im a **designer** and **developer** passionate about blending creative instinct with technical depth. I build full-stack web experiences with attention to UI/UX. I am always reaching for the latest tools and technologies that push whats possible.',
+  'Outside of tech, I love to **dance**, I’ve been dancing competitively for 5 years across many styles including contemporary, hip-hop, jazz, pom, the list goes on. I also love staying active either through **working** out, **running**, or **hiking** (no matter how sunny, I love the **sun**). Im always on the hunt for **bakeries** with new **pastries** to try. My go to drink is an **ube milk tea** or a **mango-strawberry tea**',
 ]
 
 export const aboutContactLinks = [

@@ -2,12 +2,11 @@
   position: relative;
   width: 100vw;
   margin-inline: calc(50% - 50vw);
-  padding: 480px 80px 96px;
+  padding: 120px 80px 96px;
   box-sizing: border-box;
 
   @media (max-width: 1024px) {
-    padding: 80px 24px 56px;
-    margin-top: -700px;
+    padding: 56px 24px 56px;
     z-index: 1;
   }
 }

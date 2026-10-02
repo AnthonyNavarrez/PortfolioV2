@@ -1,0 +1,29 @@
+/* Scan-box portrait (the V1 hero art). Both images share the
+   silhouette's 1066.09x2830 proportions. */
+.scan-portrait {
+  position: relative;
+  aspect-ratio: 1066.09 / 2830;
+}
+
+.scan-portrait__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scan-portrait__img--photo {
+  transition: clip-path 1.1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.scan-portrait__box {
+  position: absolute;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 5px;
+  pointer-events: none;
+  transition:
+    top 1.1s cubic-bezier(0.65, 0, 0.35, 1),
+    left 1.1s cubic-bezier(0.65, 0, 0.35, 1),
+    width 1.1s cubic-bezier(0.65, 0, 0.35, 1),
+    height 1.1s cubic-bezier(0.65, 0, 0.35, 1);
+}

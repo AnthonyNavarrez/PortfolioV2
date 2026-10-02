@@ -4,12 +4,16 @@ import MomentoIcon from './MomentoIcon'
 import {
   momentoBg,
   momentoBackendStack,
+  momentoDesignSystem,
   momentoFrontendStack,
+  momentoJourneys,
   momentoPin,
   momentoPolaroidCaption,
   momentoPolaroidPhoto,
+  momentoProblemIntro,
   momentoProblems,
   momentoSolutionParagraphs,
+  momentoVisualDirection,
 } from '../data/momento'
 import './MomentoCaseStudy.css'
 
@@ -68,6 +72,13 @@ function MomentoCaseStudy() {
         >
           <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
             <h3 className="momento-case-study__problem-heading">Problem</h3>
+            <p className="momento-case-study__problem-intro">
+              {momentoProblemIntro.before}
+              <a href={momentoProblemIntro.linkHref} target="_blank" rel="noreferrer">
+                {momentoProblemIntro.linkText}
+              </a>
+              {momentoProblemIntro.after}
+            </p>
           </AnimatedContent>
 
           <div className="momento-case-study__problem-grid">
@@ -131,6 +142,77 @@ function MomentoCaseStudy() {
         </AnimatedContent>
       </section>
 
+      <section className="momento-case-study__journeys">
+        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
+          <h3 className="momento-case-study__section-heading">Mapping User Journeys</h3>
+        </AnimatedContent>
+
+        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.15}>
+          <div className="momento-case-study__journey-table" role="table">
+            <div className="momento-case-study__journey-row momento-case-study__journey-row--head" role="row">
+              <span role="columnheader">Moment</span>
+              <span role="columnheader">What’s the user doing?</span>
+              <span role="columnheader">What can Momento do?</span>
+            </div>
+            {momentoJourneys.map((journey) => (
+              <div className="momento-case-study__journey-row" role="row" key={journey.moment}>
+                <span role="cell">{journey.moment}</span>
+                <span role="cell">{journey.doing}</span>
+                <span role="cell">{journey.momento}</span>
+              </div>
+            ))}
+          </div>
+        </AnimatedContent>
+      </section>
+
+      <section className="momento-case-study__visual">
+        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
+          <h3 className="momento-case-study__section-heading">Visual direction</h3>
+          <p className="momento-case-study__visual-text">{momentoVisualDirection}</p>
+        </AnimatedContent>
+      </section>
+
+      <section className="momento-case-study__design-system">
+        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
+          <h3 className="momento-case-study__section-heading">Design System</h3>
+        </AnimatedContent>
+
+        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.2}>
+          <img
+            className="momento-case-study__design-system-image"
+            src={momentoDesignSystem}
+            alt="Momento type scale and color palette"
+          />
+        </AnimatedContent>
+
+        <AnimatedContent
+          className="momento-case-study__design-system-text"
+          direction="vertical"
+          distance={40}
+          duration={0.8}
+          threshold={0.2}
+        >
+          <p>
+            <strong>Color</strong>
+            <br />
+            Vibrant orange <span className="momento-case-study__hex momento-case-study__hex--orange">#FF7A33</span>{' '}
+            and blue <span className="momento-case-study__hex momento-case-study__hex--blue">#208BEA</span>, with
+            softer <span className="momento-case-study__hex momento-case-study__hex--amber">#FDA831</span> and{' '}
+            <span className="momento-case-study__hex momento-case-study__hex--steel">#3B7DD8</span> for text and
+            backgrounds. Momento is about getting out and exploring, so the palette should feel energetic and alive.
+            Orange leads the logo, pins and the main actions. Blue is its complement.
+          </p>
+          <p>
+            <strong>Typography:</strong>
+            <br />
+            <span className="momento-case-study__hand">Just Another Hand</span> is a handwritten display face, used
+            for titles. It gives Momento a playful scrapbooky feel, like a note scribbled on photo.{' '}
+            <span className="momento-case-study__medium">Inter</span> is neutral, calm, and a web standard, so it
+            balances the handwriting and stays readable at small sizes over a map.
+          </p>
+        </AnimatedContent>
+      </section>
+
       <section className="momento-case-study__tech">
         <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
           <h3 className="momento-case-study__tech-heading">Tech Stack</h3>
@@ -146,7 +228,7 @@ function MomentoCaseStudy() {
           <span className="momento-case-study__tech-label">Frontend</span>
           <div className="momento-case-study__tech-items">
             {momentoFrontendStack.map((item) => (
-              <div className="momento-case-study__tech-item" key={item.name}>
+              <div className="momento-case-study__tech-item" style={{ width: item.width }} key={item.name}>
                 <span className="momento-case-study__tech-item-head">
                   <img src={item.icon} alt="" />
                   <span>{item.name}</span>
@@ -168,7 +250,7 @@ function MomentoCaseStudy() {
           <span className="momento-case-study__tech-label">Backend</span>
           <div className="momento-case-study__tech-items">
             {momentoBackendStack.map((item) => (
-              <div className="momento-case-study__tech-item" key={item.name}>
+              <div className="momento-case-study__tech-item" style={{ width: item.width }} key={item.name}>
                 <span className="momento-case-study__tech-item-head">
                   <img src={item.icon} alt="" />
                   <span>{item.name}</span>
