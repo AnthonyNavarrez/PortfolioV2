@@ -5,7 +5,7 @@ import {
   useSpring,
   useTransform,
 } from 'motion/react'
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
 import './DraggableCard.css'
@@ -14,12 +14,14 @@ interface DraggableCardBodyProps {
   className?: string
   children?: ReactNode
   rotate?: number
+  style?: CSSProperties
 }
 
 export function DraggableCardBody({
   className,
   children,
   rotate = 0,
+  style,
 }: DraggableCardBodyProps) {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -119,6 +121,7 @@ export function DraggableCardBody({
         })
       }}
       style={{
+        ...style,
         rotate,
         rotateX,
         rotateY,

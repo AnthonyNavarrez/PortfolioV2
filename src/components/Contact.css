@@ -37,24 +37,25 @@
   margin: 0;
   font-family: var(--font-heading);
   font-weight: var(--font-weight-semibold);
-  font-size: 50px;
+  font-size: 38px;
   line-height: 1.3;
   color: #fff;
   text-align: center;
 
   @media (max-width: 1024px) {
-    font-size: 36px;
+    font-size: 30px;
   }
 }
 
-/* Links row (node 666:1546) — 31px apart, icons 45px, at y=231. */
+/* Links row (node 666:1546) — scaled to ~3/4 of Figma's 45px icons
+   and 22.5px labels. */
 .contact__links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-end;
-  gap: 16px 31px;
-  margin: 54px 0 0;
+  gap: 14px 26px;
+  margin: 36px 0 0;
   padding: 0 24px;
   list-style: none;
 
@@ -70,10 +71,10 @@
 .contact__link {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   font-family: var(--font-sans);
   font-weight: var(--font-weight-medium);
-  font-size: 22.5px;
+  font-size: 17px;
   line-height: 1.3;
   color: #fff;
   text-decoration: none;
@@ -81,7 +82,7 @@
   transition: color 0.2s ease;
 
   @media (max-width: 1024px) {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -90,13 +91,13 @@
 }
 
 .contact__link-icon {
-  width: 45px;
-  height: 45px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
 
   @media (max-width: 1024px) {
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
   }
 }
 

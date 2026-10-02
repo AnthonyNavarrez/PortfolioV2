@@ -32,7 +32,7 @@ import './Projects.css'
 
 function Projects() {
   return (
-    <section className="projects">
+    <section className="projects" id="projects">
       <h2 className="projects__heading">Projects</h2>
       <div className="projects__grid">
         <ProjectCard

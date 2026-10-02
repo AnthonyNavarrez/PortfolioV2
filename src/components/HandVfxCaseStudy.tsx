@@ -106,7 +106,7 @@ function HandVfxCaseStudy() {
 
   return (
     <article className="hand-vfx-case-study">
-      <Link className="hand-vfx-case-study__back" to="/">
+      <Link className="hand-vfx-case-study__back" to="/" state={{ scrollTo: 'projects' }}>
         Back to Projects
       </Link>
 

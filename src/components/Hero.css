@@ -14,8 +14,11 @@
      frame is centered; on narrower ones those offsets scale with the
      viewport (114/1440 = 7.92vw, 118/1440 = 8.19vw). */
   --frame-x: max(0px, calc((100vw - 1440px) / 2));
+  /* Top offset tracks the viewport height so shorter laptop screens
+     don't push the hero (and the pile) below the fold. */
+  --hero-top: clamp(84px, 11vh, 132px);
   gap: min(118px, 8.19vw);
-  padding: 152px 48px 96px calc(var(--frame-x) + min(114px, 7.92vw));
+  padding: var(--hero-top) 48px 96px calc(var(--frame-x) + min(114px, 7.92vw));
   box-sizing: border-box;
 
   @media (max-width: 1024px) {
@@ -50,9 +53,10 @@
   border-color: rgba(130, 123, 182, 0.33);
 }
 
-/* Node 666:1487 — 258x681 at (1086, 143) on the 1440x1025 frame. */
+/* Node 666:1487 — 258x681 at (1086, 143) on the 1440x1025 frame,
+   nudged up to stay with the raised content. */
 .hero__bracket--top {
-  top: 13.95%;
+  top: 9.5%;
   left: 75.42%;
   width: 17.92%;
   height: 66.44%;
@@ -60,9 +64,9 @@
   border-right-width: 2px;
 }
 
-/* Node 666:1488 — 160x342 at (69, 433). */
+/* Node 666:1488 — 160x342 at (69, 433), nudged up with the content. */
 .hero__bracket--bottom {
-  top: 42.24%;
+  top: 36%;
   left: 4.79%;
   width: 11.11%;
   height: 33.37%;
@@ -104,7 +108,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 100px;
+  bottom: 200px;
   height: 75%;
   pointer-events: none;
 
@@ -138,11 +142,15 @@
 }
 
 /* Shrinks a little on narrow desktops so it never runs off-screen or
-   crowds the text column (padding + 320px text + gap ≈ 530px). */
+   crowds the text column (padding + 320px text + gap ≈ 530px), and on
+   short screens so the whole 772px-tall pile fits under the top offset. */
 .photo-cards--hero {
-  --k: min(1px, calc((100vw - 530px) / 545));
+  --k: min(
+    1px,
+    calc((100vw - 530px) / 545),
+    calc((100vh - var(--hero-top) - 48px) / 772)
+  );
   z-index: 1;
-  margin-top: 30px;
 }
 
 .hero__name {
@@ -211,4 +219,27 @@
 
 .hero__bio strong {
   font-weight: 700;
+}
+
+/* Typing entrance — untyped characters keep their space so nothing
+   reflows, and a blinking caret follows the text as it types. */
+.hero__untyped {
+  visibility: hidden;
+}
+
+.hero__caret {
+  display: inline-block;
+  width: 0.08em;
+  min-width: 2px;
+  height: 0.9em;
+  margin: 0 -0.04em;
+  vertical-align: -0.05em;
+  background-color: var(--color-primary);
+  animation: hero-caret-blink 0.9s steps(1) infinite;
+}
+
+@keyframes hero-caret-blink {
+  50% {
+    opacity: 0;
+  }
 }

@@ -57,6 +57,48 @@
   opacity: 0.85;
 }
 
+/* Scroll-down cue — fades out as soon as the page leaves the top. */
+.acm-design-case-study__scroll-hint {
+  position: fixed;
+  z-index: 10;
+  bottom: 24px;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  color: #e8731f;
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  animation: acm-scroll-hint-bob 1.8s ease-in-out infinite;
+}
+
+.acm-design-case-study__scroll-hint.is-hidden {
+  opacity: 0;
+}
+
+.acm-design-case-study__scroll-hint svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes acm-scroll-hint-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acm-design-case-study__scroll-hint {
+    animation: none;
+  }
+}
+
 /* "acm.design Website" lockup (node 658:1330, 1089px wide) — the
    wordmark sits 9px lower than "Website", as in Figma. Scales down with
    the viewport via --t (one Figma px). */

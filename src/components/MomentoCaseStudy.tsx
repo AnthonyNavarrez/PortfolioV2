@@ -20,7 +20,7 @@ import './MomentoCaseStudy.css'
 function MomentoCaseStudy() {
   return (
     <article className="momento-case-study">
-      <Link className="momento-case-study__back" to="/">
+      <Link className="momento-case-study__back" to="/" state={{ scrollTo: 'projects' }}>
         Back to Projects
       </Link>
 
