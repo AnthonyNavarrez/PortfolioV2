@@ -1,6 +1,7 @@
-import About from './About'
+import Contact from './Contact'
 import Designs from './Designs'
 import Hero from './Hero'
+import PhotoCards from './PhotoCards'
 import './Home.css'
 import Projects from './Projects'
 import Stars from './Stars'
@@ -14,7 +15,9 @@ function Home() {
       <Hero />
       <Projects />
       <Designs />
-      <About />
+      {/* Mobile only — on desktop the pile lives in the hero. */}
+      <PhotoCards placement="footer" />
+      <Contact />
     </>
   )
 }

@@ -120,7 +120,7 @@
   flex-direction: column;
   align-items: center;
   gap: 85px;
-  margin-top: 115px;
+  margin-top: 150px;
 
   @media (max-width: 768px) {
     gap: 32px;
@@ -150,4 +150,181 @@
 
 .acm-design-case-study__video.has-video video {
   height: auto;
+}
+
+/* Intro paragraph (node 703:3159) — 982px, Poppins 25, centered. */
+.acm-design-case-study__intro {
+  max-width: 982px;
+  margin: 44px auto 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: normal;
+  letter-spacing: -1.25px;
+  color: #000;
+
+  @media (max-width: 768px) {
+    margin-top: 24px;
+    font-size: 18px;
+    letter-spacing: -0.9px;
+  }
+}
+
+/* Design System (nodes 703:3160-3184) on the 1440 frame: the color
+   sheet centered, then three columns — spacing scale (367px), font
+   cards (435px) and type table (428px), 37px apart — with the type
+   specimen card under the last two. */
+.acm-design-case-study__design-system {
+  margin-top: 123px;
+
+  @media (max-width: 768px) {
+    margin-top: 72px;
+  }
+}
+
+.acm-design-case-study__ds-heading {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: normal;
+  letter-spacing: -3px;
+  color: #000;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+    letter-spacing: -1.8px;
+  }
+}
+
+.acm-design-case-study__ds-colors {
+  display: block;
+  width: min(728px, 100%);
+  height: auto;
+  margin: 41px auto 0;
+}
+
+.acm-design-case-study__ds-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 367fr) minmax(0, 435fr) minmax(0, 428fr);
+  grid-template-rows: auto auto;
+  column-gap: 37px;
+  row-gap: 87px;
+  width: min(1304px, 100%);
+  margin: 0 auto;
+  padding-top: 0;
+  text-align: left;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 32px;
+    margin-top: 40px;
+  }
+}
+
+.acm-design-case-study__ds-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.acm-design-case-study__ds-spacing {
+  grid-row: 1 / span 2;
+  max-width: 367px;
+
+  @media (max-width: 1024px) {
+    grid-row: auto;
+    max-width: 260px;
+    justify-self: center;
+  }
+}
+
+.acm-design-case-study__ds-fonts {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 41px;
+
+  @media (max-width: 1024px) {
+    margin-top: 0;
+  }
+}
+
+.acm-design-case-study__ds-table {
+  margin-top: 41px;
+
+  @media (max-width: 1024px) {
+    margin-top: 0;
+    max-width: 428px;
+    justify-self: center;
+  }
+}
+
+/* Type specimen (node 703:3183). */
+.acm-design-case-study__ds-specimen {
+  grid-column: 2 / span 2;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  box-sizing: border-box;
+  width: min(688.5px, 100%);
+  margin-left: 21px;
+  padding: 41px 29px 23px 18px;
+  border: 2.5px solid #000;
+  color: #000;
+
+  @media (max-width: 1024px) {
+    grid-column: auto;
+    margin-left: 0;
+  }
+}
+
+.acm-design-case-study__type {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  line-height: normal;
+}
+
+.acm-design-case-study__type--h1 {
+  font-weight: 600;
+  font-size: 36px;
+
+  @media (max-width: 768px) {
+    font-size: 26px;
+  }
+}
+
+.acm-design-case-study__type--h2 {
+  font-weight: 400;
+  font-size: 28px;
+
+  @media (max-width: 768px) {
+    font-size: 21px;
+  }
+}
+
+.acm-design-case-study__type--h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.acm-design-case-study__type--subtitle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.acm-design-case-study__type--label {
+  font-weight: 400;
+  font-size: 8px;
+}
+
+.acm-design-case-study__type--body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 1.4;
 }

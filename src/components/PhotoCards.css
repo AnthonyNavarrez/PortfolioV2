@@ -1,0 +1,96 @@
+/* Draggable polaroid pile — Figma node 666:1485. Card positions are
+   each card's unrotated top-left, from Figma, relative to the pile's
+   top-left (rotation comes from the `rotate` prop — Framer Motion owns
+   `transform`). Everything is in units of --k, one Figma px, so the
+   pile scales down as a whole on mobile. */
+
+.photo-cards {
+  --k: 1px;
+  position: relative;
+  flex-shrink: 0;
+  width: calc(545 * var(--k));
+  height: calc(772 * var(--k));
+}
+
+/* Desktop shows the hero pile, mobile the one at the bottom of the page. */
+.photo-cards--footer {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .photo-cards {
+    --k: min(0.7px, calc((100vw - 48px) / 545));
+  }
+
+  .photo-cards--hero {
+    display: none;
+  }
+
+  .photo-cards--footer {
+    display: block;
+    margin: 24px auto 96px;
+  }
+}
+
+.draggable-card__body.photo-cards__card {
+  position: absolute;
+  width: calc(198 * var(--k));
+  height: calc(299 * var(--k));
+  border-radius: calc(5 * var(--k));
+}
+
+.photo-cards__card--baby { left: 0; top: calc(105 * var(--k)); }
+.photo-cards__card--leg { left: calc(318.85 * var(--k)); top: calc(88.24 * var(--k)); }
+.photo-cards__card--trophy { left: calc(185.27 * var(--k)); top: calc(306.55 * var(--k)); }
+.photo-cards__card--drinks { left: calc(37.41 * var(--k)); top: calc(312.89 * var(--k)); }
+.photo-cards__card--solo { left: calc(103 * var(--k)); top: calc(471 * var(--k)); }
+.photo-cards__card--headshot { left: calc(158 * var(--k)); top: 0; }
+.photo-cards__card--resurgance { left: calc(344.25 * var(--k)); top: calc(407.07 * var(--k)); }
+
+/* Photo inset (166.5x244.2 at 16x14.4 inside the 198x299 card). */
+.photo-cards__inset {
+  position: absolute;
+  left: 8.12%;
+  top: 4.83%;
+  width: 84.1%;
+  height: 81.68%;
+  border-radius: calc(10 * var(--k));
+  overflow: hidden;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.photo-cards__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  pointer-events: none;
+}
+
+.photo-cards__card--headshot .photo-cards__image {
+  transform: scale(1.4);
+  object-position: center;
+}
+
+.photo-cards__card--leg .photo-cards__image {
+  transform: scale(1.2);
+  object-position: 10% 40%;
+}
+
+.photo-cards__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4%;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: calc(17 * var(--k));
+  color: #2c2a55;
+  pointer-events: none;
+}
+
+.photo-cards__card--solo .photo-cards__image {
+  object-position: center;
+}
