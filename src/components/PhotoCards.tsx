@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react'
+import { useEffect, useState } from 'react'
 import aboutBaby from '../assets/about/about-baby.webp'
 import aboutDrinks from '../assets/about/about-drinks.webp'
 import aboutHeadshot from '../assets/about/about-headshot.webp'
@@ -27,15 +29,28 @@ const photos: Photo[] = [
   { name: 'resurgance', src: aboutResurgance, alt: 'Anthony Navarrez with his dance team', rotate: -9 },
 ]
 
+// The hero pile pops up from the bottom on the first page load only —
+// coming back from a case study shouldn't replay it.
+let heroEntrancePlayed = false
+
 // Draggable polaroid pile. Rendered in the hero on desktop and at the
 // bottom of the page on mobile — `placement` picks which one shows.
 function PhotoCards({ placement }: { placement: 'hero' | 'footer' }) {
+  const [entrance] = useState(() => placement === 'hero' && !heroEntrancePlayed)
+
+  useEffect(() => {
+    if (entrance) heroEntrancePlayed = true
+  }, [entrance])
+
   return (
-    <DraggableCardContainer className={`photo-cards photo-cards--${placement}`}>
-      {photos.map((photo) => (
+    <DraggableCardContainer
+      className={`photo-cards photo-cards--${placement}${entrance ? ' photo-cards--entrance' : ''}`}
+    >
+      {photos.map((photo, index) => (
         <DraggableCardBody
           className={`photo-cards__card photo-cards__card--${photo.name}`}
           rotate={photo.rotate}
+          style={{ '--i': index } as CSSProperties}
           key={photo.name}
         >
           <div className="photo-cards__inset">

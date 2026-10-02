@@ -124,7 +124,7 @@ function HomieCaseStudy() {
         />
       </div>
 
-      <Link className="homie-case-study__back" to="/">
+      <Link className="homie-case-study__back" to="/" state={{ scrollTo: 'projects' }}>
         Back to Projects
       </Link>
 

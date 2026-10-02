@@ -94,3 +94,28 @@
 .photo-cards__card--solo .photo-cards__image {
   object-position: center;
 }
+
+/* First-load entrance for the hero pile — each card pops up from below
+   the fold with a slight overshoot, staggered by --i (its layer order),
+   like the clothing tiles in the Fitzi card's stage 2. Animates the
+   standalone `translate` property because Framer Motion owns
+   `transform` on the card bodies. */
+.photo-cards--entrance .photo-cards__card {
+  animation: photo-cards-pop-up 0.9s cubic-bezier(0.34, 1.4, 0.64, 1)
+    calc(0.25s + var(--i) * 0.08s) both;
+}
+
+@keyframes photo-cards-pop-up {
+  from {
+    translate: 0 100vh;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-cards--entrance .photo-cards__card {
+    animation: none;
+  }
+}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedContent from './AnimatedContent'
 import WipNotice from './WipNotice'
@@ -15,13 +16,35 @@ import {
 } from '../data/acmDesign'
 import './AcmDesignCaseStudy.css'
 
+// Small bobbing arrow at the bottom of the screen, shown only while
+// the page is scrolled all the way to the top.
+function ScrollHint() {
+  const [atTop, setAtTop] = useState(true)
+
+  useEffect(() => {
+    const update = () => setAtTop(window.scrollY < 8)
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [])
+
+  return (
+    <div className={`acm-design-case-study__scroll-hint${atTop ? '' : ' is-hidden'}`} aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </div>
+  )
+}
+
 // Synced from Figma (node 658:1253).
 function AcmDesignCaseStudy() {
   return (
     <article className="acm-design-case-study">
       <WipNotice />
+      <ScrollHint />
 
-      <Link className="acm-design-case-study__back" to="/">
+      <Link className="acm-design-case-study__back" to="/" state={{ scrollTo: 'projects' }}>
         Back to Projects
       </Link>
 

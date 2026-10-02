@@ -482,12 +482,34 @@
 
 /* Final Designs (node 701:3095) — 2x2 grid of 433x213 clips with
    25px labels, then the two biome clips under a centered label. */
+/* Breaks out of the body's left-aligned column so the heading and
+   clips sit centered on the page. */
 .homebody-case-study__final {
-  max-width: 963px;
+  margin-left: calc(-1 * (var(--frame-x) + 103px));
+  margin-right: -30px;
+  text-align: center;
+
+  @media (max-width: 1024px) {
+    margin-inline: 0;
+    text-align: left;
+  }
+}
+
+.homebody-case-study__final .homebody-case-study__heading {
+  text-align: center;
+
+  @media (max-width: 1024px) {
+    text-align: left;
+  }
+}
+
+.homebody-case-study__final .homebody-case-study__clip-label:not(.homebody-case-study__clip-label--center) {
+  text-align: left;
 }
 
 .homebody-case-study__clip-grid {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(2, minmax(0, 433px));
   gap: 63px;
   margin-top: 70px;
@@ -540,6 +562,7 @@
 
 .homebody-case-study__biome-row {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(2, minmax(0, 433px));
   gap: 61px;
 

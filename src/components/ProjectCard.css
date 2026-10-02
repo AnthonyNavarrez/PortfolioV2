@@ -476,6 +476,17 @@
   font-size: 158px;
 }
 
+/* MOMENTO is a much wider word than HOMIE, so a fixed 158px ran off the
+   card's right edge on smaller laptops — size it off the expanded card
+   width instead (~136px at the full 1300px card). */
+.project-card--momento .project-card__title {
+  letter-spacing: -0.05em;
+}
+
+.project-card--momento:is(:hover, .is-stage2) .project-card__title {
+  font-size: min(136px, calc(var(--card-hover-width) * 0.105));
+}
+
 .project-card__description {
   width: 45%;
   margin: 8px 0 0 auto;

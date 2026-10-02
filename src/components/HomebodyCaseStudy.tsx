@@ -58,7 +58,7 @@ function HomebodyCaseStudy() {
 
   return (
     <article className="homebody-case-study">
-      <Link className="homebody-case-study__back" to="/">
+      <Link className="homebody-case-study__back" to="/" state={{ scrollTo: 'projects' }}>
         Back to Projects
       </Link>
 

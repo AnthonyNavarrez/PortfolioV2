@@ -84,7 +84,7 @@ function FitziCaseStudy() {
     <article className="fitzi-case-study">
       <WipNotice />
 
-      <Link className="fitzi-case-study__back" to="/">
+      <Link className="fitzi-case-study__back" to="/" state={{ scrollTo: 'projects' }}>
         Back to Projects
       </Link>
 

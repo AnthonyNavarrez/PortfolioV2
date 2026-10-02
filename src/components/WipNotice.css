@@ -23,16 +23,18 @@
   container-type: inline-size;
   position: relative;
   box-sizing: border-box;
-  width: min(963px, 100%);
+  /* Shown at ~2/3 of the Figma frame, and never taller than the
+     screen on short laptops. */
+  width: min(620px, 100%, calc((100vh - 40px) * 963 / 687));
   aspect-ratio: 963 / 687;
-  border: 4.5px solid #9f8bb4;
-  border-radius: 60px;
+  border: 3px solid #9f8bb4;
+  border-radius: 40px;
   background-image: linear-gradient(
     167.81deg,
     rgba(7, 5, 22, 0.93) 11.62%,
     rgba(39, 28, 124, 0.93) 107.42%
   );
-  box-shadow: 12px 36px 46.5px rgba(0, 0, 0, 0.47);
+  box-shadow: 8px 24px 31px rgba(0, 0, 0, 0.47);
   color: #fff;
   font-family: 'Montserrat Alternates', sans-serif;
   line-height: normal;
