@@ -1,0 +1,203 @@
+.custom-cursor {
+  position: fixed;
+  top: -11px;
+  left: -11px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  border: 1.5px solid transparent;
+  transition:
+    width 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.22s ease,
+    padding 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.22s ease,
+    mix-blend-mode 0s;
+}
+
+.custom-cursor__stars {
+  display: none;
+  position: absolute !important;
+  inset: 0 !important;
+  height: 100% !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  pointer-events: none;
+  opacity: 0.45;
+  filter: blur(0.6px);
+}
+
+.custom-cursor__label {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 590;
+  letter-spacing: -0.75px;
+  line-height: 1.187;
+  white-space: nowrap;
+  pointer-events: none;
+  /* hidden by default — taken out of flow so the dot stays a dot */
+  display: none;
+  color: #acacac;
+}
+
+.custom-cursor__label--wish em {
+  font-style: normal;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 14px;
+  color: #eeeded;
+}
+
+/* ── Case study hover state ── */
+.custom-cursor--case-study {
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  top: -12px;
+  left: -50px;
+  padding: 5px 11px;
+  background: rgba(17, 17, 19, 0.8);
+  border: 1.5px solid #333348;
+  mix-blend-mode: normal;
+}
+
+.custom-cursor--case-study .custom-cursor__stars { display: none; }
+
+.custom-cursor--case-study .custom-cursor__label--case-study {
+  display: block;
+  font-weight: 400;
+  color: #eeeded;
+}
+
+/* ── Wish hover state ── */
+.custom-cursor--wish {
+  width: auto;
+  height: auto;
+  border-radius: 13px;
+  top: -13px;
+  left: -58px;
+  padding: 6px 13px;
+  background: rgba(17, 17, 19, 0.8);
+  border: 1.5px solid #333348;
+  mix-blend-mode: normal;
+}
+
+.custom-cursor--wish .custom-cursor__label--wish {
+  display: block;
+  color: #eeeded;
+}
+
+.custom-cursor--wish .custom-cursor__label--case-study { display: none; }
+
+/* ── Text cursor state ── */
+.custom-cursor--text {
+  width: 1.5px;
+  height: 14px;
+  border-radius: 2px;
+  top: -7px;
+  left: -1px;
+}
+
+/* ── Add / crosshair state ── */
+.custom-cursor--add {
+  opacity: 0;
+}
+
+/* ── V4 card hover state ── */
+.custom-cursor--v4-card {
+  width: auto;
+  height: auto;
+  border-radius: 14px;
+  top: -13px;
+  left: -34px;
+  padding: 5px 11px;
+  background: rgba(255, 255, 255, 0.53);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #f8f8f8;
+  mix-blend-mode: normal;
+}
+
+.custom-cursor--v4-card .custom-cursor__label--v4-card {
+  display: block;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 7.5px;
+  font-weight: 600;
+  color: #1e1e1e;
+  letter-spacing: -0.2px;
+}
+
+.custom-cursor--v4-card .custom-cursor__label--case-study,
+.custom-cursor--v4-card .custom-cursor__label--wish { display: none; }
+
+/* ── Email hover state ── */
+.custom-cursor--email {
+  width: auto;
+  height: auto;
+  border-radius: 14px;
+  top: -12px;
+  left: -22px;
+  padding: 4px 10px;
+  background: rgba(107, 107, 107, 0.74);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid #f8f8f8;
+  mix-blend-mode: normal;
+}
+
+.custom-cursor--email .custom-cursor__label--email {
+  display: block;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: #f8f8f8;
+  letter-spacing: -0.2px;
+}
+
+.custom-cursor--email.custom-cursor--email-copied .custom-cursor__label--email { display: none; }
+.custom-cursor--email.custom-cursor--email-copied .custom-cursor__label--email-copied {
+  display: block;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: #f8f8f8;
+  letter-spacing: -0.2px;
+}
+
+/* ── LinkedIn / GitHub pill cursor ── */
+.custom-cursor--linkedin,
+.custom-cursor--github {
+  width: auto;
+  height: auto;
+  border-radius: 999px;
+  top: -12px;
+  left: -30px;
+  padding: 4px 10px;
+  background: rgba(107, 107, 107, 0.74);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid #f8f8f8;
+  mix-blend-mode: normal;
+}
+
+.custom-cursor--linkedin .custom-cursor__label--linkedin,
+.custom-cursor--github  .custom-cursor__label--github {
+  display: block;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: #f8f8f8;
+  letter-spacing: -0.2px;
+}

@@ -1,0 +1,8 @@
+.page-enter {
+  animation: page-fade 0.35s ease both;
+}
+
+@keyframes page-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

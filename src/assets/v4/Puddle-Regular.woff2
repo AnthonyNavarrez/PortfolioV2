@@ -1,0 +1,83 @@
+# Handoff: add the Puddle font to this project
+
+Instructions for Claude Code. Read this whole file, then follow the steps.
+
+## What this is
+
+**Puddle** is a custom display typeface: heavy, melted, blobby letters. It is used only for big type (headlines, names, logos, section titles). Everything else is set in **DM Sans** (Google Fonts). Text is always dark gray `#1E1E1E`. There is one bright primary color.
+
+This folder contains:
+
+```
+puddle-font/
+  fonts/Puddle-Regular.woff2   <- use this on the web
+  fonts/Puddle-Regular.woff    <- fallback for old browsers
+  fonts/Puddle-Regular.otf     <- desktop install / design tools
+  puddle.css                   <- @font-face, color + type tokens, ready to import
+  README.md                    <- this file
+```
+
+## Font facts (important)
+
+- One weight (Regular, 400) and no italic. Never apply `font-weight: bold` or `font-style: italic` to Puddle: the browser will fake it and it looks bad.
+- **Unicase:** lowercase letters show as the same capital shapes. Typing "hello" displays HELLO.
+- **Supported characters only:** `A–Z`, `a–z` (as caps), `0–9`, `. , ! ? - ' :` and space. Anything else (`& " ; / @ # ( )`, accented letters, emoji) falls back to DM Sans. Avoid those characters in Puddle headlines, or accept the fallback.
+- Best at 48px and up. Below about 32px the counters close and it gets hard to read.
+- Line height around `0.9`; the letters are tall and bottom-heavy.
+
+## Steps
+
+1. **Work out the stack first** (Next.js, Vite/React, Astro, plain HTML, Tailwind or not). Look at `package.json` and the existing global stylesheet. Don't guess.
+2. **Copy the fonts** into the project's static folder:
+   - Next.js: `public/fonts/` (or `app/fonts/` if using `next/font/local`, see below)
+   - Vite / Astro / plain HTML: `public/fonts/`
+3. **Load the font.** Use whichever fits the stack:
+   - **Next.js (preferred): `next/font/local`**
+     ```ts
+     // app/fonts.ts
+     import localFont from "next/font/local";
+     import { DM_Sans } from "next/font/google";
+
+     export const puddle = localFont({
+       src: [{ path: "./fonts/Puddle-Regular.woff2", weight: "400", style: "normal" }],
+       variable: "--font-display",
+       display: "swap",
+     });
+     export const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-body" });
+     ```
+     Then add `${puddle.variable} ${dmSans.variable}` to the `<html>` className in `app/layout.tsx`.
+   - **Anything else:** merge `puddle.css` into the global stylesheet (or import it), and fix the `url("./fonts/...")` paths so they point to where the fonts now live (for files in `public/fonts/`, use `/fonts/Puddle-Regular.woff2`).
+4. **Add the tokens** from `puddle.css` (`--font-display`, `--font-body`, the color variables) to the global CSS if they aren't there already. Keep only ONE primary/ground pair active; the others are comments.
+5. **Tailwind (if the project uses it):**
+   - Tailwind v4 (`@theme` in CSS):
+     ```css
+     @theme {
+       --font-display: "Puddle", "DM Sans", system-ui, sans-serif;
+       --font-body: "DM Sans", system-ui, sans-serif;
+       --color-ink: #1E1E1E;
+       --color-muted: #5E584F;
+       --color-primary: #D6F05A;
+       --color-ground: #F4F3EC;
+     }
+     ```
+   - Tailwind v3 (`tailwind.config`): add `fontFamily.display` / `fontFamily.body` and `colors.ink / muted / primary / ground` that read the CSS variables.
+
+   Usage: `className="font-display text-7xl leading-[0.92]"`.
+6. **Apply it.** DM Sans becomes the body font site-wide. Puddle goes on the main hero headline / name, page titles and big section headings only. Don't put it on nav links, buttons, body text, form fields or anything under ~32px.
+7. **Preload** the woff2 on the page that shows the hero, so the headline doesn't flash in the fallback font:
+   `<link rel="preload" href="/fonts/Puddle-Regular.woff2" as="font" type="font/woff2" crossorigin>`
+   (`next/font/local` does this for you.)
+8. **Check it:** run the dev server, open the page, and confirm in DevTools (Computed → Rendered Fonts) that headlines render in "Puddle" and body text in "DM Sans". Check the headline at phone width too: Puddle is wide, so large headlines may need a smaller size or `clamp()` on mobile, e.g. `font-size: clamp(56px, 12vw, 160px)`.
+
+## Color rules
+
+- All text: `#1E1E1E`. Secondary text and captions: `#5E584F`.
+- Primary color: hero blocks, main buttons, tags, highlights. Dark text on it passes contrast for every palette option (7:1 or better).
+- Primary buttons: either primary background + dark text + 2px dark border, or dark background (`#1E1E1E`) + ground-colored text.
+- Rounded shapes fit the font: pill buttons (`border-radius: 999px`), cards around 24–32px radius.
+
+## Don't
+
+- Don't bold, italicize or outline Puddle, or squish it with `letter-spacing` tighter than `-0.02em`.
+- Don't use it for paragraphs or UI text.
+- Don't commit the `.otf` to the web bundle if the woff2 is loaded; the `.otf` is for installing on a computer.

@@ -1,645 +1,559 @@
-/* HomebodyCaseStudy — synced from Figma (node 693:2949, 1440 wide) */
-
-.homebody-case-study {
-  position: relative;
-  width: 100vw;
+/* ── Page shell ── */
+.hb-page {
   min-height: 100vh;
-  margin-inline: calc(50% - 50vw);
-  box-sizing: border-box;
-  background-color: #e2d7cf;
-  color: #000;
+  background: #f2f2f2;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-align: left;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
 }
 
-/* Fixed in place, mirroring the other case studies' back button. */
-.homebody-case-study__back {
-  position: fixed;
-  z-index: 20;
-  top: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: 0 28px;
-  height: 56px;
-  border: 2px solid #8a5a2b;
-  border-radius: 999px;
-  background-color: rgba(226, 215, 207, 0.9);
-  backdrop-filter: blur(4px);
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-  letter-spacing: -0.6px;
-  color: #8a5a2b;
-  text-decoration: none;
-  white-space: nowrap;
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
-
-  @media (max-width: 768px) {
-    top: 16px;
-    padding: 0 22px;
-    height: 48px;
-    font-size: 17px;
-  }
+.hb-main {
+  padding: 43px 180px 100px 180px;
 }
 
-.homebody-case-study__back:hover {
-  transform: translateX(-50%) translateY(-2px);
-  opacity: 0.85;
-}
-
-.homebody-case-study__hero {
-  position: relative;
-  height: 806px;
-  padding-top: 62px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
+.hb-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 13px;
-  box-sizing: border-box;
-
-  @media (max-width: 1024px) {
-    height: 560px;
-    padding: 110px 24px 0;
-  }
+  gap: 72px;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-.homebody-case-study__hero-fade {
-  position: absolute;
-  inset: 0;
-  /* Fades into the page over the hero's last 218px (node 693:2958). */
-  background-image: linear-gradient(
-    180deg,
-    rgba(226, 215, 207, 0) calc(100% - 218px),
-    rgba(226, 215, 207, 0) calc(100% - 171px),
-    #e2d7cf calc(100% - 12px)
-  );
-}
-
-.homebody-case-study__logo {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: min(797px, 55%);
-
-  @media (max-width: 1024px) {
-    width: min(500px, 85%);
-  }
-}
-
-.homebody-case-study__actions {
-  position: relative;
-  z-index: 1;
+/* ── Overview ── */
+.hb-overview {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+.hb-meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hb-meta__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hb-meta__label {
+  display: flex;
   align-items: center;
-}
-
-.homebody-case-study__button {
-  display: block;
-  transition:
-    transform 0.2s ease,
-    filter 0.2s ease;
-}
-
-.homebody-case-study__button:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.08);
-}
-
-.homebody-case-study__button--play {
-  width: 328px;
-}
-
-.homebody-case-study__button--github {
-  width: 296px;
-}
-
-@media (max-width: 1024px) {
-  .homebody-case-study__button--play {
-    width: 230px;
-  }
-
-  .homebody-case-study__button--github {
-    width: 208px;
-  }
-}
-
-/* ---- Body — content starts 103px in from the 1440px frame's left
-   edge (centered on wider screens). ---- */
-.homebody-case-study__body {
-  --frame-x: max(0px, calc((100vw - 1440px) / 2));
-  padding: 88px 30px 0 calc(var(--frame-x) + 103px);
-  text-align: left;
-
-  @media (max-width: 1024px) {
-    padding: 48px 24px 0;
-  }
-}
-
-.homebody-case-study__body > section + section {
-  margin-top: 96px;
-
-  @media (max-width: 1024px) {
-    margin-top: 72px;
-  }
-}
-
-/* Montserrat Medium 30 headings, 20 body. */
-.homebody-case-study__heading,
-.homebody-case-study__pain-title,
-.homebody-case-study__inspiration-name,
-.homebody-case-study__step-title {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  gap: 5px;
+  font-size: 12px;
   font-weight: 500;
-  font-size: 30px;
-  line-height: normal;
-  letter-spacing: -1.5px;
-  color: #000;
-  text-align: left;
-
-  @media (max-width: 1024px) {
-    font-size: 25px;
-    letter-spacing: -1.25px;
-  }
+  color: #252530;
 }
 
-.homebody-case-study__text {
+.hb-meta__icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.hb-meta__value {
+  font-size: 13px;
+  font-weight: 400;
+  color: #62626e;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: normal;
+  line-height: 1.5;
+}
+
+.hb-title {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1.1;
   letter-spacing: -1px;
-  color: #000;
-
-  @media (max-width: 1024px) {
-    font-size: 17px;
-    letter-spacing: -0.85px;
-  }
+  color: #252530;
+  margin: 0;
 }
 
-.homebody-case-study__text + .homebody-case-study__text {
-  margin-top: 23px;
+.hb-tagline {
+  font-size: 23.8px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #62626e;
+  margin: 0;
 }
 
-/* Overview (nodes 693:2959, 693:2991) — 560px text, 702x344
-   screenshot 45px to its right. */
-.homebody-case-study__overview {
-  display: flex;
-  align-items: flex-start;
-  gap: 45px;
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    gap: 32px;
-  }
+/* ── Hero video ── */
+.hb-hero {
+  border: 2.55px solid #55463b;
+  border-radius: 17px;
+  overflow: hidden;
+  aspect-ratio: 702 / 344;
 }
 
-.homebody-case-study__overview-text {
-  flex: 0 1 560px;
-  padding-top: 25px;
-
-  @media (max-width: 1024px) {
-    flex: none;
-    padding-top: 0;
-  }
-}
-
-.homebody-case-study__overview-text .homebody-case-study__heading {
-  margin-bottom: 16px;
-}
-
-.homebody-case-study__gameplay-wrap {
-  flex: 0 1 702px;
-  min-width: 0;
-
-  @media (max-width: 1024px) {
-    flex: none;
-    width: 100%;
-  }
-}
-
-.homebody-case-study__gameplay {
+.hb-video {
   display: block;
   width: 100%;
-  aspect-ratio: 702 / 344;
+  height: 100%;
   object-fit: cover;
   object-position: top;
-  box-sizing: border-box;
-  border: 3px solid #55463b;
-  border-radius: 20px;
 }
 
-/* Gaming Pain Points (node 694:3043) — three 359x321 outlined cards. */
-.homebody-case-study__pain-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 21px;
-}
-
-.homebody-case-study__pain-card {
+/* ── Section ── */
+.hb-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-  box-sizing: border-box;
-  width: min(359px, 100%);
-  min-height: 321px;
-  padding: 10px 41px 11px 40px;
-  border: 3px solid #55463b;
-  border-radius: 20px;
-  text-align: center;
-
-  @media (max-width: 1024px) {
-    min-height: 0;
-    padding: 28px 24px;
-  }
+  gap: 20px;
 }
 
-.homebody-case-study__pain-card .homebody-case-study__pain-title {
-  text-align: center;
+/* ── Typography ── */
+.hb-label {
+  font-size: 11px;
+  font-weight: 510;
+  letter-spacing: 0.3px;
+  color: #62626e;
+  margin: 0;
 }
 
-/* Inspirations (node 694:3044) — icon + name, with what Homebody
-   borrows in green and what it fixes in red. */
-.homebody-case-study__inspiration-list {
+.hb-h2 {
+  font-size: 34px;
+  font-weight: 590;
+  line-height: 1.45;
+  letter-spacing: -0.5px;
+  color: #252530;
+  margin: 0;
+}
+
+.hb-h3 {
+  font-size: 23.8px;
+  font-weight: 590;
+  line-height: 1.45;
+  color: #252530;
+  margin: 0;
+}
+
+.hb-subsection {
+  font-size: 18.7px;
+  font-weight: 510;
+  line-height: 1.45;
+  color: #252530;
+  margin: 0;
+}
+
+.hb-body {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #62626e;
+  margin: 0;
+}
+
+/* ── Two-column layout ── */
+.hb-two-col {
+  display: flex;
+  gap: 20px;
+}
+
+/* ── Three-column layout ── */
+.hb-three-col {
+  display: flex;
+  gap: 20px;
+}
+
+/* ── Day/Night loop cards ── */
+.hb-loop-card {
+  flex: 1;
+  background: #e7e7ea;
+  border-radius: 13.6px;
+  padding: 23.8px;
   display: flex;
   flex-direction: column;
-  gap: 27px;
-  margin-top: 46px;
-
-  @media (max-width: 1024px) {
-    margin-top: 28px;
-  }
+  gap: 20px;
 }
 
-.homebody-case-study__inspiration {
-  display: flex;
-  align-items: center;
-  gap: 43px;
-  max-width: 763px;
-
-  @media (max-width: 1024px) {
-    gap: 20px;
-  }
-}
-
-.homebody-case-study__inspiration > div {
-  flex: 0 1 560px;
-}
-
-.homebody-case-study__inspiration-icon {
-  flex-shrink: 0;
-  width: 135px;
-  height: 135px;
-  object-fit: contain;
-
-  @media (max-width: 1024px) {
-    width: 80px;
-    height: 80px;
-  }
-}
-
-.homebody-case-study__inspiration-icon--minecraft {
-  height: 148px;
-
-  @media (max-width: 1024px) {
-    height: 88px;
-  }
-}
-
-.homebody-case-study__inspiration-icon--moomoo {
-  width: 120px;
-  height: 89px;
-  object-fit: cover;
-
-  @media (max-width: 1024px) {
-    width: 80px;
-    height: 60px;
-  }
-}
-
-.homebody-case-study__text--pro {
-  color: #0f7302;
-}
-
-.homebody-case-study__text--con {
-  color: #8b1814;
-}
-
-.homebody-case-study__inspiration .homebody-case-study__text + .homebody-case-study__text {
-  margin-top: 0;
-}
-
-/* Process (nodes 694:3045-3058). */
-.homebody-case-study__process-heading {
+.hb-loop-card__phase {
+  font-size: 10.2px;
+  font-weight: 510;
+  color: #62626e;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 35px;
-  line-height: normal;
-  letter-spacing: -1.75px;
-  color: #000;
-  text-align: left;
 }
 
-.homebody-case-study__steps {
-  counter-reset: step;
-  max-width: 1238px;
-  margin-top: 70px;
-
-  @media (max-width: 1024px) {
-    margin-top: 32px;
-  }
-}
-
-.homebody-case-study__step + .homebody-case-study__step {
-  margin-top: 32px;
-}
-
-.homebody-case-study__step-body {
-  counter-increment: step;
-}
-
-.homebody-case-study__step-title {
-  margin-bottom: 16px;
-  padding-left: 45px;
-
-  @media (max-width: 1024px) {
-    padding-left: 32px;
-  }
-}
-
-.homebody-case-study__step-title::before {
-  content: counter(step) '.';
-  display: inline-block;
-  width: 45px;
-  margin-left: -45px;
-  text-align: right;
-  padding-right: 10px;
-  box-sizing: border-box;
-
-  @media (max-width: 1024px) {
-    width: 32px;
-    margin-left: -32px;
-  }
-}
-
-.homebody-case-study__bullets,
-.homebody-case-study__pipeline {
+.hb-loop-card__title {
+  font-size: 23.8px;
+  font-weight: 590;
+  color: #252530;
   margin: 0;
-  padding-left: 30px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: normal;
-  letter-spacing: -1px;
-
-  @media (max-width: 1024px) {
-    font-size: 17px;
-  }
+  line-height: 1.3;
 }
 
-.homebody-case-study__pipeline {
-  margin: 23px 0;
+.hb-loop-card__body {
+  font-size: 15.3px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #62626e;
+  margin: 0;
 }
 
-/* Visual Direction gets the running pawn sprite to its right. */
-.homebody-case-study__step--visual {
+/* ── Pain point cards ── */
+.hb-pain-card {
+  flex: 1;
+  background: #e7e7ea;
+  border-radius: 13.6px;
+  padding: 23.8px;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 195px;
+}
+
+.hb-pain-card__title {
+  font-size: 22.1px;
+  font-weight: 590;
+  line-height: 1.3;
+  color: #252530;
+  margin: 0;
+}
+
+.hb-pain-card__body {
+  font-size: 15.3px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #62626e;
+  margin: 0;
+}
+
+/* ── Inspirations ── */
+.hb-inspirations {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hb-inspiration {
+  background: #e7e7ea;
+  border-radius: 13.6px;
+  padding: 23.8px;
+  display: flex;
+  gap: 23.8px;
   align-items: flex-start;
-  gap: 76px;
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
 }
 
-.homebody-case-study__step--visual .homebody-case-study__step-body {
-  flex: 0 1 941px;
+.hb-inspiration__icon {
+  flex-shrink: 0;
+  width: 85px;
+  height: auto;
+  object-fit: contain;
 }
 
-/* Pawn_Run sprite sheet (1152x192, six 192px frames) scaled ~2.97x and
-   cropped to the 235x269 window Figma shows, stepping through the run
-   cycle. Its radial shadow sits under its feet (node 699:3063). */
-.homebody-case-study__pawn {
+.hb-inspiration__icon--moomoo {
+  height: 63px;
+  object-fit: cover;
+}
+
+.hb-inspiration__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hb-inspiration__name {
+  font-size: 22.1px;
+  font-weight: 590;
+  line-height: 1.45;
+  color: #252530;
+  margin: 0;
+}
+
+.hb-inspiration__pro {
+  font-size: 15.3px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #3d632b;
+  margin: 0;
+}
+
+.hb-inspiration__con {
+  font-size: 15.3px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #964040;
+  margin: 0;
+}
+
+/* ── Non-negotiable cards ── */
+.hb-non-neg-card {
+  flex: 1;
+  background: #e7e7ea;
+  border-radius: 13.6px;
+  padding: 23.8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 117px;
+}
+
+.hb-non-neg-card__num {
+  font-size: 11.9px;
+  font-weight: 510;
+  color: #62626e;
+  margin: 0;
+}
+
+.hb-non-neg-card__title {
+  font-size: 22.1px;
+  font-weight: 590;
+  color: #252530;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ── Visual direction ── */
+.hb-visual-split {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.hb-visual-split__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Pawn sprite ── */
+.hb-pawn {
   position: relative;
   flex-shrink: 0;
-  width: 370px;
-  height: 269px;
-  margin-top: 86px;
-
-  @media (max-width: 1024px) {
-    margin-top: 0;
-    transform: scale(0.8);
-  }
+  width: 186px;
+  height: 213px;
+  background: #e2d7cf;
+  border-radius: 17px;
+  overflow: visible;
 }
 
-.homebody-case-study__pawn-shadow {
+.hb-pawn__shadow {
   position: absolute;
   left: 0;
-  bottom: 0;
-  width: 370px;
-  height: 84px;
+  bottom: -10px;
+  width: 186px;
+  height: auto;
   opacity: 0.55;
 }
 
-.homebody-case-study__pawn-sprite {
+.hb-pawn__sprite {
   position: absolute;
-  left: 76px;
-  top: 0;
-  width: 235px;
-  height: 269px;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 137px;
   background-repeat: no-repeat;
-  background-size: 3424px 570px;
-  background-position: -177px -153px;
+  background-size: 1750px 290px;
+  background-position: -90px -78px;
   image-rendering: pixelated;
-  animation: homebody-pawn-run 0.7s steps(6) infinite;
+  animation: hb-pawn-run 0.7s steps(6) infinite;
 }
 
-@keyframes homebody-pawn-run {
+@keyframes hb-pawn-run {
   to {
-    background-position: calc(-177px - 3424px) -153px;
+    background-position: calc(-90px - 1750px) -78px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .homebody-case-study__pawn-sprite {
+  .hb-pawn__sprite {
     animation: none;
   }
 }
 
-/* Final Designs (node 701:3095) — 2x2 grid of 433x213 clips with
-   25px labels, then the two biome clips under a centered label. */
-/* Breaks out of the body's left-aligned column so the heading and
-   clips sit centered on the page. */
-.homebody-case-study__final {
-  margin-left: calc(-1 * (var(--frame-x) + 103px));
-  margin-right: -30px;
-  text-align: center;
-
-  @media (max-width: 1024px) {
-    margin-inline: 0;
-    text-align: left;
-  }
-}
-
-.homebody-case-study__final .homebody-case-study__heading {
-  text-align: center;
-
-  @media (max-width: 1024px) {
-    text-align: left;
-  }
-}
-
-.homebody-case-study__final .homebody-case-study__clip-label:not(.homebody-case-study__clip-label--center) {
-  text-align: left;
-}
-
-.homebody-case-study__clip-grid {
+/* ── Pipeline grid ── */
+.hb-pipeline-grid {
   display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(2, minmax(0, 433px));
-  gap: 63px;
-  margin-top: 70px;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
-    margin-top: 32px;
-  }
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-.homebody-case-study__clip-label {
-  margin: 0 0 8px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 25px;
-  line-height: normal;
-  letter-spacing: -1.25px;
-  color: #000;
-
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-
-.homebody-case-study__clip-label--center {
-  margin-bottom: 40px;
-  text-align: center;
-
-  @media (max-width: 1024px) {
-    margin-bottom: 16px;
-  }
-}
-
-.homebody-case-study__clip {
-  display: block;
-  width: 100%;
-  aspect-ratio: 433 / 213;
-  object-fit: cover;
-  background-color: #a8a8a8;
-}
-
-.homebody-case-study__biome {
-  margin-top: 62px;
-
-  @media (max-width: 1024px) {
-    margin-top: 48px;
-  }
-}
-
-.homebody-case-study__biome-row {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(2, minmax(0, 433px));
-  gap: 61px;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
-  }
-}
-
-/* Tech Stack band (nodes 701:3127-3155) — warm brown, white text,
-   everything centered. */
-.homebody-case-study__tech {
-  margin-top: 120px;
-  padding: 33px 24px 120px;
-  background-color: #88786c;
-
-  @media (max-width: 1024px) {
-    margin-top: 80px;
-    padding-bottom: 72px;
-  }
-}
-
-.homebody-case-study__tech-heading {
-  margin: 0 0 87px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 25px;
-  line-height: normal;
-  letter-spacing: -1.25px;
-  text-align: center;
-  color: #fff;
-
-  @media (max-width: 1024px) {
-    margin-bottom: 40px;
-  }
-}
-
-.homebody-case-study__tech-row {
+.hb-pipeline-card {
+  background: #e7e7ea;
+  border-radius: 13.6px;
+  padding: 23.8px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hb-pipeline-card__num {
+  font-size: 11.05px;
+  font-weight: 510;
+  color: #62626e;
+  margin: 0;
+}
+
+.hb-pipeline-card__title {
+  font-size: 22.1px;
+  font-weight: 590;
+  color: #252530;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.hb-pipeline-card__body {
+  font-size: 15.3px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #62626e;
+  margin: 0;
+}
+
+/* ── Callout ── */
+.hb-callout {
+  background: #e7e7ea;
+  border-radius: 13.6px;
+  padding: 23.8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hb-callout__heading {
+  font-size: 23.8px;
+  font-weight: 590;
+  line-height: 1.45;
+  color: #252530;
+  margin: 0;
+}
+
+/* ── Gameplay video grid ── */
+.hb-video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.hb-video-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hb-video-item__label {
+  font-size: 22.1px;
+  font-weight: 590;
+  line-height: 1.45;
+  color: #252530;
+  margin: 0;
+}
+
+.hb-video-item .hb-video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1020 / 500;
+  border: 2.55px solid #55463b;
+  border-radius: 13.6px;
+}
+
+/* ── System list ── */
+.hb-systems {
+  display: flex;
+  flex-direction: column;
+}
+
+.hb-system {
+  display: flex;
+  gap: 20px;
   align-items: flex-start;
-  justify-content: center;
-  gap: 24px 15px;
+  padding: 13.6px 0;
+  border-top: 0.85px solid #cfcfd4;
 }
 
-.homebody-case-study__tech-item {
-  flex: 0 0 auto;
-  max-width: 100%;
-  text-align: center;
+.hb-system:last-child {
+  border-bottom: 0.85px solid #cfcfd4;
 }
 
-.homebody-case-study__tech-item-head {
+.hb-system__num {
+  font-size: 15.3px;
+  font-weight: 510;
+  color: #62626e;
+  margin: 0;
+  width: 40px;
+  flex-shrink: 0;
+  line-height: 1.45;
+}
+
+.hb-system__title {
+  font-size: 22.1px;
+  font-weight: 590;
+  color: #252530;
+  margin: 0 0 6px;
+  line-height: 1.45;
+}
+
+.hb-system__body {
+  font-size: 15.3px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #62626e;
+  margin: 0;
+}
+
+/* ── Tech stack ── */
+.hb-tech-row {
+  display: flex;
+  gap: 20px;
+}
+
+.hb-tech-card {
+  flex: 1;
+  background: #e7e7ea;
+  border-radius: 13.6px;
+  padding: 23.8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hb-tech-card__head {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 9px;
+  gap: 10px;
 }
 
-.homebody-case-study__tech-item-head img {
-  width: auto;
-  height: 35px;
+.hb-tech-card__icon {
+  width: 28px;
+  height: 25px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
-.homebody-case-study__tech-item-head span {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.3;
-  color: #fff;
+.hb-tech-card__name {
+  font-size: 22.1px;
+  font-weight: 590;
+  color: #252530;
+  margin: 0;
+  line-height: 1.45;
 }
 
-.homebody-case-study__tech-item p {
-  margin: 4px 0 0;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+.hb-tech-card__body {
+  font-size: 15.3px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #62626e;
+  margin: 0;
+}
+
+/* ── Back to top ── */
+.hb-back-to-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 15px;
-  line-height: 1.3;
-  color: #fff;
+  font-weight: 510;
+  color: #62626e;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 60px auto 0;
+  font-family: inherit;
+  transition: color 0.15s;
+  cursor: pointer;
 }
+
+.hb-back-to-top:hover { color: #252530; }

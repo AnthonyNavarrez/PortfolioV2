@@ -5,9 +5,14 @@
   width: 100vw;
   min-height: 100vh;
   margin-inline: calc(50% - 50vw);
+  padding-left: 180px;
   box-sizing: border-box;
   background-color: #031714;
   color: #fff;
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+  }
 }
 
 /* Fixed in place, mirroring the other case studies' back button. */

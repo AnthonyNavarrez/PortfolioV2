@@ -1,0 +1,55 @@
+/* ── Overlay ── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+.loading-screen--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Blob wrapper (floats up and down) ── */
+.loading-blob-wrap {
+  animation: loading-float 2.8s ease-in-out infinite;
+}
+
+/* ── Blob shape (morphs) ── */
+.loading-blob {
+  width: 180px;
+  height: 180px;
+  background: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: loading-morph 5s ease-in-out infinite;
+}
+
+/* ── Text ── */
+.loading-blob__text {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #888;
+  letter-spacing: 0.3px;
+  user-select: none;
+}
+
+/* ── Animations ── */
+@keyframes loading-float {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-16px); }
+}
+
+@keyframes loading-morph {
+  0%,  100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%; }
+  25%        { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; }
+  50%        { border-radius: 55% 45% 60% 40% / 45% 55% 50% 60%; }
+  75%        { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; }
+}

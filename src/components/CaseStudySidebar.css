@@ -1,0 +1,106 @@
+.cs-sidebar {
+  width: 250px;
+  height: 100vh;
+  flex-shrink: 0;
+  background: #111113;
+  border-right: 1px solid #333348;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.cs-sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 56px 29px 0;
+}
+
+.cs-sidebar__avatar {
+  width: 34px;
+  height: 49px;
+  flex-shrink: 0;
+}
+
+.cs-sidebar__name {
+  font-size: 17px;
+  font-weight: 510;
+  letter-spacing: -0.63px;
+  color: #eeeded;
+  line-height: 1.098;
+  margin: 0;
+  width: 180px;
+}
+
+.cs-sidebar__school {
+  font-size: 14px;
+  font-weight: 510;
+  letter-spacing: -0.9px;
+  color: #acacac;
+  line-height: normal;
+  margin: 0;
+  width: 180px;
+}
+
+.cs-sidebar__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #acacac;
+  font-size: 17px;
+  font-weight: 510;
+  letter-spacing: -0.85px;
+  margin: 40px 0 0 30px;
+  cursor: none;
+  transition: color 0.15s ease;
+}
+
+.cs-sidebar__back:hover { color: #eeeded; }
+
+.cs-sidebar__back-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.cs-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 28px 0 0 48px;
+}
+
+.cs-sidebar__nav-item {
+  background: none;
+  border: none;
+  padding: 7px 0;
+  text-align: left;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 510;
+  letter-spacing: -0.85px;
+  color: #acacac;
+  cursor: none;
+  transition: color 0.15s ease, padding-left 0.2s ease;
+  line-height: normal;
+}
+
+.cs-sidebar__nav-item:hover { color: #eeeded; }
+
+.cs-sidebar__nav-item--active {
+  color: #eeeded;
+  padding-left: 10px;
+}
+
+.cs-sidebar__ellipse-blue {
+  position: absolute;
+  left: -89px;
+  bottom: -20px;
+  width: 234px;
+  pointer-events: none;
+}

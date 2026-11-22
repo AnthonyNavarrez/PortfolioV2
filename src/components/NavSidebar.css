@@ -1,0 +1,188 @@
+.nav-sb {
+  width: 180px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 26px;
+  z-index: 10;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Page-injected header slot */
+.nav-sb__header-slot {
+  position: absolute;
+  top: 28px;
+  left: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Centered nav group */
+.nav-sb__group {
+  position: absolute;
+  top: 44%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nav-sb__main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* Sliding indicator pill */
+.nav-sb__indicator {
+  position: absolute;
+  left: -14px;
+  top: 0;
+  width: 96px;
+  height: 30px;
+  background: #d3e7ff;
+  border-radius: 43px;
+  pointer-events: none;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Nav links */
+.nav-sb__navlink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 14px;
+  font-size: 15px;
+  color: #6b6b6b;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.15s;
+  margin-left: -14px;
+}
+.nav-sb__navlink:hover { color: #353535; }
+.nav-sb__navlink--active { color: #62626e; font-weight: 500; }
+
+/* Dark theme overrides */
+.nav-sb--dark .nav-sb__navlink { color: #acacac; }
+.nav-sb--dark .nav-sb__navlink:hover { color: #eeeded; }
+.nav-sb--dark .nav-sb__navlink--active { color: #353535; }
+
+/* Back button (case study pages) */
+.nav-sb__back {
+  position: absolute;
+  top: 40px;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  font-size: 13.6px;
+  color: #62626e;
+  text-decoration: none;
+  font-weight: 510;
+  line-height: 1.45;
+  transition: color 0.15s, opacity 0.15s;
+}
+.nav-sb__back:hover { color: #353535; }
+.nav-sb__back-icon { width: 20px; height: 20px; display: block; }
+.nav-sb--dark .nav-sb__back { color: #acacac; }
+.nav-sb--dark .nav-sb__back:hover { color: #eeeded; }
+
+/* Section nav */
+.nav-sb__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.nav-sb--dark .nav-sb__sections { border-top-color: rgba(255, 255, 255, 0.08); }
+.nav-sb__sections--alone { border-top: none; margin-top: 0; padding-top: 0; }
+
+.nav-sb__section-btn {
+  background: none;
+  border: none;
+  padding: 3px 0;
+  text-align: left;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 400;
+  color: #9b9ba6;
+  cursor: pointer;
+  transition: color 0.15s;
+  line-height: 1.45;
+}
+.nav-sb__section-btn:hover { color: #353535; }
+.nav-sb__section-btn--active { color: #353535; font-weight: 510; }
+
+.nav-sb--dark .nav-sb__section-btn { color: #6b6b6b; }
+.nav-sb--dark .nav-sb__section-btn:hover { color: #eeeded; }
+.nav-sb--dark .nav-sb__section-btn--active { color: #eeeded; font-weight: 510; }
+
+/* Social icons */
+.nav-sb__social {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  position: absolute;
+  bottom: 60px;
+}
+.nav-sb__social-link {
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.nav-sb__social-link:hover { opacity: 1; }
+.nav-sb__social-link img { width: 22px; height: 22px; }
+
+.nav-sb__email-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.nav-sb__email-btn:hover { opacity: 1; }
+.nav-sb__email-btn img { width: 22px; height: 22px; }
+
+.nav-sb__email-copied {
+  font-size: 11.5px;
+  font-weight: 510;
+  color: #62626e;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+/* Updated text */
+.nav-sb__updated {
+  position: absolute;
+  bottom: 28px;
+  font-size: 13px;
+  color: #6f6f6f;
+  font-weight: 300;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.nav-sb__updated--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.nav-sb--dark .nav-sb__updated { color: #5a5a6a; }
+
+/* Hide sidebar on small screens */
+@media (max-width: 768px) {
+  .nav-sb {
+    display: none;
+  }
+}
