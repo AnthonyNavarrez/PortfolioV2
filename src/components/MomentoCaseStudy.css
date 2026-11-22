@@ -1,692 +1,530 @@
-/* MomentoCaseStudy — synced from Figma (node 682:2439, 1440 wide) */
-
-.momento-case-study {
-  position: relative;
-  width: 100vw;
+/* ── Page shell ── */
+.mc-page {
   min-height: 100vh;
-  margin-inline: calc(50% - 50vw);
-  padding-bottom: 100px;
-  box-sizing: border-box;
-  background-color: #fff;
-  color: #000;
+  background: #f2f2f2;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-align: left;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
 }
 
-/* Fixed in place — synced from Figma (node 547:980), pinned top-center
-   of the viewport regardless of scroll position. */
-.momento-case-study__back {
-  position: fixed;
-  z-index: 20;
-  top: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: 0 28px;
-  height: 56px;
-  border: 2px solid #fe9332;
-  border-radius: 999px;
-  background-color: transparent;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-  letter-spacing: -0.6px;
-  color: #fe9332;
-  text-decoration: none;
-  white-space: nowrap;
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
-
-  @media (max-width: 768px) {
-    top: 16px;
-    padding: 0 22px;
-    height: 48px;
-    font-size: 17px;
-  }
+/* ── Main ── */
+.mc-main {
+  padding: 43px 180px 100px 180px;
 }
 
-.momento-case-study__back:hover {
-  transform: translateX(-50%) translateY(-2px);
-  opacity: 0.85;
-}
-
-.momento-case-study__hero {
-  position: relative;
-  height: 1015px;
-  padding-top: 239px;
-  background-size: cover;
-  background-position: center top;
+/* ── Content column ── */
+.mc-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  overflow: hidden;
-
-  @media (max-width: 1024px) {
-    height: 600px;
-    padding: 160px 24px 0;
-    text-align: center;
-  }
+  gap: 86px;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-.momento-case-study__hero-fade {
+/* ── Top group (title + hero + problem) ── */
+.mc-top-group {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ── Typography ── */
+.mc-title {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #353535;
+  margin: 0;
+}
+
+.mc-tagline {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #62626e;
+  margin: 0;
+}
+
+.mc-h2 {
+  font-size: 27px;
+  font-weight: 590;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  color: #353535;
+  margin: 0;
+}
+
+.mc-label {
+  font-size: 11.9px;
+  font-weight: 510;
+  letter-spacing: 0.3px;
+  color: #62626e;
+  margin: 0;
+}
+
+.mc-label--spaced {
+  margin-top: 10px;
+}
+
+.mc-body {
+  font-size: 15.3px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #62626e;
+  margin: 0;
+}
+
+.mc-subsection-h {
+  font-size: 18.7px;
+  font-weight: 510;
+  color: #353535;
+  margin: 0;
+}
+
+/* ── Hero card ── */
+.mc-hero {
+  position: relative;
+  background: #f3f4f3;
+  border-radius: 15px;
+  height: 440px;
+  overflow: hidden;
+}
+
+.mc-hero__map {
   position: absolute;
   inset: 0;
-  /* The map sits at 78% opacity over white, then fades fully to white
-     over the hero's last 271px (node 682:2454). */
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.22) 0,
-    rgba(255, 255, 255, 0.22) calc(100% - 271px),
-    #fff 100%
-  );
+  opacity: 0.78;
+  overflow: hidden;
 }
 
-.momento-case-study__logo {
-  position: relative;
-  z-index: 1;
+.mc-hero__map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.mc-hero__logo {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 17px;
+  gap: 3.5px;
+  white-space: nowrap;
 }
 
-.momento-case-study__logo-icon {
-  display: block;
-  width: 281.66px;
+.mc-hero__logo-icon {
+  width: 30px;
   flex-shrink: 0;
-
-  @media (max-width: 1024px) {
-    width: 94px;
-  }
 }
 
-.momento-case-study__logo-icon svg {
+.mc-hero__logo-icon svg {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.momento-case-study__logo-text {
-  font-family: 'Montserrat', sans-serif;
+.mc-hero__logo-text {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 28px;
   font-weight: 700;
-  font-size: 150px;
-  line-height: 1;
-  letter-spacing: -7.5px;
-  white-space: nowrap;
-  background-image: linear-gradient(160.111deg, #ff7a33 79.359%, #fda831 155.39%);
-  background-clip: text;
+  letter-spacing: -1.4px;
+  background: linear-gradient(158deg, #ff7a33 79%, #fda831 155%);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-
-  @media (max-width: 1024px) {
-    font-size: 48px;
-    letter-spacing: -2.4px;
-  }
 }
 
-.momento-case-study__actions {
-  position: relative;
-  z-index: 1;
+/* iPad landscape mockup (portrait frame rotated 90deg) */
+.mc-hero__ipad-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  /* landscape dimensions: portrait 400×522 rotated → 522×400 */
+  width: 522px;
+  height: 395px;
+  transform: translateX(-50%);
+  /* drop-shadow to match Figma */
+  filter: drop-shadow(5px 2px 3px rgba(0,0,0,0.25));
+}
+
+.mc-hero__ipad-portrait {
+  position: absolute;
+  /* portrait dimensions */
+  width: 395px;
+  height: 522px;
+  /* center within landscape wrap, then rotate to landscape */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.mc-hero__ipad-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Screen inset matches Figma: top 3.22%, right 4.22%, bottom 3.06%, left 4% */
+.mc-hero__ipad-screen {
+  position: absolute;
+  top: 3.22%;
+  right: 4.22%;
+  bottom: 3.06%;
+  left: 4%;
   display: flex;
-  gap: 21px;
-  /* Figma tucks the buttons up under the wordmark, inside the logo
-     icon's box (top at y=504, the logo's box ends at y=566). */
-  margin-top: -62px;
-
-  @media (max-width: 1024px) {
-    margin-top: 24px;
-  }
-}
-
-.momento-case-study__button {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  width: 173px;
-  height: 62px;
-  border-radius: 30px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 23px;
-  line-height: 1.31;
-  letter-spacing: -0.69px;
-
-  @media (max-width: 768px) {
-    width: 140px;
-    height: 52px;
-    font-size: 19px;
-  }
-  text-decoration: none;
-  outline: none;
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
+  overflow: hidden;
+  container-type: size;
+  border-radius: 10px;
 }
 
-.momento-case-study__button:hover {
-  transform: translateY(-2px);
-  opacity: 0.85;
+/* Rotate -90deg to cancel the parent's 90deg, using container query units
+   to swap width/height so the landscape screenshot fills the portrait slot */
+.mc-hero__ipad-screen-inner {
+  flex: none;
+  transform: rotate(-90deg);
+  width: 100cqh;
+  height: 100cqw;
 }
 
-.momento-case-study__button--filled {
-  background-color: #3b7dd8;
-  border: 2px solid #fff;
-  color: #fff;
+.mc-hero__ipad-screenshot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.momento-case-study__button--outline {
-  background-color: transparent;
-  border: 2px solid #3b7dd8;
-  color: #3b7dd8;
+/* ── Meta description row ── */
+.mc-meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
 }
 
-.momento-case-study__problem {
-  margin-top: 8px;
-
-  @media (max-width: 1024px) {
-    margin-top: 24px;
-  }
+.mc-meta__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.momento-case-study__problem-panel {
-  background-color: #3b7dd8;
-  padding: 87px 80px 50px;
-  text-align: center;
-  transform-origin: center top;
-
-  @media (max-width: 1024px) {
-    padding: 48px 24px;
-  }
+.mc-meta__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 17px;
+  font-weight: 510;
+  color: #353535;
 }
 
-.momento-case-study__problem-heading {
+.mc-meta__icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.mc-meta__value {
+  font-size: 15.3px;
+  font-weight: 400;
+  color: #62626e;
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 1.31;
-  letter-spacing: -0.9px;
-  color: #fff;
+  line-height: 1.45;
 }
 
-.momento-case-study__problem-intro {
-  max-width: 1178px;
-  margin: 5px auto 0;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 23px;
-  line-height: 1.31;
-  letter-spacing: -0.69px;
-  color: #fff;
-
-  @media (max-width: 1024px) {
-    font-size: 18px;
-  }
+/* ── Problem section ── */
+.mc-problem {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.momento-case-study__problem-intro a {
-  color: inherit;
-  text-decoration: underline;
-}
-
-.momento-case-study__problem-grid {
+.mc-pain-points {
   display: grid;
-  grid-template-columns: minmax(0, 308px) minmax(0, 298px) minmax(0, 298px);
-  justify-content: center;
-  gap: 120px;
-  margin: 77px auto 0;
-
-  @media (max-width: 1024px) {
-    gap: 40px;
-    margin-top: 48px;
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.momento-case-study__problem-title,
-.momento-case-study__problem-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  font-size: 23px;
-  line-height: 1.31;
-  letter-spacing: -0.69px;
-  color: #fff;
-
-  @media (max-width: 1024px) {
-    font-size: 18px;
-  }
-}
-
-.momento-case-study__problem-title {
-  margin-bottom: 16px;
-  font-weight: 700;
-}
-
-.momento-case-study__problem-body {
-  font-weight: 500;
-}
-
-.momento-case-study__solution {
+.mc-pain-card {
+  background: #e7e7ea;
+  border-radius: 10px;
+  padding: 17px 18px 20px;
+  min-height: 195px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 137px;
-  padding: 87px 80px 0;
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    padding: 56px 24px;
-    gap: 40px;
-    /* The polaroid glow (420px, centered+offset) and the rotated
-       polaroid card both bleed past the 252px-wide polaroid container
-       by design — desktop's wide layout absorbs it, but mobile's
-       narrower column doesn't, leaking into the page's horizontal
-       scroll. overflow-y set explicitly too, same reasoning as the
-       other mobile overflow fixes (avoids the visible->auto
-       promotion that would otherwise show a stray scrollbar). */
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
-.momento-case-study__polaroid {
-  position: relative;
+.mc-pain-card__num {
+  font-size: 11px;
+  font-weight: 510;
+  color: #62626e;
+  margin: 0 0 20px;
+}
+
+.mc-pain-card__title {
+  font-size: 17px;
+  font-weight: 510;
+  line-height: 1.3;
+  color: #353535;
+  margin: 0 0 auto;
+}
+
+.mc-pain-card__body {
+  font-size: 13.6px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #62626e;
+  margin: 14px 0 0;
+}
+
+/* ── Solution ── */
+.mc-solution {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.mc-solution__left {
+  width: 290px;
   flex-shrink: 0;
-  width: 252px;
 }
 
-/* Soft map-texture vignette sitting behind the polaroid — synced from
-   Figma (node 544:968): the map image masked through a radial gradient
-   so it fades out at the edges instead of ending in a hard circle. */
-.momento-case-study__polaroid-glow {
+.mc-solution__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Polaroid */
+.mc-polaroid-wrap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+}
+
+.mc-polaroid__bg {
   position: absolute;
   z-index: 0;
   top: 50%;
   left: 50%;
-  width: 716px;
-  height: 707px;
-  transform: translate(calc(-50% - 47px), calc(-50% - 20px));
-  background-size: 280% auto;
-  background-position: 35% 45%;
+  width: 480px;
+  height: 470px;
+  transform: translate(calc(-50% - 30px), calc(-50% - 10px));
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 68%);
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 68%);
   opacity: 0.78;
-  -webkit-mask-image: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0) 70%
-  );
-  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none;
-
-  @media (max-width: 1024px) {
-    width: 420px;
-    height: 415px;
-    transform: translate(calc(-50% - 28px), calc(-50% - 12px));
-  }
 }
 
-.momento-case-study__polaroid-card {
-  position: relative;
-  z-index: 1;
-  transform: rotate(7deg);
-  /* Figma's instax frame is white at 50% over the map vignette. */
-  background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.18);
-  border-radius: 2px;
-  padding: 14px 14px 24px;
-  box-sizing: border-box;
-}
-
-.momento-case-study__polaroid-photo {
-  display: block;
+.mc-polaroid__bg img {
   width: 100%;
-  aspect-ratio: 172 / 243;
+  height: 100%;
   object-fit: cover;
 }
 
-.momento-case-study__polaroid-caption {
-  margin: 16px 0 0;
-  font-family: 'Roboto', sans-serif;
+.mc-polaroid__card {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(7deg);
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 11px 11px 20px;
+  box-sizing: border-box;
+  width: 128px;
+}
+
+.mc-polaroid__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 104 / 147;
+  object-fit: cover;
+}
+
+.mc-polaroid__caption {
+  margin: 10px 0 0;
+  font-family: 'SF Pro Text', -apple-system, sans-serif;
   font-weight: 300;
-  font-size: 13px;
+  font-size: 11px;
   text-align: center;
   color: #000;
   white-space: pre-line;
+  line-height: 1.4;
 }
 
-.momento-case-study__polaroid-pin {
+.mc-polaroid__pin {
   position: absolute;
   z-index: 2;
-  top: -22px;
+  top: calc(50% - 160px - 18px);
   left: 50%;
-  width: 22px;
-  height: 42px;
-  transform: translateX(-50%);
-}
-
-.momento-case-study__solution-text {
-  max-width: 705px;
-  text-align: left;
-}
-
-.momento-case-study__solution-heading {
-  margin: 0 0 38px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 1.31;
-  letter-spacing: -0.9px;
-  color: #ff7a33;
-}
-
-.momento-case-study__solution-paragraph {
-  margin: 0 0 28px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 23px;
-  line-height: normal;
-  color: #000;
-
-  @media (max-width: 1024px) {
-    font-size: 18px;
-  }
-}
-
-.momento-case-study__solution-paragraph:last-child {
-  margin-bottom: 0;
-}
-
-.momento-case-study__solution-paragraph strong {
-  font-weight: 700;
-}
-
-/* Orange section headings (Inter SemiBold 30), centered. */
-.momento-case-study__section-heading {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 1.31;
-  letter-spacing: -0.9px;
-  text-align: center;
-  color: #ff7a33;
-
-  @media (max-width: 1024px) {
-    font-size: 26px;
-  }
-}
-
-/* Mapping User Journeys (node 683:2881) — a 1205px table: blue header
-   bar, light-grey body with a blue border, columns 276 / 326 / 384px
-   72px apart, inset 75px from the left, blue rules between rows. */
-.momento-case-study__journeys {
-  margin-top: 137px;
-  padding: 0 24px;
-
-  @media (max-width: 1024px) {
-    margin-top: 80px;
-  }
-}
-
-.momento-case-study__journey-table {
-  width: min(1205px, 100%);
-  margin: 22px auto 0;
-  overflow-x: auto;
-  border: 3px solid #3b7dd8;
-  border-radius: 20px 20px 10px 10px;
-  background-color: #eee;
-  font-family: 'Inter', sans-serif;
-  text-align: left;
-}
-
-.momento-case-study__journey-row {
-  display: grid;
-  grid-template-columns: 276px 326px 384px;
-  column-gap: 72px;
-  min-width: 1130px;
-  margin: 0 49px 0 64px;
-  padding: 20px 0 20px 11px;
-  font-size: 23px;
-  line-height: normal;
-  color: #000;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 200px 220px 260px;
-    column-gap: 32px;
-    min-width: 0;
-    margin: 0 24px;
-    padding-left: 0;
-    font-size: 18px;
-  }
-}
-
-.momento-case-study__journey-row + .momento-case-study__journey-row:not(:nth-child(2)) {
-  border-top: 1px solid #3b7dd8;
-}
-
-.momento-case-study__journey-row--head {
-  margin: 0;
-  padding: 47px 49px 12px 75px;
-  background-color: #3b7dd8;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 1.31;
-  letter-spacing: -0.9px;
-  color: #fff;
-
-  @media (max-width: 1024px) {
-    padding: 24px;
-    font-size: 22px;
-  }
-}
-
-.momento-case-study__journey-row--head + .momento-case-study__journey-row {
-  padding-top: 29px;
-}
-
-.momento-case-study__journey-row:last-child {
-  padding-bottom: 34px;
-}
-
-/* Visual direction (nodes 687:2882, 687:2883). */
-.momento-case-study__visual {
-  margin-top: 96px;
-  padding: 0 24px;
-}
-
-.momento-case-study__visual-text {
-  max-width: 705px;
-  margin: 15px auto 0;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 23px;
-  line-height: normal;
-  text-align: center;
-  color: #000;
-
-  @media (max-width: 1024px) {
-    font-size: 18px;
-  }
-}
-
-/* Design System (nodes 688:2887, 688:2885, 688:2893). */
-.momento-case-study__design-system {
-  margin-top: 15px;
-  padding: 0 24px;
-}
-
-.momento-case-study__design-system-image {
-  display: block;
-  width: min(832px, 100%);
+  transform: translateX(-50%) rotate(26deg);
+  width: 14px;
   height: auto;
-  margin: 24px auto 0;
 }
 
-.momento-case-study__design-system-text {
-  max-width: 705px;
-  margin: 15px auto 0;
-  transform: translateX(-34px);
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 23px;
-  line-height: normal;
-  text-align: left;
-  color: #000;
-
-  @media (max-width: 1024px) {
-    transform: none;
-    font-size: 18px;
-  }
+/* Filter pills */
+.mc-filter-pills {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.momento-case-study__design-system-text p {
-  margin: 0;
-}
-
-.momento-case-study__design-system-text p + p {
-  margin-top: 28px;
-}
-
-.momento-case-study__design-system-text strong {
-  font-weight: 700;
-}
-
-.momento-case-study__hex,
-.momento-case-study__medium {
-  font-weight: 500;
-}
-
-.momento-case-study__hex--orange { color: #ff7a33; }
-.momento-case-study__hex--blue { color: #208bea; }
-.momento-case-study__hex--amber { color: #fda831; }
-.momento-case-study__hex--steel { color: #3b7dd8; }
-
-.momento-case-study__hand {
-  font-family: 'Just Another Hand', cursive;
-  font-size: 40px;
-  letter-spacing: 0.8px;
+.mc-filter-pill {
+  background: #e7e7ea;
+  border-radius: 16px;
+  padding: 7px 14px;
+  font-size: 11.9px;
+  font-weight: 510;
+  color: #353535;
   line-height: 1;
 }
 
-/* Tech Stack band (nodes 689:2894, 682:2480-2541) — light grey, with
-   the heading and both rows centered. */
-.momento-case-study__tech {
-  margin-top: 100px;
-  padding: 83px 24px 120px;
-  background-color: #e9e9e9;
-
-  @media (max-width: 1024px) {
-    padding: 56px 24px 80px;
-  }
+/* ── Generic section ── */
+.mc-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.momento-case-study__tech-heading {
-  margin: 0 0 45px;
-  font-family: 'Montserrat', sans-serif;
+/* ── Journey table ── */
+.mc-journey-table {
+  border-radius: 10px;
+  overflow: hidden;
+  background: #e7e7ea;
+}
+
+.mc-journey-table__header {
+  display: grid;
+  grid-template-columns: 230px 272px 1fr;
+  background: #dbdbe0;
+  padding: 14px 18px;
+  gap: 0;
+  font-size: 12.75px;
+  font-weight: 590;
+  color: #353535;
+  column-gap: 0;
+}
+
+.mc-journey-table__header span,
+.mc-journey-table__row span {
+  padding-right: 16px;
+}
+
+.mc-journey-table__row {
+  display: grid;
+  grid-template-columns: 230px 272px 1fr;
+  padding: 20px 18px;
+  font-size: 13.6px;
+  line-height: 1.44;
+  color: #62626e;
+  border-top: 0.85px solid #cfcfd4;
+}
+
+.mc-journey-table__row--alt {
+  background: #ededf0;
+}
+
+.mc-journey-table__moment {
+  font-weight: 510;
+}
+
+.mc-journey-table__action {
+  color: #353535;
+}
+
+/* ── Design system ── */
+.mc-design-block {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mc-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.mc-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mc-swatch__color {
+  height: 61px;
+  border-radius: 7.6px;
+}
+
+.mc-swatch__label {
+  font-size: 11.9px;
+  font-weight: 510;
+  color: #62626e;
+  margin: 0;
+}
+
+.mc-divider {
+  height: 0.85px;
+  background: #cfcfd4;
+  margin: 8px 0;
+}
+
+.mc-type-row {
+  display: flex;
+  gap: 40px;
+}
+
+.mc-type-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mc-type-display {
+  font-family: 'Just Another Hand', cursive;
+  font-size: 48px;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  color: #353535;
+  margin: 0;
+}
+
+.mc-type-inter {
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
   font-weight: 600;
-  font-size: 30px;
-  line-height: 1.3;
-  color: #208bea;
-  text-align: center;
+  color: #353535;
+  margin: 0;
 }
 
-.momento-case-study__tech-row {
+/* ── Back to top ── */
+.mc-back-to-top {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 51px;
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-
-.momento-case-study__tech-row + .momento-case-study__tech-row {
-  margin-top: 68px;
-
-  @media (max-width: 1024px) {
-    margin-top: 48px;
-  }
-}
-
-/* Label with a 4px blue rule after it. */
-.momento-case-study__tech-label {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  flex-shrink: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 25px;
-  line-height: 1.3;
-  color: #000;
-}
-
-.momento-case-study__tech-label::after {
-  content: '';
-  width: 4px;
-  height: 32.5px;
-  margin-left: 9px;
-  background-color: #3b7dd8;
-
-  @media (max-width: 1024px) {
-    display: none;
-  }
-}
-
-.momento-case-study__tech-items {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 24px 15px;
-}
-
-/* Figma gives each item its own width (154px unless set in data). */
-.momento-case-study__tech-item {
-  flex: 0 0 auto;
-  width: 154px;
-  text-align: center;
-}
-
-.momento-case-study__tech-item-head {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-}
-
-.momento-case-study__tech-item-head img {
-  width: auto;
-  height: 35px;
-  max-width: 61px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.momento-case-study__tech-item-head span {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.3;
-  color: #000;
-}
-
-.momento-case-study__tech-item p {
-  margin: 4px 0 0;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+  gap: 6px;
   font-size: 15px;
-  line-height: 1.3;
-  text-align: center;
-  color: #000;
+  font-weight: 510;
+  color: #62626e;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 60px auto 0;
+  font-family: inherit;
+  transition: color 0.15s;
 }
+
+.mc-back-to-top:hover { color: #353535; }

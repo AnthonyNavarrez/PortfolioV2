@@ -1,0 +1,346 @@
+/* ── Page shell ──────────────────────────────────────────── */
+.wishes-page {
+  display: flex;
+  min-height: 100vh;
+  background: radial-gradient(ellipse 72% 100% at 50% 50%, #16161c 0%, #12121b 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  text-align: left;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* ── Main content ────────────────────────────────────────── */
+.wishes-page__main {
+  flex: 1;
+  position: relative;
+  padding: 42px 32px 0 32px;
+  margin-left: 250px;
+  min-width: 0;
+  animation: content-fade 0.35s ease both;
+}
+
+@keyframes content-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Stars background ────────────────────────────────────── */
+.wishes__stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0.45;
+  filter: blur(0.6px);
+}
+
+/* ── Decorations ─────────────────────────────────────────── */
+.wishes__nebula {
+  position: absolute;
+  right: -60px;
+  top: -180px;
+  width: 520px;
+  height: 520px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wishes__ellipse {
+  position: absolute;
+  right: 87px;
+  top: 77px;
+  width: 90px;
+  height: 90px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Back link ───────────────────────────────────────────── */
+.wishes__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 510;
+  letter-spacing: -0.48px;
+  color: #acacac;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  cursor: none;
+  margin-bottom: 16px;
+}
+
+.wishes__back-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+}
+
+/* ── Heading ─────────────────────────────────────────────── */
+.wishes__heading {
+  font-family: 'Buenard', serif;
+  font-size: 55px;
+  font-weight: 500;
+  letter-spacing: -2.75px;
+  color: #fff;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+}
+
+/* ── Interactive sky ─────────────────────────────────────── */
+.wishes__sky {
+  position: relative;
+  width: 100%;
+  min-height: 560px;
+  margin-top: 32px;
+  cursor: crosshair;
+  z-index: 1;
+}
+
+/* ── Individual wish ─────────────────────────────────────── */
+.wish-item {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: auto;
+  animation: wish-pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  cursor: none;
+}
+
+.wish-item__sparkle {
+  width: 36px;
+  height: 36px;
+  display: block;
+  filter: drop-shadow(0 0 6px var(--wish-color, #e45af6))
+          drop-shadow(0 0 14px var(--wish-color, #e45af6));
+}
+
+.wish-item__text {
+  font-size: 10px;
+  font-weight: 510;
+  letter-spacing: -0.5px;
+  color: #acacac;
+  white-space: nowrap;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.wish-item__text::after {
+  content: attr(data-text);
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 17, 19, 0.88);
+  border: 1px solid #333348;
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: -0.33px;
+  color: #eeeded;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 10;
+}
+
+.wish-item:hover .wish-item__text::after {
+  opacity: 1;
+}
+
+@keyframes wish-pop {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ── Wish actions toolbar ────────────────────────────────── */
+.wish-item--selected {
+  pointer-events: auto;
+}
+
+.wish-item--dragging {
+  cursor: grabbing !important;
+  user-select: none;
+  z-index: 10;
+}
+
+.wish-item__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 6px;
+  pointer-events: auto;
+}
+
+.wish-item__action-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wish-item__action-btn img {
+  width: 28px;
+  height: 28px;
+  opacity: 0.55;
+  display: block;
+  transition: transform 0.15s ease, opacity 0.15s ease, filter 0.15s ease;
+}
+
+.wish-item__action-btn:hover img {
+  opacity: 1;
+  transform: scale(1.2);
+  filter: brightness(0) invert(1);
+}
+
+.wish-item__action-btn::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 510;
+  letter-spacing: -0.33px;
+  color: #acacac;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.wish-item__action-btn:hover::after {
+  opacity: 1;
+}
+
+/* ── Wish inline edit ────────────────────────────────────── */
+.wish-item__edit-input {
+  width: 160px;
+  background: #111016;
+  border: 1px solid rgba(228, 90, 246, 0.35);
+  border-radius: 6px;
+  color: #eeeded;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  font-size: 15px;
+  font-weight: 510;
+  letter-spacing: -0.5px;
+  padding: 6px 10px;
+  outline: none;
+  cursor: text;
+}
+
+/* ── Wish popup ──────────────────────────────────────────── */
+.wish-popup {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  align-items: center;
+  z-index: 20;
+  animation: popup-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes popup-in {
+  from { opacity: 0; transform: translateX(-50%) scale(0.9); }
+  to   { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+.wish-popup__input {
+  width: 280px;
+  box-sizing: border-box;
+  height: 48px;
+  background: #111016;
+  border: 1px solid #34354d;
+  border-radius: 10px;
+  box-shadow: 0 4px 5.7px rgba(71, 77, 77, 0.25);
+  color: #eeeded;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.75px;
+  padding: 6px 19px;
+  outline: none;
+  cursor: text;
+  flex-shrink: 0;
+}
+
+.wish-popup__input::placeholder {
+  color: #333;
+}
+
+.wish-popup__input:focus {
+  border-color: rgba(228, 90, 246, 0.35);
+}
+
+/* Color square */
+.wish-popup__color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  cursor: none;
+  transition: transform 0.15s ease;
+}
+
+.wish-popup__color-swatch:hover {
+  transform: scale(1.1);
+}
+
+/* Hidden native color picker — triggered by clicking the swatch */
+.wish-popup__color-picker {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.wishes__footer {
+  margin-top: 60px;
+  margin-left: -32px;
+  margin-right: -32px;
+  width: auto;
+}
+
+.main__footer-text {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: 590;
+  letter-spacing: 0.18px;
+  color: rgba(98, 105, 138, 0.53);
+  white-space: nowrap;
+}
+
+.main__footer-star {
+  background: linear-gradient(184deg, rgba(241, 171, 91, 0.93) 7.8%, rgba(176, 118, 96, 0.93) 29.6%, rgba(136, 143, 174, 0.93) 75.2%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 590;
+  letter-spacing: 0.16px;
+}

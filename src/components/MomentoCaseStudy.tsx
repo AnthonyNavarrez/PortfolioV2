@@ -1,267 +1,274 @@
-import { Link } from 'react-router-dom'
-import AnimatedContent from './AnimatedContent'
+import { useSections } from '../contexts/NavSidebarContext'
 import MomentoIcon from './MomentoIcon'
-import {
-  momentoBg,
-  momentoBackendStack,
-  momentoDesignSystem,
-  momentoFrontendStack,
-  momentoJourneys,
-  momentoPin,
-  momentoPolaroidCaption,
-  momentoPolaroidPhoto,
-  momentoProblemIntro,
-  momentoProblems,
-  momentoSolutionParagraphs,
-  momentoVisualDirection,
-} from '../data/momento'
+import Reveal from './Reveal'
+import iconEmoji   from '../assets/v3/icon-emoji.svg'
+import iconClock   from '../assets/v3/icon-clock.svg'
+import iconUsers   from '../assets/v3/icon-users.svg'
+import iconSpanner from '../assets/v3/icon-spanner.svg'
+import momentoBg from '../assets/momento-bg.webp'
+import momentoPolaroidPhoto from '../assets/momento-polaroid-photo.webp'
+import momentoPin from '../assets/momento-pin.svg'
+import ipadFrame from '../assets/momento-cs/ipad-mockup.png'
+import ipadScreenshot from '../assets/momento-cs/ipad-screenshot.png'
+import { momentoJourneys, momentoVisualDirection } from '../data/momento'
 import './MomentoCaseStudy.css'
 
+const PROBLEMS = [
+  {
+    num: '1',
+    title: 'Photos and locations are disconnected.',
+    body: "Camera rolls bury locations in clutter, while apps like Instagram don't connect photos to places by default.",
+  },
+  {
+    num: '2',
+    title: 'No collective view of where people go.',
+    body: 'Discovery on social media relies on curated "top 10" lists and influencer content, not real, organic behavior.',
+  },
+  {
+    num: '3',
+    title: 'No sense of activity over time.',
+    body: "Existing data is static. There's no way to see trends shift week to week or season to season.",
+  },
+]
+
+const SWATCHES = [
+  { hex: '#FF7A33', label: '#FF7A33' },
+  { hex: '#FDA831', label: '#FDA831' },
+  { hex: '#208BEA', label: '#208BEA' },
+  { hex: '#3B7DD8', label: '#3B7DD8' },
+]
+
 function MomentoCaseStudy() {
+  useSections([
+    { id: 'mc-problem',  label: 'Problem' },
+    { id: 'mc-solution', label: 'Solution' },
+    { id: 'mc-journeys', label: 'User Journeys' },
+    { id: 'mc-visual',   label: 'Visual Direction' },
+    { id: 'mc-design',   label: 'Design System' },
+  ])
+
   return (
-    <article className="momento-case-study">
-      <Link className="momento-case-study__back" to="/" state={{ scrollTo: 'projects' }}>
-        Back to Projects
-      </Link>
+    <div className="mc-page">
+      <main className="mc-main">
+        <div className="mc-content">
 
-      <section
-        className="momento-case-study__hero"
-        style={{ backgroundImage: `url(${momentoBg})` }}
-      >
-        <div className="momento-case-study__hero-fade" aria-hidden="true" />
+          {/* ── Title + Hero + Problem ── */}
+          <div className="mc-top-group">
+            <Reveal><h1 className="mc-title">Momento</h1></Reveal>
+            <Reveal delay={0.05}><p className="mc-tagline">A map-based photo journal that connects personal memories with local discovery.</p></Reveal>
 
-        <div className="momento-case-study__logo">
-          <span className="momento-case-study__logo-icon">
-            <MomentoIcon />
-          </span>
-          <span className="momento-case-study__logo-text">MOMENTO</span>
+            {/* Hero card */}
+            <Reveal delay={0.1}>
+              <div className="mc-hero">
+                <div className="mc-hero__map" aria-hidden="true">
+                  <img src={momentoBg} alt="" className="mc-hero__map-img" />
+                </div>
+                <div className="mc-hero__logo">
+                  <span className="mc-hero__logo-icon"><MomentoIcon /></span>
+                  <span className="mc-hero__logo-text">MOMENTO</span>
+                </div>
+                <div className="mc-hero__ipad-wrap">
+                  <div className="mc-hero__ipad-portrait">
+                    <img src={ipadFrame} alt="" className="mc-hero__ipad-frame" />
+                    <div className="mc-hero__ipad-screen">
+                      <div className="mc-hero__ipad-screen-inner">
+                        <img src={ipadScreenshot} alt="Momento app" className="mc-hero__ipad-screenshot" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Meta description */}
+            <Reveal delay={0.05}>
+              <div className="mc-meta">
+                <div className="mc-meta__item">
+                  <div className="mc-meta__label">
+                    <img src={iconEmoji} alt="" className="mc-meta__icon" />
+                    <span>Role</span>
+                  </div>
+                  <p className="mc-meta__value">Product Designer</p>
+                  <p className="mc-meta__value">Developer</p>
+                </div>
+                <div className="mc-meta__item">
+                  <div className="mc-meta__label">
+                    <img src={iconClock} alt="" className="mc-meta__icon" />
+                    <span>Timeline</span>
+                  </div>
+                  <p className="mc-meta__value">March – June 2026</p>
+                </div>
+                <div className="mc-meta__item">
+                  <div className="mc-meta__label">
+                    <img src={iconUsers} alt="" className="mc-meta__icon" />
+                    <span>Team</span>
+                  </div>
+                  <p className="mc-meta__value">2 Product Managers</p>
+                  <p className="mc-meta__value">4 Designers</p>
+                  <p className="mc-meta__value">3 Developers</p>
+                </div>
+                <div className="mc-meta__item">
+                  <div className="mc-meta__label">
+                    <img src={iconSpanner} alt="" className="mc-meta__icon" />
+                    <span>Tools</span>
+                  </div>
+                  <p className="mc-meta__value">Figma</p>
+                  <p className="mc-meta__value">Claude Code</p>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Problem */}
+            <section id="mc-problem" className="mc-problem">
+              <Reveal><p className="mc-label">PROBLEM</p></Reveal>
+              <Reveal delay={0.05}><h2 className="mc-h2">Photos capture moments. Places get lost.</h2></Reveal>
+              <Reveal delay={0.08}>
+                <p className="mc-body">
+                  We take more photos than ever, yet they tell us almost nothing about where we've been.
+                  People expected to take about 2.1 trillion photos in 2025, 94% of them on phones.
+                  Meanwhile, finding where to go next is handed to feeds built for engagement, not accuracy.
+                </p>
+              </Reveal>
+              <div className="mc-pain-points">
+                {PROBLEMS.map((p, i) => (
+                  <Reveal key={p.num} delay={i * 0.08}>
+                    <div className="mc-pain-card">
+                      <p className="mc-pain-card__num">{p.num} •</p>
+                      <p className="mc-pain-card__title">{p.title}</p>
+                      <p className="mc-pain-card__body">{p.body}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* ── Solution ── */}
+          <section id="mc-solution" className="mc-solution">
+            <Reveal>
+              <div className="mc-solution__left">
+                <div className="mc-polaroid-wrap">
+                  <div className="mc-polaroid__bg" aria-hidden="true">
+                    <img src={momentoBg} alt="" />
+                  </div>
+                  <div className="mc-polaroid__card">
+                    <img src={momentoPolaroidPhoto} alt="Matcha pop up at DTLA" className="mc-polaroid__photo" />
+                    <p className="mc-polaroid__caption">{'Matcha pop up at\nDTLA'}</p>
+                  </div>
+                  <img src={momentoPin} alt="" className="mc-polaroid__pin" />
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mc-solution__right">
+                <h2 className="mc-h2">Your memories get mapped</h2>
+                <p className="mc-body">
+                  Momento ties photos directly to map locations. Users pin uploads to coordinates on an interactive
+                  Leaflet map, building a personal visual log of where they've been, with searchable and filterable galleries.
+                </p>
+                <p className="mc-body">
+                  A public "Explore" feed and a community heatmap aggregate public photos to reveal activity across
+                  the city and help people discover new places worth visiting.
+                </p>
+                <p className="mc-label mc-label--spaced">HEATMAP VIEWS</p>
+                <div className="mc-filter-pills">
+                  {['Week', 'Month', 'Year', 'All time'].map(f => (
+                    <span key={f} className="mc-filter-pill">{f}</span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
+          {/* ── User Journeys ── */}
+          <section id="mc-journeys" className="mc-section">
+            <Reveal><h2 className="mc-h2">From making plans to looking back.</h2></Reveal>
+            <Reveal delay={0.05}><p className="mc-body">Mapping user journeys</p></Reveal>
+            <Reveal delay={0.1}>
+              <div className="mc-journey-table">
+                <div className="mc-journey-table__header">
+                  <span>Moment</span>
+                  <span>What's the user doing?</span>
+                  <span>What can Momento do?</span>
+                </div>
+                {momentoJourneys.map((j, i) => (
+                  <div
+                    key={i}
+                    className={`mc-journey-table__row${i % 2 === 1 ? ' mc-journey-table__row--alt' : ''}`}
+                  >
+                    <span className="mc-journey-table__moment">{j.moment}</span>
+                    <span>{j.doing}</span>
+                    <span className="mc-journey-table__action">{j.momento}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+
+          {/* ── Visual Direction ── */}
+          <section id="mc-visual" className="mc-section">
+            <Reveal><h2 className="mc-h2">From a photo to a keepsake.</h2></Reveal>
+            <Reveal delay={0.05}><p className="mc-body">Visual direction</p></Reveal>
+            <Reveal delay={0.08}><p className="mc-body">{momentoVisualDirection}</p></Reveal>
+          </section>
+
+          {/* ── Design System ── */}
+          <section id="mc-design" className="mc-section">
+            <Reveal><h2 className="mc-h2">An identity made for exploring.</h2></Reveal>
+
+            <Reveal delay={0.05}>
+              <div className="mc-design-block">
+                <p className="mc-subsection-h">Color</p>
+                <p className="mc-body">Energetic orange leads the logo, pins and main actions. Blue is its complement.</p>
+                <div className="mc-swatches">
+                  {SWATCHES.map(s => (
+                    <div key={s.hex} className="mc-swatch">
+                      <div className="mc-swatch__color" style={{ background: s.hex }} />
+                      <p className="mc-swatch__label">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="mc-body">
+                  Momento is about getting out and exploring, so the palette should feel energetic and alive.
+                  Vibrant orange #FF7A33 and blue #208BEA pair with softer #FDA831 and #3B7DD8 for text and backgrounds.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mc-divider" />
+
+            <Reveal delay={0.05}>
+              <div className="mc-design-block">
+                <p className="mc-subsection-h">Typography</p>
+                <div className="mc-type-row">
+                  <div className="mc-type-col">
+                    <p className="mc-label">DISPLAY / JUST ANOTHER HAND</p>
+                    <p className="mc-type-display">Just Another Hand.</p>
+                    <p className="mc-body">
+                      Just Another Hand is a handwritten display face used for titles. It gives Momento a playful,
+                      scrapbook-like feel, like a note scribbled on a photo.
+                    </p>
+                  </div>
+                  <div className="mc-type-col">
+                    <p className="mc-label">HEADINGS &amp; BODY / INTER</p>
+                    <p className="mc-type-inter">Inter</p>
+                    <p className="mc-body">
+                      Inter is neutral, calm, and a web standard. It balances the handwriting and stays readable
+                      at small sizes over a map.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
         </div>
 
-        <div className="momento-case-study__actions">
-          <a
-            className="momento-case-study__button momento-case-study__button--filled"
-            href="https://momento-0n13.onrender.com/gallery"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Try it Live
-          </a>
-          <a
-            className="momento-case-study__button momento-case-study__button--outline"
-            href="https://github.com/AnthonyNavarrez/momento"
-            target="_blank"
-            rel="noreferrer"
-          >
-            github
-          </a>
-        </div>
-      </section>
-
-      <section className="momento-case-study__problem">
-        <AnimatedContent
-          className="momento-case-study__problem-panel"
-          direction="vertical"
-          distance={0}
-          scale={0.8}
-          borderRadius="32px"
-          animateOpacity={false}
-          once={false}
-          duration={1}
-          ease="power2.out"
-          threshold={0.15}
-        >
-          <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
-            <h3 className="momento-case-study__problem-heading">Problem</h3>
-            <p className="momento-case-study__problem-intro">
-              {momentoProblemIntro.before}
-              <a href={momentoProblemIntro.linkHref} target="_blank" rel="noreferrer">
-                {momentoProblemIntro.linkText}
-              </a>
-              {momentoProblemIntro.after}
-            </p>
-          </AnimatedContent>
-
-          <div className="momento-case-study__problem-grid">
-            {momentoProblems.map((problem, index) => (
-              <AnimatedContent
-                key={problem.title}
-                direction="vertical"
-                distance={40}
-                duration={0.8}
-                delay={index * 0.1}
-                threshold={0.2}
-              >
-                <p className="momento-case-study__problem-title">{problem.title}</p>
-                <p className="momento-case-study__problem-body">{problem.body}</p>
-              </AnimatedContent>
-            ))}
-          </div>
-        </AnimatedContent>
-      </section>
-
-      <section className="momento-case-study__solution">
-        <AnimatedContent
-          className="momento-case-study__polaroid"
-          direction="horizontal"
-          distance={50}
-          duration={0.9}
-          threshold={0.2}
-        >
-          <div
-            className="momento-case-study__polaroid-glow"
-            style={{ backgroundImage: `url(${momentoBg})` }}
-            aria-hidden="true"
-          />
-          <div className="momento-case-study__polaroid-card">
-            <img
-              className="momento-case-study__polaroid-photo"
-              src={momentoPolaroidPhoto}
-              alt="Matcha pop up at DTLA"
-            />
-            <p className="momento-case-study__polaroid-caption">
-              {momentoPolaroidCaption}
-            </p>
-          </div>
-          <img className="momento-case-study__polaroid-pin" src={momentoPin} alt="" />
-        </AnimatedContent>
-
-        <AnimatedContent
-          className="momento-case-study__solution-text"
-          direction="vertical"
-          distance={40}
-          duration={0.8}
-          threshold={0.2}
-        >
-          <h3 className="momento-case-study__solution-heading">Solution</h3>
-          <p className="momento-case-study__solution-paragraph">
-            <strong>Momento</strong> {momentoSolutionParagraphs[0]}
-          </p>
-          <p className="momento-case-study__solution-paragraph">
-            {momentoSolutionParagraphs[1]}
-          </p>
-        </AnimatedContent>
-      </section>
-
-      <section className="momento-case-study__journeys">
-        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
-          <h3 className="momento-case-study__section-heading">Mapping User Journeys</h3>
-        </AnimatedContent>
-
-        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.15}>
-          <div className="momento-case-study__journey-table" role="table">
-            <div className="momento-case-study__journey-row momento-case-study__journey-row--head" role="row">
-              <span role="columnheader">Moment</span>
-              <span role="columnheader">What’s the user doing?</span>
-              <span role="columnheader">What can Momento do?</span>
-            </div>
-            {momentoJourneys.map((journey) => (
-              <div className="momento-case-study__journey-row" role="row" key={journey.moment}>
-                <span role="cell">{journey.moment}</span>
-                <span role="cell">{journey.doing}</span>
-                <span role="cell">{journey.momento}</span>
-              </div>
-            ))}
-          </div>
-        </AnimatedContent>
-      </section>
-
-      <section className="momento-case-study__visual">
-        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
-          <h3 className="momento-case-study__section-heading">Visual direction</h3>
-          <p className="momento-case-study__visual-text">{momentoVisualDirection}</p>
-        </AnimatedContent>
-      </section>
-
-      <section className="momento-case-study__design-system">
-        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
-          <h3 className="momento-case-study__section-heading">Design System</h3>
-        </AnimatedContent>
-
-        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.2}>
-          <img
-            className="momento-case-study__design-system-image"
-            src={momentoDesignSystem}
-            alt="Momento type scale and color palette"
-          />
-        </AnimatedContent>
-
-        <AnimatedContent
-          className="momento-case-study__design-system-text"
-          direction="vertical"
-          distance={40}
-          duration={0.8}
-          threshold={0.2}
-        >
-          <p>
-            <strong>Color</strong>
-            <br />
-            Vibrant orange <span className="momento-case-study__hex momento-case-study__hex--orange">#FF7A33</span>{' '}
-            and blue <span className="momento-case-study__hex momento-case-study__hex--blue">#208BEA</span>, with
-            softer <span className="momento-case-study__hex momento-case-study__hex--amber">#FDA831</span> and{' '}
-            <span className="momento-case-study__hex momento-case-study__hex--steel">#3B7DD8</span> for text and
-            backgrounds. Momento is about getting out and exploring, so the palette should feel energetic and alive.
-            Orange leads the logo, pins and the main actions. Blue is its complement.
-          </p>
-          <p>
-            <strong>Typography:</strong>
-            <br />
-            <span className="momento-case-study__hand">Just Another Hand</span> is a handwritten display face, used
-            for titles. It gives Momento a playful scrapbooky feel, like a note scribbled on photo.{' '}
-            <span className="momento-case-study__medium">Inter</span> is neutral, calm, and a web standard, so it
-            balances the handwriting and stays readable at small sizes over a map.
-          </p>
-        </AnimatedContent>
-      </section>
-
-      <section className="momento-case-study__tech">
-        <AnimatedContent direction="vertical" distance={40} duration={0.8} threshold={0.3}>
-          <h3 className="momento-case-study__tech-heading">Tech Stack</h3>
-        </AnimatedContent>
-
-        <AnimatedContent
-          className="momento-case-study__tech-row"
-          direction="vertical"
-          distance={30}
-          duration={0.8}
-          threshold={0.2}
-        >
-          <span className="momento-case-study__tech-label">Frontend</span>
-          <div className="momento-case-study__tech-items">
-            {momentoFrontendStack.map((item) => (
-              <div className="momento-case-study__tech-item" style={{ width: item.width }} key={item.name}>
-                <span className="momento-case-study__tech-item-head">
-                  <img src={item.icon} alt="" />
-                  <span>{item.name}</span>
-                </span>
-                <p>{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </AnimatedContent>
-
-        <AnimatedContent
-          className="momento-case-study__tech-row"
-          direction="vertical"
-          distance={30}
-          duration={0.8}
-          delay={0.1}
-          threshold={0.2}
-        >
-          <span className="momento-case-study__tech-label">Backend</span>
-          <div className="momento-case-study__tech-items">
-            {momentoBackendStack.map((item) => (
-              <div className="momento-case-study__tech-item" style={{ width: item.width }} key={item.name}>
-                <span className="momento-case-study__tech-item-head">
-                  <img src={item.icon} alt="" />
-                  <span>{item.name}</span>
-                </span>
-                <p>{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </AnimatedContent>
-      </section>
-    </article>
+        <button className="mc-back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          ↑ Back to top
+        </button>
+      </main>
+    </div>
   )
 }
 

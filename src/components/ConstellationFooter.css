@@ -1,0 +1,104 @@
+.cf {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  overflow: hidden;
+  background: radial-gradient(120% 80% at 50% 120%, #17204A 0%, #0A1026 45%, #060A18 100%);
+  cursor: crosshair;
+  color: #E6E9F5;
+}
+
+.cf-sky {
+  position: absolute;
+  inset: 0;
+  /* extra height so parallax shift never reveals a gap */
+  height: 150%;
+  top: -25%;
+  will-change: transform;
+}
+
+.cf-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+.cf-content a, .cf-content button, .cf-content input,
+.cf-content textarea, .cf-content select, .cf-content label { pointer-events: auto; }
+
+/* background stars */
+.cf-amb {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: var(--o);
+  transition: opacity 1.4s cubic-bezier(.25,.1,.25,1), box-shadow 1.4s cubic-bezier(.25,.1,.25,1), transform 1.4s cubic-bezier(.25,.1,.25,1);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+.cf-amb.cf-tw { animation: cf-tw 7s ease-in-out infinite; }
+.cf-amb.cf-lit {
+  opacity: .7;
+  animation: none;
+  transform: translate(-50%, -50%) scale(1.4);
+  box-shadow: 0 0 5px 1px rgba(255,236,190,.3);
+}
+@keyframes cf-tw { 0%,100% { opacity: var(--o); } 50% { opacity: calc(var(--o) * .45); } }
+
+/* constellation lines */
+.cf-line { position: absolute; height: 1px; transform-origin: 0 50%; pointer-events: none; }
+.cf-line > span {
+  display: block; width: 100%; height: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  opacity: 0;
+  animation: cf-draw 1.6s cubic-bezier(.45,.05,.25,1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes cf-draw {
+  0% { transform: scaleX(0); opacity: 0; }
+  25% { opacity: .28; }
+  100% { transform: scaleX(1); opacity: .28; }
+}
+
+/* placed stars + blurred glow ring */
+.cf-star {
+  position: absolute;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #F2E8CF;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px 2px rgba(255,228,170,.28), 0 0 22px 6px rgba(160,180,255,.07);
+  animation: cf-pop .9s cubic-bezier(.22,1,.36,1) both;
+  pointer-events: none;
+}
+.cf-star::after {
+  content: "";
+  position: absolute; left: 50%; top: 50%;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,244,214,.5);
+  filter: blur(8px);
+  transform: translate(-50%, -50%) scale(.2);
+  opacity: 0;
+  animation: cf-ring 2s cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes cf-pop {
+  from { transform: translate(-50%, -50%) scale(.3); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: .75; }
+}
+@keyframes cf-ring {
+  0% { transform: translate(-50%, -50%) scale(.2); opacity: 0; }
+  20% { opacity: .35; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-amb.cf-tw { animation: none; }
+  .cf-amb { transition: none; }
+  .cf-line > span { animation: none; transform: scaleX(1); opacity: .28; }
+  .cf-star { animation: none; opacity: .75; }
+  .cf-star::after { display: none; }
+}
