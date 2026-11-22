@@ -21,14 +21,14 @@ import album5 from '../assets/about/album-5.png'
 import album6 from '../assets/about/album-6.png'
 import './AboutPage.css'
 
-const DANCE_PHOTOS = [
+const DANCE_PHOTOS: { src: string; caption: string; ghost?: boolean }[] = [
   { src: danceResurrection, caption: 'Resurection comp 1st place' },
   { src: dancerPhotoshoot,  caption: 'Dance team photoshoot' },
   { src: dancerSeniorSolo,  caption: 'Senior solo' },
   { src: danceWce,          caption: 'WCE Nationals 1st place' },
 ]
 
-const CAFE_PHOTOS = [
+const CAFE_PHOTOS: { src: string; caption: string; ghost?: boolean }[] = [
   { src: cafeCommunityGoods, caption: 'Community Goods' },
   { src: cafeSaba,           caption: 'Saba Coffee' },
   { src: cafeHeytea,         caption: 'HeyTea' },

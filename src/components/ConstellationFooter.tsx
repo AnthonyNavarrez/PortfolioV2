@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
-import { useFooterStars, type Pt, type StarLink as Link } from '../contexts/FooterStarsContext'
+import { useFooterStars, type Pt } from '../contexts/FooterStarsContext'
 import './ConstellationFooter.css'
 
 type Props = {
