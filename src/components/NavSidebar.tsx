@@ -75,6 +75,13 @@ export default function NavSidebar() {
   const { navHeader } = useNavSidebarCtx()
 
   return (
+    <>
+    {isCaseStudy && (
+      <Link to="/" className="nav-sb__back-mobile">
+        <img src={iconCaretLeft} alt="" className="nav-sb__back-icon" />
+        Back
+      </Link>
+    )}
     <aside className={`nav-sb${dark ? ' nav-sb--dark' : ''}`}>
       {navHeader && (
         <div className="nav-sb__header-slot">
@@ -145,5 +152,6 @@ export default function NavSidebar() {
         </>
       )}
     </aside>
+    </>
   )
 }
