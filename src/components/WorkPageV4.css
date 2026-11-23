@@ -223,3 +223,11 @@
   right: 46px;
   top: 46px;
 }
+@media (max-width: 640px) {
+  .v4-main {
+    padding: 80px 20px 60px;
+  }
+  .v4-grid {
+    grid-template-columns: 1fr;
+  }
+}

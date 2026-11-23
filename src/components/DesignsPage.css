@@ -123,3 +123,11 @@
   animation: designs-fade-up 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   cursor: default;
 }
+@media (max-width: 640px) {
+  .designs-page__main {
+    padding: 80px 20px 60px;
+  }
+  .designs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -161,3 +161,46 @@ code {
   pointer-events: none;
   z-index: 998;
 }
+@media (max-width: 640px) {
+  :root {
+    font-size: 15px;
+  }
+
+  #root {
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin: 16px 0;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}
+
+code {
+  font-family: var(--font-mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--color-text-heading);
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--color-surface);
+}
+
+.bottom-blur {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  pointer-events: none;
+  z-index: 998;
+}

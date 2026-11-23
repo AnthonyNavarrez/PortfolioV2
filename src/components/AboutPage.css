@@ -314,3 +314,15 @@
     height: 320px;
   }
 }
+@media (max-width: 640px) {
+  .about-main {
+    padding: 80px 20px 60px;
+  }
+  .about-intro-row {
+    flex-direction: column;
+  }
+  .about-polaroids {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -527,3 +527,23 @@
 .cs-page .cs-sidebar__nav-item--active { color: #353535; }
 
 .cs-page .cs-sidebar__ellipse-blue { opacity: 0.25; }
+@media (max-width: 640px) {
+  .cs-main {
+    padding: 70px 20px 60px;
+  }
+  .cs-content {
+    max-width: 100%;
+  }
+  .cs-personas {
+    flex-direction: column;
+  }
+  .cs-priority-cards {
+    flex-direction: column;
+  }
+  .cs-problem {
+    flex-direction: column;
+  }
+  .cs-problem__right {
+    width: 100%;
+  }
+}

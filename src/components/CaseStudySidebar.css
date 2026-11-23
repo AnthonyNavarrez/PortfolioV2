@@ -104,3 +104,8 @@
   width: 234px;
   pointer-events: none;
 }
+@media (max-width: 640px) {
+  .cs-sidebar {
+    display: none;
+  }
+}
