@@ -8,6 +8,7 @@ import iconClock   from '../assets/v3/icon-clock.svg'
 import iconUsers   from '../assets/v3/icon-users.svg'
 import iconSpanner from '../assets/v3/icon-spanner.svg'
 import overviewVideo from '../assets/Gcal polling demo.mp4'
+import BackToTop from './BackToTop'
 import './GcalCaseStudy.css'
 
 const PAIN_POINTS = [
@@ -140,7 +141,7 @@ const RISKS = [
   },
 ]
 
-const VIDEO_START = 18
+const VIDEO_START = 20
 
 function StepMedia({ start, end, wide }: { start: number | null; end: number | null; wide?: boolean }) {
   const ref = useRef<HTMLVideoElement>(null)
@@ -342,6 +343,7 @@ export default function GcalCaseStudy() {
               </p>
             </Reveal>
             <Reveal delay={0.1}>
+              <div className="gc-competitive-scroll">
               <div className="gc-table-wrap">
                 <div className="gc-table__row gc-table__row--header">
                   <div className="gc-table__cell gc-table__cell--head" style={{ width: 160 }}>App</div>
@@ -364,6 +366,7 @@ export default function GcalCaseStudy() {
                     <div className={`gc-table__cell gc-table__cell--center${c.isGcal ? ' gc-table__cell--highlight' : ''}`} style={{ flex: 1 }}>{c.worksAcross}</div>
                   </div>
                 ))}
+              </div>
               </div>
             </Reveal>
             <Reveal delay={0.12}>
@@ -443,6 +446,7 @@ export default function GcalCaseStudy() {
             </Reveal>
           </section>
 
+          <BackToTop />
         </div>
       </main>
     </div>

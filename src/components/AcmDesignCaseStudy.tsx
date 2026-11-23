@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import BackToTop from './BackToTop'
 import { Link } from 'react-router-dom'
 import AnimatedContent from './AnimatedContent'
 import WipNotice from './WipNotice'
@@ -103,6 +104,7 @@ function AcmDesignCaseStudy() {
           </div>
         </AnimatedContent>
       </section>
+      <BackToTop />
     </article>
   )
 }

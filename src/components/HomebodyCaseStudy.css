@@ -558,6 +558,12 @@
 
 .hb-back-to-top:hover { color: #252530; }
 @media (max-width: 640px) {
+  .hb-main {
+    padding: 70px 20px 60px;
+  }
+  .hb-content {
+    max-width: 100%;
+  }
   .homebody-case-study__back {
     top: 12px;
     padding: 0 20px;

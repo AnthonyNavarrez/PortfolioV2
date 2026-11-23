@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 
 const SELECTORS = [
   '.v4-header',
-  '.v4-card',
   '.about-intro-row',
   '.about-section',
   '.designs-item',

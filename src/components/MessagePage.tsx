@@ -106,6 +106,12 @@ export default function MessagePage() {
 
   return (
     <div ref={containerRef} className="msg-page">
+      <div className="msg-mobile-header">
+        <span className="msg-nav-count">
+          {count === 0 ? 'No messages yet' : `${count} message${count !== 1 ? 's' : ''} afloat`}
+        </span>
+        <span className="msg-nav-hint">Tap to add a blob</span>
+      </div>
       {loading && (
         <div className="msg-empty" aria-hidden="true">
           <p className="msg-empty__title">Loading<span className="msg-loading-dots"><span>.</span><span>.</span><span>.</span></span></p>

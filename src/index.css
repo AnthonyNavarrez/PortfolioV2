@@ -45,9 +45,15 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   margin: 0;
   overflow-x: hidden;
+  max-width: 100vw;
   cursor: none;
   background: #f8f8f8;
 }
@@ -161,6 +167,7 @@ code {
   pointer-events: none;
   z-index: 998;
 }
+
 @media (max-width: 640px) {
   :root {
     font-size: 15px;
@@ -191,16 +198,3 @@ code {
   background: var(--color-surface);
 }
 
-.bottom-blur {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 48px;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
-  pointer-events: none;
-  z-index: 998;
-}

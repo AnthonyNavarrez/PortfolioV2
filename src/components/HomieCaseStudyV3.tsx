@@ -1,4 +1,5 @@
 import { useSections } from '../contexts/NavSidebarContext'
+import BackToTop from './BackToTop'
 import Reveal from './Reveal'
 import iconEmoji from '../assets/v3/icon-emoji.svg'
 import iconClock from '../assets/v3/icon-clock.svg'
@@ -303,6 +304,7 @@ function HomieCaseStudyV3() {
             </Reveal>
           </section>
 
+          <BackToTop />
         </div>
       </main>
     </div>

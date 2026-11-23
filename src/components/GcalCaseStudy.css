@@ -520,4 +520,27 @@
   .gc-overview {
     height: 220px;
   }
+  .gc-table__row {
+    flex-direction: column;
+  }
+  .gc-competitive-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 12px;
+  }
+  .gc-competitive-scroll .gc-table-wrap {
+    min-width: 560px;
+    border-radius: 0;
+  }
+  .gc-competitive-scroll .gc-table__row {
+    flex-direction: row;
+  }
+  .gc-audience__label {
+    width: 100%;
+    padding: 16px 16px 4px;
+    font-size: 17px;
+  }
+  .gc-audience__benefit {
+    padding: 0 16px 16px;
+  }
 }

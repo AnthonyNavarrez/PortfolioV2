@@ -529,6 +529,12 @@
 
 .mc-back-to-top:hover { color: #353535; }
 @media (max-width: 640px) {
+  .mc-main {
+    padding: 70px 20px 60px;
+  }
+  .mc-content {
+    max-width: 100%;
+  }
   .momento-case-study__back {
     top: 12px;
     padding: 0 20px;
@@ -592,5 +598,18 @@
   .momento-case-study__journey-row--head {
     padding: 20px 16px;
     font-size: 18px;
+  }
+
+  .mc-solution {
+    flex-direction: column;
+  }
+
+  .mc-solution__left {
+    width: 100%;
+  }
+
+  .mc-polaroid__pin {
+    width: 14px;
+    height: auto;
   }
 }

@@ -29,6 +29,17 @@
 }
 
 /* ── Polaroids ── */
+@keyframes about-polaroid-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .about-polaroids {
   flex-shrink: 0;
   position: relative;
@@ -38,6 +49,18 @@
 
 .about-polaroid {
   position: absolute;
+  opacity: 0;
+  animation: about-polaroid-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.about-polaroid__label {
+  opacity: 0;
+  animation: about-label-in 0.45s ease forwards;
+}
+
+@keyframes about-label-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .about-polaroid--large {
@@ -109,11 +132,21 @@
 .about-polaroid__label--top {
   top: 0;
   left: 18px;
+  animation-delay: 750ms;
 }
 
 .about-polaroid__label--bottom {
   bottom: 0;
   right: 0;
+  animation-delay: 1050ms;
+}
+
+.about-polaroid--large {
+  animation-delay: 800ms;
+}
+
+.about-polaroid--small {
+  animation-delay: 1000ms;
 }
 
 /* ── Shared title ── */
@@ -301,6 +334,53 @@
   display: block;
 }
 
+/* ── Scroll arrow wrappers ── */
+.about-strip-wrapper {
+  position: relative;
+}
+
+.about-albums-wrapper {
+  position: relative;
+}
+
+/* ── Scroll arrows ── */
+.about-scroll-arrow {
+  position: absolute;
+  top: 100px; /* centers on photos: 56px padding + 17px label + 8px gap + 75px half photo = 156px from strip top, strip is -56px so net 100px */
+  transform: translateY(-50%);
+  z-index: 20;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: about-label-in 0.2s ease forwards;
+}
+
+.about-scroll-arrow--albums {
+  top: 50%;
+}
+
+.about-scroll-arrow--left {
+  left: -38px;
+}
+
+.about-scroll-arrow--right {
+  right: -38px;
+}
+
+.about-scroll-arrow img {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.about-scroll-arrow__icon--flip {
+  transform: scaleX(-1);
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .about-main {
@@ -318,11 +398,19 @@
   .about-main {
     padding: 80px 20px 60px;
   }
+  .about-intro {
+    max-width: 100%;
+  }
   .about-intro-row {
     flex-direction: column;
+    gap: 32px;
   }
   .about-polaroids {
     width: 100%;
-    height: auto;
+    height: 300px;
+    margin-bottom: 32px;
+  }
+  .about-freetime {
+    margin-top: 0;
   }
 }
