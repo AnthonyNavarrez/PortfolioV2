@@ -19,6 +19,7 @@ function CustomCursor() {
     el.classList.remove('custom-cursor--email-copied')
     el.classList.remove('custom-cursor--linkedin')
     el.classList.remove('custom-cursor--github')
+    el.classList.remove('custom-cursor--resume')
     el.style.removeProperty('background')
     el.style.removeProperty('mix-blend-mode')
   }, [location.pathname])
@@ -56,6 +57,7 @@ function CustomCursor() {
       el.classList.toggle('custom-cursor--email',      zone === 'email')
       el.classList.toggle('custom-cursor--linkedin',   zone === 'linkedin')
       el.classList.toggle('custom-cursor--github',     zone === 'github')
+      el.classList.toggle('custom-cursor--resume',     zone === 'resume')
     }
 
     let copyTimer: ReturnType<typeof setTimeout> | null = null
@@ -142,10 +144,11 @@ function CustomCursor() {
       <span className="custom-cursor__label custom-cursor__label--case-study">View case study</span>
       <span className="custom-cursor__label custom-cursor__label--wish">Share a <em>Wish</em></span>
       <span className="custom-cursor__label custom-cursor__label--v4-card">Case Study</span>
-      <span className="custom-cursor__label custom-cursor__label--email">Copy</span>
+      <span className="custom-cursor__label custom-cursor__label--email">Copy email</span>
       <span className="custom-cursor__label custom-cursor__label--email-copied">Copied!</span>
       <span className="custom-cursor__label custom-cursor__label--linkedin">LinkedIn ↗</span>
       <span className="custom-cursor__label custom-cursor__label--github">GitHub ↗</span>
+      <span className="custom-cursor__label custom-cursor__label--resume">Resume ↗</span>
     </div>
   )
 }

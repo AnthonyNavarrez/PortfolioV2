@@ -50,6 +50,11 @@ function CaseStudySidebar({ sections, backTo = '/' }: Props) {
   }
 
   return (
+    <>
+    <Link to={backTo} className="cs-sidebar__back-mobile">
+      <img src={iconCaretLeft} alt="" className="cs-sidebar__back-icon" />
+      <span>Back</span>
+    </Link>
     <aside className="cs-sidebar">
       <div className="cs-sidebar__header">
         <img src={avatarLogo} alt="" className="cs-sidebar__avatar" />
@@ -78,6 +83,7 @@ function CaseStudySidebar({ sections, backTo = '/' }: Props) {
 
       <img src={ellipseBlue} alt="" className="cs-sidebar__ellipse-blue" />
     </aside>
+    </>
   )
 }
 

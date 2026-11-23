@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useLocation } from 'react-router-dom'
 import { useNavSidebarCtx } from '../contexts/NavSidebarContext'
 import iconCaretLeft from '../assets/v4/icon-caret-left.svg'
@@ -17,6 +18,8 @@ export default function NavSidebar() {
   const [activeId, setActiveId] = useState('')
   const [emailCopied, setEmailCopied] = useState(false)
   const [atBottom, setAtBottom] = useState(false)
+  const [mobileNavHidden, setMobileNavHidden] = useState(false)
+  const lastScrollY = useRef(0)
 
   useEffect(() => {
     const check = () => {
@@ -67,6 +70,18 @@ export default function NavSidebar() {
     { to: '/message', label: 'Message' },
   ]
   const isCaseStudy = !['/', '/designs', '/about', '/resume', '/message'].includes(pathname)
+
+  useEffect(() => {
+    if (!isCaseStudy) return
+    lastScrollY.current = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setMobileNavHidden(y > lastScrollY.current && y > 60)
+      lastScrollY.current = y
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [isCaseStudy])
   const activeNavIndex = NAV.findIndex(n => n.to === pathname)
 
   const ITEM_H  = 30
@@ -75,6 +90,46 @@ export default function NavSidebar() {
   const { navHeader } = useNavSidebarCtx()
 
   return (
+    <>
+    {isCaseStudy && (
+      <div className={`nav-sb__back-mobile-bar${mobileNavHidden ? ' nav-sb__back-mobile-bar--hidden' : ''}`}>
+        <Link to="/" className="nav-sb__back-mobile">
+          <img src={iconCaretLeft} alt="" className="nav-sb__back-icon" />
+          Back
+        </Link>
+      </div>
+    )}
+    {!isCaseStudy && createPortal(
+      <div className="nav-sb__mobile-footer">
+        <button
+          className="nav-sb__email-btn"
+          onClick={handleEmailClick}
+          aria-label="Copy email address"
+        >
+          {emailCopied
+            ? <span className="nav-sb__email-copied">Copied!</span>
+            : <img src={iconMail} alt="Email" />
+          }
+        </button>
+        <a href="https://www.linkedin.com/in/anthonynavarrez" className="nav-sb__social-link" target="_blank" rel="noreferrer"><img src={iconLinkedin} alt="LinkedIn" /></a>
+        <a href="https://github.com/AnthonyNavarrez"          className="nav-sb__social-link" target="_blank" rel="noreferrer"><img src={iconGithub}   alt="GitHub"  /></a>
+        <Link to="/resume"                                     className="nav-sb__social-link"><img src={iconResume} alt="Resume" /></Link>
+      </div>,
+      document.body
+    )}
+    {!isCaseStudy && (
+      <nav className="nav-sb__mobile-topbar">
+        {NAV.map(n => (
+          <Link
+            key={n.to}
+            to={n.to}
+            className={`nav-sb__mobile-topbar__link${n.to === pathname ? ' nav-sb__mobile-topbar__link--active' : ''}`}
+          >
+            {n.label}
+          </Link>
+        ))}
+      </nav>
+    )}
     <aside className={`nav-sb${dark ? ' nav-sb--dark' : ''}`}>
       {navHeader && (
         <div className="nav-sb__header-slot">
@@ -138,12 +193,13 @@ export default function NavSidebar() {
             </button>
             <a href="https://www.linkedin.com/in/anthonynavarrez" className="nav-sb__social-link" target="_blank" rel="noreferrer" data-cursor="linkedin"><img src={iconLinkedin} alt="LinkedIn"  /></a>
             <a href="https://github.com/AnthonyNavarrez"          className="nav-sb__social-link" target="_blank" rel="noreferrer" data-cursor="github"><img src={iconGithub}   alt="GitHub"   /></a>
-            <Link to="/resume"                                     className="nav-sb__social-link"><img src={iconResume}  alt="Resume"   /></Link>
+            <Link to="/resume"                                     className="nav-sb__social-link" data-cursor="resume"><img src={iconResume}  alt="Resume"   /></Link>
           </div>
 
           <p className={`nav-sb__updated${atBottom ? ' nav-sb__updated--visible' : ''}`}>Last Updated: 11.20.26</p>
         </>
       )}
     </aside>
+    </>
   )
 }

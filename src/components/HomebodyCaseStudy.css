@@ -557,3 +557,76 @@
 }
 
 .hb-back-to-top:hover { color: #252530; }
+@media (max-width: 640px) {
+  .hb-main {
+    padding: 70px 20px 60px;
+  }
+  .hb-content {
+    max-width: 100%;
+  }
+  .homebody-case-study__back {
+    top: 12px;
+    padding: 0 20px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .homebody-case-study__hero {
+    height: 460px;
+    padding: 80px 16px 0;
+  }
+
+  .homebody-case-study__logo {
+    width: min(320px, 85%);
+  }
+
+  .homebody-case-study__button--play {
+    width: 200px;
+  }
+
+  .homebody-case-study__button--github {
+    width: 180px;
+  }
+
+  .homebody-case-study__body {
+    padding: 40px 16px 0;
+  }
+
+  .homebody-case-study__heading,
+  .homebody-case-study__pain-title,
+  .homebody-case-study__inspiration-name,
+  .homebody-case-study__step-title {
+    font-size: 20px;
+    letter-spacing: -1px;
+  }
+
+  .homebody-case-study__text {
+    font-size: 15px;
+    letter-spacing: -0.75px;
+  }
+
+  .homebody-case-study__pain-card {
+    padding: 20px 16px;
+  }
+
+  .homebody-case-study__pawn {
+    transform: scale(0.65);
+  }
+}
+
+.homebody-case-study__tech-item-head span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.homebody-case-study__tech-item p {
+  margin: 4px 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+  color: #fff;
+}

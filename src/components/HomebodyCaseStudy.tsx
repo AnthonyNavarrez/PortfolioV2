@@ -1,4 +1,5 @@
 import { useSections } from '../contexts/NavSidebarContext'
+import BackToTop from './BackToTop'
 import iconEmoji   from '../assets/v3/icon-emoji.svg'
 import iconClock   from '../assets/v3/icon-clock.svg'
 import iconUsers   from '../assets/v3/icon-users.svg'
@@ -322,11 +323,8 @@ function HomebodyCaseStudy() {
             </div>
           </section>
 
+          <BackToTop />
         </div>
-
-        <button className="hb-back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          ↑ Back to top
-        </button>
       </main>
     </div>
   )

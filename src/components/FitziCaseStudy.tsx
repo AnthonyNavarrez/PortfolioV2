@@ -1,4 +1,5 @@
 import { useSections } from '../contexts/NavSidebarContext'
+import BackToTop from './BackToTop'
 import iconEmoji   from '../assets/v3/icon-emoji.svg'
 import iconClock   from '../assets/v3/icon-clock.svg'
 import iconUsers   from '../assets/v3/icon-users.svg'
@@ -139,7 +140,7 @@ function FitziCaseStudy() {
               </p>
             </Reveal>
             <Reveal delay={0.12}>
-              <div className="fc-image-card">
+              <div className="fc-image-card fc-image-card--first">
                 <img src={wireframesLowFi} alt="Low-fidelity mobile user flow" className="fc-image-card__img" />
               </div>
             </Reveal>
@@ -238,11 +239,8 @@ function FitziCaseStudy() {
             </div>
           </section>
 
+          <BackToTop />
         </div>
-
-        <button className="fc-back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          ↑ Back to top
-        </button>
       </main>
     </div>
   )

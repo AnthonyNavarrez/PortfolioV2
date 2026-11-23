@@ -186,3 +186,105 @@
     display: none;
   }
 }
+
+.nav-sb__mobile-footer {
+  display: none;
+}
+
+.nav-sb__back-mobile-bar {
+  display: none;
+}
+
+.nav-sb__back-mobile {
+  display: none;
+}
+
+.nav-sb__mobile-topbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-sb__back-mobile-bar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    background: rgba(248, 248, 248, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0 20px;
+    height: 52px;
+    align-items: center;
+    transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-sb__back-mobile-bar--hidden {
+    transform: translateY(-100%);
+  }
+
+  .nav-sb__back-mobile {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #353535;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    background: none;
+  }
+
+  .nav-sb__mobile-topbar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    background: rgba(248, 248, 248, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0 20px;
+    height: 52px;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .nav-sb__mobile-topbar__link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #62626e;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: color 0.15s ease;
+  }
+
+  .nav-sb__mobile-topbar__link--active {
+    color: #1a1a1a;
+    font-weight: 600;
+    background: #d3e7ff;
+  }
+
+  .nav-sb__mobile-footer {
+    display: flex;
+    width: 100%;
+    background: rgba(248, 248, 248, 0.88);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    height: 56px;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 32px;
+    box-sizing: border-box;
+  }
+
+  .nav-sb__mobile-footer .nav-sb__social-link img,
+  .nav-sb__mobile-footer .nav-sb__email-btn img {
+    width: 24px;
+    height: 24px;
+  }
+}

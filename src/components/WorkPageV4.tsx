@@ -20,11 +20,11 @@ import Mascot from './Mascot'
 import './WorkPageV4.css'
 
 const PROJECTS = [
-  { title: 'Homie',                   titleSuffix: '',           desc: 'Mobile app digitizing your household, facilitating roommates lives', cover: coverHomie,   href: '/homie',    delay: 420 },
-  { title: 'Google Calendar Polling', titleSuffix: '| concept', desc: 'Turning speculative plans into scheduled events',                      cover: coverGcal,    href: '/gcal',     delay: 490 },
-  { title: 'Fitzi',                   titleSuffix: '',           desc: 'AI-powered digital wardrobe, style a personalized avatar',             cover: coverFitzi,   href: '/fitzi',    delay: 560 },
-  { title: 'Homebody',                titleSuffix: '',           desc: 'Survive each night, protect your base, explore the map',               cover: coverGame,    href: '/homebody', delay: 630 },
-  { title: 'Momento',                 titleSuffix: '',           desc: 'Pin memories on a live interactive map of LA',                         cover: coverMomento, href: '/momento',  delay: 700 },
+  { title: 'Homie',                   titleSuffix: '',             desc: 'Mobile app digitizing your household, facilitating roommates lives', cover: coverHomie,   href: '/homie'    },
+  { title: 'Google Calendar Polling', titleSuffix: '| concept',   desc: 'Turning speculative plans into scheduled events',                    cover: coverGcal,    href: '/gcal'     },
+  { title: 'Fitzi',                   titleSuffix: '| AI Startup', desc: 'AI-powered digital wardrobe, style a personalized avatar',           cover: coverFitzi,   href: '/fitzi'    },
+  { title: 'Homebody',                titleSuffix: '',             desc: 'Survive each night, protect your base, explore the map',             cover: coverGame,    href: '/homebody' },
+  { title: 'Momento',                 titleSuffix: '',             desc: 'Pin memories on a live interactive map of LA',                       cover: coverMomento, href: '/momento'  },
 ]
 
 function useClock() {
@@ -76,7 +76,7 @@ export default function WorkPageV4() {
     if (!initialTime && time) setInitialTime(time)
   }, [time, initialTime])
 
-  const [taglineTyped]           = useTypewriter('A product designer sparking wonder in everyone', 320, 36)
+  const [taglineTyped]           = useTypewriter('A product designer shaping AI and emerging tech into experiences that spark wonder.', 320, 36)
   const [locationTyped]          = useTypewriter('Los Angeles, CA', 530, 46)
   const [timeTyped, timeDone]    = useTypewriter(initialTime, 740, 46)
   const displayedTime = timeDone ? time : timeTyped
@@ -85,6 +85,25 @@ export default function WorkPageV4() {
     const prev = document.body.style.background
     document.body.style.background = '#f8f8f8'
     return () => { document.body.style.background = prev }
+  }, [])
+
+  useEffect(() => {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.v4-card'))
+    if (!cards.length) return
+    const mountTime = Date.now()
+    let initialIdx = 0
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+        const el = entry.target as HTMLElement
+        const isInitial = Date.now() - mountTime < 400
+        const delay = isInitial ? initialIdx++ * 80 : 0
+        setTimeout(() => el.classList.add('v4-card--visible'), delay)
+        obs.unobserve(el)
+      })
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' })
+    cards.forEach(el => obs.observe(el))
+    return () => obs.disconnect()
   }, [])
 
   useEffect(() => {
@@ -158,10 +177,6 @@ export default function WorkPageV4() {
               key={p.title}
               to={p.href}
               className="v4-card"
-              style={{
-                transform: loaded ? 'translateY(0)' : 'translateY(18px)',
-                transition: `transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${p.delay}ms`,
-              }}
             >
               <div className="v4-card__img-wrap" data-cursor="v4-card">
                 <img src={p.cover} alt={p.title} className="v4-card__img" />

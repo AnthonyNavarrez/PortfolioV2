@@ -11,7 +11,6 @@ import FitziCaseStudy from './components/FitziCaseStudy'
 import HandVfxCaseStudy from './components/HandVfxCaseStudy'
 import HomieCaseStudyV3 from './components/HomieCaseStudyV3'
 import HomebodyCaseStudy from './components/HomebodyCaseStudy'
-import WishesPage from './components/WishesPage'
 import MomentoCaseStudy from './components/MomentoCaseStudy'
 import GcalCaseStudy from './components/GcalCaseStudy'
 import AboutPage from './components/AboutPage'
@@ -36,7 +35,6 @@ function AnimatedRoutes() {
       <Route path="/fitzi" element={<FitziCaseStudy />} />
       <Route path="/acm-design" element={<AcmDesignCaseStudy />} />
       <Route path="/message" element={<MessagePage />} />
-      <Route path="/wishes" element={<WishesPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/resume" element={<ResumePage />} />
       <Route path="/designs" element={<DesignsPage />} />

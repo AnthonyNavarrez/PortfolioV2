@@ -1,4 +1,5 @@
 import { useSections } from '../contexts/NavSidebarContext'
+import BackToTop from './BackToTop'
 import MomentoIcon from './MomentoIcon'
 import Reveal from './Reveal'
 import iconEmoji   from '../assets/v3/icon-emoji.svg'
@@ -262,11 +263,8 @@ function MomentoCaseStudy() {
             </Reveal>
           </section>
 
+          <BackToTop />
         </div>
-
-        <button className="mc-back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          ↑ Back to top
-        </button>
       </main>
     </div>
   )

@@ -1,3 +1,4 @@
+import BackToTop from './BackToTop'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLayoutEffect, useRef } from 'react'
@@ -186,6 +187,7 @@ function HandVfxCaseStudy() {
           ))}
         </AnimatedContent>
       </section>
+      <BackToTop />
     </article>
   )
 }

@@ -352,3 +352,52 @@ a.hand-vfx-case-study__hero-button:hover,
   line-height: normal;
   text-align: center;
 }
+@media (max-width: 640px) {
+  .hand-vfx-case-study__back {
+    top: 12px;
+    padding: 0 20px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .hand-vfx-case-study__hero {
+    height: 520px;
+    padding-top: 160px;
+  }
+
+  .hand-vfx-case-study__title {
+    font-size: 52px;
+    letter-spacing: -2.6px;
+  }
+
+  .hand-vfx-case-study__overview {
+    width: calc(100% - 32px);
+    padding: 16px 16px 24px;
+  }
+
+  .hand-vfx-case-study__overview-heading {
+    font-size: 36px;
+    letter-spacing: -1.8px;
+  }
+
+  .hand-vfx-case-study__overview-text {
+    font-size: 16px;
+    letter-spacing: -0.6px;
+  }
+
+  .hand-vfx-case-study__tools {
+    padding: 48px 16px 0;
+    gap: 48px;
+  }
+
+  .hand-vfx-case-study__tool-description {
+    font-size: 16px;
+    letter-spacing: -0.6px;
+  }
+
+  .hand-vfx-case-study__pill {
+    height: 56px;
+    font-size: 28px;
+    letter-spacing: -1.4px;
+  }
+}

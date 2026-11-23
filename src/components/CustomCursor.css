@@ -64,11 +64,11 @@
 .custom-cursor--case-study {
   width: auto;
   height: auto;
-  border-radius: 12px;
-  top: -12px;
-  left: -50px;
-  padding: 5px 11px;
-  background: rgba(17, 17, 19, 0.8);
+  border-radius: 13px;
+  top: -13px;
+  left: -54px;
+  padding: 7px 13px;
+  background: rgba(17, 17, 19, 0.6);
   border: 1.5px solid #333348;
   mix-blend-mode: normal;
 }
@@ -148,7 +148,7 @@
   height: auto;
   border-radius: 14px;
   top: -12px;
-  left: -22px;
+  left: -32px;
   padding: 4px 10px;
   background: rgba(107, 107, 107, 0.74);
   backdrop-filter: blur(8px);
@@ -176,9 +176,10 @@
   letter-spacing: -0.2px;
 }
 
-/* ── LinkedIn / GitHub pill cursor ── */
+/* ── LinkedIn / GitHub / Resume pill cursor ── */
 .custom-cursor--linkedin,
-.custom-cursor--github {
+.custom-cursor--github,
+.custom-cursor--resume {
   width: auto;
   height: auto;
   border-radius: 999px;
@@ -193,7 +194,8 @@
 }
 
 .custom-cursor--linkedin .custom-cursor__label--linkedin,
-.custom-cursor--github  .custom-cursor__label--github {
+.custom-cursor--github  .custom-cursor__label--github,
+.custom-cursor--resume  .custom-cursor__label--resume {
   display: block;
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 9px;

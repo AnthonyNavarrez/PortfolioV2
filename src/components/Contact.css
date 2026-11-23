@@ -123,3 +123,36 @@
     margin-bottom: calc(-1 * min(100vw, 560px) * 2830 / 1066.09 * 0.72);
   }
 }
+@media (max-width: 640px) {
+  .contact {
+    padding: 56px 16px 0;
+  }
+
+  .contact__heading {
+    font-size: 24px;
+  }
+
+  .contact__links {
+    gap: 14px;
+    margin-top: 24px;
+  }
+}
+
+.contact__portrait {
+  position: absolute;
+  top: 348px;
+  left: 50%;
+  width: min(1066.09px, 74vw);
+  transform: translateX(calc(-50% - min(68px, 4.72vw)));
+
+  @media (max-width: 1024px) {
+    position: relative;
+    top: auto;
+    transform: translateX(-50%);
+    width: min(100vw, 560px);
+    margin-top: 56px;
+    /* Only the head and shoulders, as on desktop: pull the footer's
+       bottom edge up over the lower 72% of the portrait's height. */
+    margin-bottom: calc(-1 * min(100vw, 560px) * 2830 / 1066.09 * 0.72);
+  }
+}

@@ -1,5 +1,6 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import step5Img from '../assets/gcal/step5-autobook.png'
+import pollingPlaceholder from '../assets/Polling selected (1).png'
 import { useSections } from '../contexts/NavSidebarContext'
 import Reveal from './Reveal'
 import iconEmoji   from '../assets/v3/icon-emoji.svg'
@@ -7,6 +8,7 @@ import iconClock   from '../assets/v3/icon-clock.svg'
 import iconUsers   from '../assets/v3/icon-users.svg'
 import iconSpanner from '../assets/v3/icon-spanner.svg'
 import overviewVideo from '../assets/Gcal polling demo.mp4'
+import BackToTop from './BackToTop'
 import './GcalCaseStudy.css'
 
 const PAIN_POINTS = [
@@ -139,7 +141,7 @@ const RISKS = [
   },
 ]
 
-const VIDEO_START = 18
+const VIDEO_START = 20
 
 function StepMedia({ start, end, wide }: { start: number | null; end: number | null; wide?: boolean }) {
   const ref = useRef<HTMLVideoElement>(null)
@@ -170,6 +172,7 @@ function StepMedia({ start, end, wide }: { start: number | null; end: number | n
 
 export default function GcalCaseStudy() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [videoReady, setVideoReady] = useState(false)
 
   useSections([
     { id: 'gc-problem',    label: 'Problem' },
@@ -198,12 +201,20 @@ export default function GcalCaseStudy() {
             </Reveal>
             <Reveal delay={0.08}>
               <div className="gc-overview">
+                {!videoReady && (
+                  <div className="gc-overview__placeholder">
+                    <img src={pollingPlaceholder} alt="" className="gc-overview__placeholder-img" />
+                    <div className="gc-overview__spinner" />
+                  </div>
+                )}
                 <video
                   ref={videoRef}
                   src={overviewVideo}
                   autoPlay
                   muted
                   playsInline
+                  style={{ opacity: videoReady ? 1 : 0 }}
+                  onCanPlay={() => setVideoReady(true)}
                   onLoadedMetadata={() => { if (videoRef.current) videoRef.current.currentTime = VIDEO_START }}
                   onEnded={() => { if (videoRef.current) { videoRef.current.currentTime = VIDEO_START; videoRef.current.play() } }}
                 />
@@ -332,6 +343,7 @@ export default function GcalCaseStudy() {
               </p>
             </Reveal>
             <Reveal delay={0.1}>
+              <div className="gc-competitive-scroll">
               <div className="gc-table-wrap">
                 <div className="gc-table__row gc-table__row--header">
                   <div className="gc-table__cell gc-table__cell--head" style={{ width: 160 }}>App</div>
@@ -354,6 +366,7 @@ export default function GcalCaseStudy() {
                     <div className={`gc-table__cell gc-table__cell--center${c.isGcal ? ' gc-table__cell--highlight' : ''}`} style={{ flex: 1 }}>{c.worksAcross}</div>
                   </div>
                 ))}
+              </div>
               </div>
             </Reveal>
             <Reveal delay={0.12}>
@@ -433,6 +446,7 @@ export default function GcalCaseStudy() {
             </Reveal>
           </section>
 
+          <BackToTop />
         </div>
       </main>
     </div>

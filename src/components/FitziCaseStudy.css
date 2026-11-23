@@ -291,3 +291,87 @@
 }
 
 .fc-back-to-top:hover { color: #353535; }
+@media (max-width: 640px) {
+  .fc-image-card--first .fc-image-card__img {
+    width: 120%;
+    transform: translateX(-8%);
+  }
+
+  .fc-hero {
+    height: 460px;
+  }
+
+  .fc-two-col {
+    flex-direction: column;
+  }
+
+  .fc-brand-cols {
+    flex-direction: column;
+  }
+
+  .fc-brand-col--wide {
+    flex: unset;
+    width: 100%;
+  }
+
+  .fc-ref-grid__img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .fc-hero__img {
+    object-position: 42% top;
+  }
+
+  .fc-main {
+    padding: 70px 20px 60px;
+  }
+  .fc-content {
+    max-width: 100%;
+  }
+  .fitzi-case-study__back {
+    top: 12px;
+    padding: 0 20px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .fitzi-case-study__heading {
+    font-size: 28px;
+    letter-spacing: -0.84px;
+  }
+
+  .fitzi-case-study__text {
+    font-size: 16px;
+    letter-spacing: -0.48px;
+  }
+
+  .fitzi-case-study__statement--problem,
+  .fitzi-case-study__statement--solution,
+  .fitzi-case-study__split,
+  .fitzi-case-study__marketing {
+    padding-inline: 16px;
+  }
+
+  .fitzi-case-study__statement--problem {
+    padding-top: 72px;
+  }
+
+  .fitzi-case-study__statement--solution {
+    padding-top: 64px;
+  }
+}
+
+.fitzi-case-study__post {
+  width: 270px;
+  max-width: calc(50% - 12px);
+
+  @media (min-width: 1025px) {
+    max-width: none;
+  }
+}
+
+.fitzi-case-study__post img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+}

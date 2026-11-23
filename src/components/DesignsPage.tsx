@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import iconCaretLeft from '../assets/v4/icon-caret-left.svg'
+import BackToTop from './BackToTop'
 
 // ACM Design Marketing
 import designW1 from '../assets/designs/design-w1.webp'
@@ -58,7 +58,6 @@ const sections = [
 function DesignsPage() {
   const mainRef = useRef<HTMLElement>(null)
   const [lightbox, setLightbox] = useState<string | null>(null)
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
   useEffect(() => {
     if (!lightbox) return
@@ -94,10 +93,7 @@ function DesignsPage() {
           </div>
         ))}
 
-        <button className="designs__back-to-top" onClick={scrollToTop}>
-          <img src={iconCaretLeft} alt="" />
-          Back to top
-        </button>
+        <BackToTop />
       </main>
 
       {lightbox && (
