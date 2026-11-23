@@ -204,9 +204,6 @@
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    background: rgba(255, 255, 255, 0.75);
-    border-radius: 8px;
-    padding: 8px 12px;
-    backdrop-filter: blur(6px);
+    background: none;
   }
 }
