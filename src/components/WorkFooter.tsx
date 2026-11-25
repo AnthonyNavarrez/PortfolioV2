@@ -32,6 +32,8 @@ export default function WorkFooter() {
     if (!footer || !iconsEl) return
 
     const update = () => {
+      if (window.innerWidth <= 768) return
+
       const footerRect = footer.getBoundingClientRect()
       // Animation window: footer top goes from viewport bottom → 40% up screen
       const progress = Math.max(0, Math.min(1,

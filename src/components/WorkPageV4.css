@@ -333,6 +333,10 @@
   color: #6f6f6f;
 }
 
+@media (max-width: 768px) {
+  .v4-footer__icons { display: none; }
+}
+
 @media (max-width: 640px) {
   .v4-card__desc {
     margin-top: -4px;
