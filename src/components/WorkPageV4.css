@@ -11,7 +11,7 @@
 /* ── Main ─────────────────────────────────────────────────── */
 .v4-main {
   width: 100%;
-  padding: 131px 150px 80px 150px;
+  padding: 131px 150px 100px 150px;
   box-sizing: border-box;
 }
 
@@ -232,6 +232,111 @@
   right: 46px;
   top: 46px;
 }
+/* ── Footer ───────────────────────────────────────────────── */
+.v4-footer {
+  position: relative;
+  /* Break out of the 1126px #root container to span full viewport */
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 270px;
+  background: #fff;
+  box-shadow: inset 0px 6px 38px 0px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 32px;
+  box-sizing: border-box;
+}
+
+.v4-footer__mascot-wrap {
+  position: absolute;
+  top: -220px;
+  left: calc(50% + 90px);
+  width: 460px;
+  height: 460px;
+  transform: translateX(-50%) translateY(-340px);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: visible;
+}
+
+.v4-footer__mascot-wrap--visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .v4-footer__mascot-wrap {
+    left: 50%;
+  }
+}
+
+.footer-mascot {
+  width: 460px;
+  height: 460px;
+  position: relative;
+  overflow: visible;
+}
+
+/* Icons: start hidden, JS animates them in via FLIP */
+.v4-footer__icons {
+  position: absolute;
+  right: -24px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  pointer-events: none;
+}
+
+.v4-footer__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  text-decoration: none;
+  will-change: transform, opacity;
+  pointer-events: auto;
+  transition: opacity 0.15s ease;
+}
+
+.v4-footer__icon img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  transition: opacity 0.15s ease;
+}
+
+.v4-footer__icon:hover img {
+  opacity: 0.5;
+}
+
+.v4-footer__credits {
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.v4-footer__name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #62626e;
+}
+
+.v4-footer__updated {
+  font-size: 14px;
+  font-weight: 300;
+  color: #6f6f6f;
+}
+
+@media (max-width: 768px) {
+  .v4-footer__icons { display: none; }
+}
+
 @media (max-width: 640px) {
   .v4-card__desc {
     margin-top: -4px;

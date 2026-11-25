@@ -17,6 +17,7 @@ import coverFitzi     from '../assets/v4/cover-fitzi.png'
 import videHomebody   from '../assets/homebody-cs/resources.mp4'
 
 import Mascot from './Mascot'
+import WorkFooter from './WorkFooter'
 import './WorkPageV4.css'
 
 type ProjectAnimation = React.ComponentType
@@ -204,6 +205,7 @@ export default function WorkPageV4() {
           ))}
         </div>
       </main>
+      <WorkFooter />
     </div>
   )
 }
