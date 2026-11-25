@@ -145,6 +145,7 @@ const VIDEO_START = 20
 
 function StepMedia({ start, end, wide }: { start: number | null; end: number | null; wide?: boolean }) {
   const ref = useRef<HTMLVideoElement>(null)
+  const [ready, setReady] = useState(false)
   const cls = `gc-step-row__media${wide ? ' gc-step-row__media--wide' : ''}`
 
   if (start === null) {
@@ -152,21 +153,26 @@ function StepMedia({ start, end, wide }: { start: number | null; end: number | n
   }
 
   return (
-    <video
-      ref={ref}
-      src={overviewVideo}
-      className={cls}
-      autoPlay
-      muted
-      playsInline
-      onLoadedMetadata={() => { if (ref.current) ref.current.currentTime = start }}
-      onTimeUpdate={() => {
-        if (ref.current && end !== null && ref.current.currentTime >= end) {
-          ref.current.currentTime = start
-          ref.current.play()
-        }
-      }}
-    />
+    <div className={`gc-step-media-wrap${wide ? ' gc-step-media-wrap--wide' : ''}`}>
+      {!ready && <div className="gc-step-media__spinner" />}
+      <video
+        ref={ref}
+        src={overviewVideo}
+        className={cls}
+        autoPlay
+        muted
+        playsInline
+        style={{ opacity: ready ? 1 : 0 }}
+        onCanPlay={() => setReady(true)}
+        onLoadedMetadata={() => { if (ref.current) ref.current.currentTime = start }}
+        onTimeUpdate={() => {
+          if (ref.current && end !== null && ref.current.currentTime >= end) {
+            ref.current.currentTime = start
+            ref.current.play()
+          }
+        }}
+      />
+    </div>
   )
 }
 
