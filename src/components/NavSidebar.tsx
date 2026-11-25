@@ -20,6 +20,7 @@ export default function NavSidebar() {
   const [atBottom, setAtBottom] = useState(false)
   const [mobileNavHidden, setMobileNavHidden] = useState(false)
   const lastScrollY = useRef(0)
+  const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const check = () => {
@@ -30,6 +31,24 @@ export default function NavSidebar() {
     check()
     window.addEventListener('scroll', check, { passive: true })
     return () => window.removeEventListener('scroll', check)
+  }, [])
+
+  useEffect(() => {
+    const updateHeight = () => {
+      const nav = navRef.current
+      if (!nav) return
+      const footer = document.querySelector('.v4-footer') as HTMLElement | null
+      if (!footer) { nav.style.height = ''; return }
+      const rect = footer.getBoundingClientRect()
+      nav.style.height = rect.top < window.innerHeight ? `${Math.max(0, rect.top)}px` : ''
+    }
+    updateHeight()
+    window.addEventListener('scroll', updateHeight, { passive: true })
+    window.addEventListener('resize', updateHeight)
+    return () => {
+      window.removeEventListener('scroll', updateHeight)
+      window.removeEventListener('resize', updateHeight)
+    }
   }, [])
   const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -130,7 +149,7 @@ export default function NavSidebar() {
         ))}
       </nav>
     )}
-    <aside className={`nav-sb${dark ? ' nav-sb--dark' : ''}`}>
+    <aside ref={navRef} className={`nav-sb${dark ? ' nav-sb--dark' : ''}`}>
       {navHeader && (
         <div className="nav-sb__header-slot">
           {navHeader}
@@ -201,7 +220,6 @@ export default function NavSidebar() {
             <Link to="/resume"                                     className="nav-sb__social-link" data-cursor="resume"><img src={iconResume}  alt="Resume"   /></Link>
           </div>
 
-          <p className={`nav-sb__updated${atBottom ? ' nav-sb__updated--visible' : ''}`}>Last Updated: 11.20.26</p>
         </>
       )}
     </aside>
