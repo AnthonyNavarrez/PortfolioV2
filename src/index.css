@@ -159,11 +159,8 @@ code {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 48px;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  height: 60px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(248, 248, 248, 0.92) 100%);
   pointer-events: none;
   z-index: 998;
 }
