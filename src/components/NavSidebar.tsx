@@ -87,7 +87,7 @@ export default function NavSidebar() {
   const ITEM_H  = 30
   const ITEM_GAP = 10
 
-  const { navHeader } = useNavSidebarCtx()
+  const { navHeader, navSubHeader } = useNavSidebarCtx()
 
   return (
     <>
@@ -161,6 +161,11 @@ export default function NavSidebar() {
               </Link>
             ))}
           </nav>
+        )}
+        {navSubHeader && (
+          <div className="nav-sb__subheader-slot">
+            {navSubHeader}
+          </div>
         )}
         {sections?.length ? (
           <nav className={`nav-sb__sections${isCaseStudy ? ' nav-sb__sections--alone' : ''}`}>

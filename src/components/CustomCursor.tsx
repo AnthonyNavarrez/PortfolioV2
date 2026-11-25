@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom'
 import StarsBg from './StarsBg'
 import './CustomCursor.css'
 
+const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+
 function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null)
   const location = useLocation()
@@ -20,6 +22,7 @@ function CustomCursor() {
     el.classList.remove('custom-cursor--linkedin')
     el.classList.remove('custom-cursor--github')
     el.classList.remove('custom-cursor--resume')
+    el.classList.remove('custom-cursor--blob-drop')
     el.style.removeProperty('background')
     el.style.removeProperty('mix-blend-mode')
   }, [location.pathname])
@@ -58,6 +61,7 @@ function CustomCursor() {
       el.classList.toggle('custom-cursor--linkedin',   zone === 'linkedin')
       el.classList.toggle('custom-cursor--github',     zone === 'github')
       el.classList.toggle('custom-cursor--resume',     zone === 'resume')
+      el.classList.toggle('custom-cursor--blob-drop',  zone === 'blob-drop')
     }
 
     let copyTimer: ReturnType<typeof setTimeout> | null = null
@@ -138,6 +142,8 @@ function CustomCursor() {
     }
   }, [])
 
+  if (isTouch) return null
+
   return (
     <div ref={cursorRef} className="custom-cursor">
       <StarsBg className="custom-cursor__stars" speed={12} factor={0} density={3} motion="float" />
@@ -149,6 +155,7 @@ function CustomCursor() {
       <span className="custom-cursor__label custom-cursor__label--linkedin">LinkedIn ↗</span>
       <span className="custom-cursor__label custom-cursor__label--github">GitHub ↗</span>
       <span className="custom-cursor__label custom-cursor__label--resume">Resume ↗</span>
+      <span className="custom-cursor__label custom-cursor__label--blob-drop">+</span>
     </div>
   )
 }

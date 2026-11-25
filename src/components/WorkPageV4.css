@@ -142,6 +142,7 @@
   color: #62626e;
   margin: -9px 0 0;
   text-align: left;
+  line-height: 1.35;
 }
 
 .v4-card__title-suffix {
@@ -232,6 +233,9 @@
   top: 46px;
 }
 @media (max-width: 640px) {
+  .v4-card__desc {
+    margin-top: -4px;
+  }
   .v4-main {
     padding: 80px 20px 60px;
   }
