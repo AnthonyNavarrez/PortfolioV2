@@ -102,20 +102,25 @@ function useScrollDrag(ref: React.RefObject<HTMLDivElement | null>) {
       stopEdge()
     }
 
+    const rectCache = { left: 0, width: 0 }
+    const updateRect = () => { const r = el.getBoundingClientRect(); rectCache.left = r.left; rectCache.width = r.width }
+    updateRect()
+    el.addEventListener('mouseenter', updateRect)
+    window.addEventListener('resize', updateRect, { passive: true })
+
     const onMouseMove = (e: MouseEvent) => {
       if (dragging.current) {
         const x = e.pageX - el.offsetLeft
         el.scrollLeft = scrollLeft.current - (x - startX.current)
         return
       }
-      // Edge hover
-      const rect  = el.getBoundingClientRect()
-      const zone  = rect.width * 0.12
-      const relX  = e.clientX - rect.left
+      // Edge hover (uses cached rect)
+      const zone  = rectCache.width * 0.12
+      const relX  = e.clientX - rectCache.left
       if (relX < zone) {
         edgeSpeed.current = -((zone - relX) / zone) * 6
-      } else if (relX > rect.width - zone) {
-        edgeSpeed.current = ((relX - (rect.width - zone)) / zone) * 6
+      } else if (relX > rectCache.width - zone) {
+        edgeSpeed.current = ((relX - (rectCache.width - zone)) / zone) * 6
       } else {
         edgeSpeed.current = 0
       }
@@ -147,6 +152,8 @@ function useScrollDrag(ref: React.RefObject<HTMLDivElement | null>) {
     window.addEventListener('mouseup', onMouseUp)
 
     return () => {
+      el.removeEventListener('mouseenter', updateRect)
+      window.removeEventListener('resize', updateRect)
       el.removeEventListener('mousedown',  onMouseDown)
       el.removeEventListener('mousemove',  onMouseMove)
       el.removeEventListener('mouseup',    onMouseUp)
@@ -235,7 +242,7 @@ function AboutPage() {
             )}
           <div
             ref={stripRef}
-            className={`about-photo-strip${stripScrolled ? ' about-photo-strip--scrolled' : ''}`}
+            className="about-photo-strip"
             onScroll={onStripScroll}
           >
               <div className="about-strip-category">
@@ -243,7 +250,7 @@ function AboutPage() {
                 <div className="about-strip-category__photos">
                   {DANCE_PHOTOS.map(p => (
                     <div key={p.caption} className={`about-strip-item${p.ghost ? ' about-strip-item--ghost' : ''}`}>
-                      <img src={p.src} alt={p.caption} className="about-strip-item__img" />
+                      <img src={p.src} alt={p.caption} className="about-strip-item__img" loading="lazy" decoding="async" />
                       <p className="about-strip-item__caption">{p.caption}</p>
                     </div>
                   ))}
@@ -254,7 +261,7 @@ function AboutPage() {
                 <div className="about-strip-category__photos">
                   {CAFE_PHOTOS.map(p => (
                     <div key={p.caption} className={`about-strip-item${p.ghost ? ' about-strip-item--ghost' : ''}`}>
-                      <img src={p.src} alt={p.caption} className="about-strip-item__img" />
+                      <img src={p.src} alt={p.caption} className="about-strip-item__img" loading="lazy" decoding="async" />
                       <p className="about-strip-item__caption">{p.caption}</p>
                     </div>
                   ))}
@@ -265,7 +272,7 @@ function AboutPage() {
                 <div className="about-strip-category__photos">
                   {SIDE_PHOTOS.map(p => (
                     <div key={p.caption} className="about-strip-item">
-                      <img src={p.src} alt={p.caption} className="about-strip-item__img" />
+                      <img src={p.src} alt={p.caption} className="about-strip-item__img" loading="lazy" decoding="async" />
                       <p className="about-strip-item__caption">{p.caption}</p>
                     </div>
                   ))}
@@ -291,11 +298,11 @@ function AboutPage() {
             )}
             <div
               ref={albumsRef}
-              className={`about-albums__row${albumsScrolled ? ' about-albums__row--scrolled' : ''}`}
+              className="about-albums__row"
               onScroll={onAlbumsScroll}
             >
               {ALBUMS.map((src, i) => (
-                <img key={i} src={src} alt="" className="about-albums__cover" />
+                <img key={i} src={src} alt="" className="about-albums__cover" loading="lazy" decoding="async" />
               ))}
             </div>
             {albumsCanRight && (

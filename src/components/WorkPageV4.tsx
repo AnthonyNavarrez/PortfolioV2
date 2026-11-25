@@ -12,20 +12,20 @@ import iconClock    from '../assets/v4/icon-clock.svg'
 
 import HomieAnimation from './HomieAnimation'
 import GCalAnimation  from './GCalAnimation'
-import coverMomento from '../assets/v4/cover-momento.png'
-import coverFitzi   from '../assets/v4/cover-fitzi.png'
-import coverGame    from '../assets/v4/cover-game.png'
+import coverMomento   from '../assets/v4/cover-momento.png'
+import coverFitzi     from '../assets/v4/cover-fitzi.png'
+import videHomebody   from '../assets/homebody-cs/resources.mp4'
 
 import Mascot from './Mascot'
 import './WorkPageV4.css'
 
 type ProjectAnimation = React.ComponentType
-const PROJECTS: { title: string; titleSuffix: string; desc: string; cover: string | null; animation?: ProjectAnimation; href: string }[] = [
-  { title: 'Homie',                   titleSuffix: '',             desc: 'Mobile app digitizing your household, facilitating roommates lives', cover: null, animation: HomieAnimation, href: '/homie'    },
-  { title: 'Google Calendar Polling', titleSuffix: '| concept',   desc: 'Turning speculative plans into scheduled events',                    cover: null, animation: GCalAnimation,  href: '/gcal'     },
-  { title: 'Fitzi',                   titleSuffix: '| AI Startup', desc: 'AI-powered digital wardrobe, style a personalized avatar',           cover: coverFitzi,                      href: '/fitzi'    },
-  { title: 'Homebody',                titleSuffix: '',             desc: 'Survive each night, protect your base, explore the map',             cover: coverGame,                       href: '/homebody' },
-  { title: 'Momento',                 titleSuffix: '',             desc: 'Pin memories on a live interactive map of LA',                       cover: coverMomento,                    href: '/momento'  },
+const PROJECTS: { title: string; titleSuffix: string; desc: string; cover?: string; video?: string; animation?: ProjectAnimation; href: string }[] = [
+  { title: 'Homie',                   titleSuffix: '',             desc: 'Mobile app digitizing your household, facilitating roommates lives', animation: HomieAnimation,                     href: '/homie'    },
+  { title: 'Google Calendar Polling', titleSuffix: '| concept',   desc: 'Turning speculative plans into scheduled events',                    animation: GCalAnimation,                      href: '/gcal'     },
+  { title: 'Fitzi',                   titleSuffix: '| AI Startup', desc: 'AI-powered digital wardrobe, style a personalized avatar',           cover: coverFitzi,                             href: '/fitzi'    },
+  { title: 'Homebody',                titleSuffix: '',             desc: 'Survive each night, protect your base, explore the map',             video: videHomebody,                           href: '/homebody' },
+  { title: 'Momento',                 titleSuffix: '',             desc: 'Pin memories on a live interactive map of LA',                       cover: coverMomento,                           href: '/momento'  },
 ]
 
 function useClock() {
@@ -182,6 +182,16 @@ export default function WorkPageV4() {
               <div className="v4-card__img-wrap" data-cursor="v4-card">
                 {p.animation
                   ? <p.animation />
+                  : p.video
+                  ? <video
+                      src={p.video}
+                      className="v4-card__img"
+                      autoPlay
+                      muted
+                      playsInline
+                      onLoadedMetadata={e => { e.currentTarget.currentTime = 2 }}
+                      onTimeUpdate={e => { const v = e.currentTarget; if (v.currentTime >= 10) v.currentTime = 2 }}
+                    />
                   : <img src={p.cover!} alt={p.title} className="v4-card__img" />
                 }
               </div>

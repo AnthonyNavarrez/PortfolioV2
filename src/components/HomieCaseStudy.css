@@ -371,6 +371,12 @@
   @media (max-width: 1024px) {
     padding: 24px;
   }
+
+  @media (max-width: 640px) {
+    padding: 16px;
+    width: calc(100vw - 40px);
+    overflow-x: visible;
+  }
 }
 
 .homie-case-study__table {
@@ -605,4 +611,46 @@
 /* Final designs — the video phone cards (HomieFeatureCarousel). */
 .homie-case-study__body > .homie-case-study__final {
   margin-top: 140px;
+}
+
+/* ── Competitive table: stacked layout on mobile ── */
+@media (max-width: 640px) {
+  .homie-case-study__table {
+    display: block;
+    min-width: 0;
+  }
+
+  /* Hide the header row — labels appear as inline prefixes instead */
+  .homie-case-study__table-row:first-child {
+    display: none;
+  }
+
+  /* Each data row becomes a vertical stack */
+  .homie-case-study__table-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .homie-case-study__table-row:nth-child(2) {
+    border-top: none;
+  }
+
+  .homie-case-study__table-cell {
+    font-size: 14px;
+    letter-spacing: -0.3px;
+  }
+
+  /* Tool name: larger and bolder */
+  .homie-case-study__table-cell:nth-child(1) {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* "What's missing" cell: slightly dimmer to visually separate */
+  .homie-case-study__table-cell:nth-child(3) {
+    opacity: 0.75;
+  }
 }
