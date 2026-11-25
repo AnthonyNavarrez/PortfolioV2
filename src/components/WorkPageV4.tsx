@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { createStickyType } from '../lib/sticky-type'
 import type { PuddleGlyphData } from '../lib/sticky-type'
@@ -10,21 +10,22 @@ import aIconOutlines from '../assets/v4/a-icon-outlines.json'
 import iconLocation from '../assets/v4/icon-location.svg'
 import iconClock    from '../assets/v4/icon-clock.svg'
 
-import coverHomie   from '../assets/v4/cover-homie.png'
+import HomieAnimation from './HomieAnimation'
+import GCalAnimation  from './GCalAnimation'
 import coverMomento from '../assets/v4/cover-momento.png'
 import coverFitzi   from '../assets/v4/cover-fitzi.png'
 import coverGame    from '../assets/v4/cover-game.png'
-import coverGcal    from '../assets/gcal/cover-gcal.png'
 
 import Mascot from './Mascot'
 import './WorkPageV4.css'
 
-const PROJECTS = [
-  { title: 'Homie',                   titleSuffix: '',             desc: 'Mobile app digitizing your household, facilitating roommates lives', cover: coverHomie,   href: '/homie'    },
-  { title: 'Google Calendar Polling', titleSuffix: '| concept',   desc: 'Turning speculative plans into scheduled events',                    cover: coverGcal,    href: '/gcal'     },
-  { title: 'Fitzi',                   titleSuffix: '| AI Startup', desc: 'AI-powered digital wardrobe, style a personalized avatar',           cover: coverFitzi,   href: '/fitzi'    },
-  { title: 'Homebody',                titleSuffix: '',             desc: 'Survive each night, protect your base, explore the map',             cover: coverGame,    href: '/homebody' },
-  { title: 'Momento',                 titleSuffix: '',             desc: 'Pin memories on a live interactive map of LA',                       cover: coverMomento, href: '/momento'  },
+type ProjectAnimation = React.ComponentType
+const PROJECTS: { title: string; titleSuffix: string; desc: string; cover: string | null; animation?: ProjectAnimation; href: string }[] = [
+  { title: 'Homie',                   titleSuffix: '',             desc: 'Mobile app digitizing your household, facilitating roommates lives', cover: null, animation: HomieAnimation, href: '/homie'    },
+  { title: 'Google Calendar Polling', titleSuffix: '| concept',   desc: 'Turning speculative plans into scheduled events',                    cover: null, animation: GCalAnimation,  href: '/gcal'     },
+  { title: 'Fitzi',                   titleSuffix: '| AI Startup', desc: 'AI-powered digital wardrobe, style a personalized avatar',           cover: coverFitzi,                      href: '/fitzi'    },
+  { title: 'Homebody',                titleSuffix: '',             desc: 'Survive each night, protect your base, explore the map',             cover: coverGame,                       href: '/homebody' },
+  { title: 'Momento',                 titleSuffix: '',             desc: 'Pin memories on a live interactive map of LA',                       cover: coverMomento,                    href: '/momento'  },
 ]
 
 function useClock() {
@@ -179,7 +180,10 @@ export default function WorkPageV4() {
               className="v4-card"
             >
               <div className="v4-card__img-wrap" data-cursor="v4-card">
-                <img src={p.cover} alt={p.title} className="v4-card__img" />
+                {p.animation
+                  ? <p.animation />
+                  : <img src={p.cover!} alt={p.title} className="v4-card__img" />
+                }
               </div>
               <p className="v4-card__title">
                 {p.title}

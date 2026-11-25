@@ -61,7 +61,7 @@ export function createMessageBlobs(container: HTMLElement, opts: MessageBlobsOpt
   // ---- Input pill --------------------------------------------------------
   const form = document.createElement('form');
   form.setAttribute('aria-label', 'New message');
-  form.style.cssText = `position:absolute;z-index:50;display:none;flex-direction:column;gap:0;width:340px;max-width:calc(100% - 32px);box-sizing:border-box;background:#fff;border:2px solid #1E1E1E;border-radius:20px;cursor:default;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;overflow:hidden;`;
+  form.style.cssText = `position:absolute;z-index:50;display:none;flex-direction:column;gap:0;width:340px;max-width:calc(100% - 32px);box-sizing:border-box;background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:2px solid #62626E;border-radius:20px;cursor:default;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;overflow:hidden;`;
 
   // Color swatch row
   const swatchRow = document.createElement('div');

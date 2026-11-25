@@ -115,6 +115,30 @@
   opacity: 0;
 }
 
+/* ── Blob drop zone (message page) ── */
+.custom-cursor--blob-drop {
+  width: 0;
+  height: 0;
+  background: transparent;
+  mix-blend-mode: normal;
+  border-radius: 0;
+  border: none;
+  top: 0;
+  left: 0;
+  overflow: visible;
+}
+
+.custom-cursor--blob-drop .custom-cursor__label--blob-drop {
+  display: block;
+  font-size: 32px;
+  font-weight: 300;
+  color: #1a1a1a;
+  line-height: 1;
+  letter-spacing: 0;
+  font-family: system-ui, sans-serif;
+  transform: translate(-50%, -50%);
+}
+
 /* ── V4 card hover state ── */
 .custom-cursor--v4-card {
   width: auto;
@@ -202,4 +226,10 @@
   font-weight: 600;
   color: #f8f8f8;
   letter-spacing: -0.2px;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createMessageBlobs, type MessageBlobsHandle } from '../lib/message-blobs'
 import { supabase, type BlobRow } from '../lib/supabase'
-import { useNavHeader } from '../contexts/NavSidebarContext'
+import { useNavHeader, useNavSubHeader } from '../contexts/NavSidebarContext'
 import './MessagePage.css'
 
 const MAX_BLOBS = 30
@@ -20,16 +20,18 @@ export default function MessagePage() {
   const [count, setCount] = useState(0)
   const [loading, setLoading] = useState(true)
 
-  const navContent = useMemo(() => (
-    <>
-      <span className="msg-nav-count">
-        {count === 0 ? 'No messages yet' : `${count} message${count !== 1 ? 's' : ''} afloat`}
-      </span>
-      <span className="msg-nav-hint">Click to add a blob</span>
-    </>
+  const navCount = useMemo(() => (
+    <span className="msg-nav-count">
+      {count === 0 ? 'No messages yet' : `${count} message${count !== 1 ? 's' : ''} afloat`}
+    </span>
   ), [count])
 
-  useNavHeader(navContent)
+  const navHint = useMemo(() => (
+    <span className="msg-nav-hint">Click to add a blob</span>
+  ), [])
+
+  useNavHeader(navCount)
+  useNavSubHeader(navHint)
 
   useEffect(() => {
     const el = containerRef.current
@@ -105,7 +107,7 @@ export default function MessagePage() {
   }, [])
 
   return (
-    <div ref={containerRef} className="msg-page">
+    <div ref={containerRef} className="msg-page" data-cursor="blob-drop">
       <div className="msg-mobile-header">
         <span className="msg-nav-count">
           {count === 0 ? 'No messages yet' : `${count} message${count !== 1 ? 's' : ''} afloat`}
