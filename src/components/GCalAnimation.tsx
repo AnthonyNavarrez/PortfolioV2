@@ -45,7 +45,7 @@ export default function GCalAnimation() {
               { l: 166.03, t: 106.4,  h:  99,    times: [0, 0.344,  0.3869, 1] },
               { l: 221.98, t:  17.43, h: 240,   times: [0, 0.2837, 0.3408, 1] },
               { l: 221.98, t:  74.3,  h: 164.7,  times: [0, 0.312,  0.3675, 1] },
-            ] as const).map(({ l, t, h, times }, i) => (
+            ] satisfies { l: number; t: number; h: number; times: number[] }[]).map(({ l, t, h, times }, i) => (
               <div key={i} style={{ position: 'absolute', left: `${l}px`, top: `${t}px`, width: '49.533px', overflow: 'hidden' }}>
                 <motion.div
                   style={{ background: 'rgba(65,205,51,0.53)', width: '49.533px', borderRadius: '8.256px' }}
