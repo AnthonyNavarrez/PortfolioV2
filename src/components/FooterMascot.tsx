@@ -162,7 +162,6 @@ export default function FooterMascot({ color = '#717171' }: { color?: string }) 
 
       // Position bubble relative to bubbleParent — below the visible blob, inside the footer
       const bw = bubble.offsetWidth || 150
-      const bh = bubble.offsetHeight || 40
       const parentRect = bubbleParent.getBoundingClientRect()
       // Center X on the mascot, Y just below the blob bottom
       const bubbleCx = rect.left - parentRect.left + cx

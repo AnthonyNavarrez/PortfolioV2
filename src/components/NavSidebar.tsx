@@ -17,21 +17,9 @@ export default function NavSidebar() {
   const dark = darkRoutes.includes(pathname)
   const [activeId, setActiveId] = useState('')
   const [emailCopied, setEmailCopied] = useState(false)
-  const [atBottom, setAtBottom] = useState(false)
   const [mobileNavHidden, setMobileNavHidden] = useState(false)
   const lastScrollY = useRef(0)
   const navRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const check = () => {
-      const { scrollY, innerHeight } = window
-      const { scrollHeight } = document.documentElement
-      setAtBottom(scrollY + innerHeight >= scrollHeight - 32)
-    }
-    check()
-    window.addEventListener('scroll', check, { passive: true })
-    return () => window.removeEventListener('scroll', check)
-  }, [])
 
   useEffect(() => {
     const updateHeight = () => {
