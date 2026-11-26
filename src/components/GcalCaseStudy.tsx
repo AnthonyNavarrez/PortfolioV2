@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import step5Img from '../assets/gcal/step5-autobook.png'
 import pollingPlaceholder from '../assets/Polling selected (1).png'
 import { useSections } from '../contexts/NavSidebarContext'
@@ -13,17 +13,17 @@ import './GcalCaseStudy.css'
 
 const PAIN_POINTS = [
   {
-    num: '01',
+    accent: '#ce8d38',
     title: "Free time isn't narrowed down.",
     body: "Calendar can show people's open slots, but it doesn't pick one. You're left scanning a wall of open times with no clear best choice.",
   },
   {
-    num: '02',
+    accent: '#885ca8',
     title: 'Coordination lives outside the calendar.',
     body: 'When2meet links, Slack reacts and group chats all sit outside Calendar. That means extra tabs, manual entry and replies that get lost.',
   },
   {
-    num: '03',
+    accent: '#3059d2',
     title: 'One person carries the load.',
     body: 'Someone ends up chasing replies, comparing schedules and sending the invite. All the coordination falls on one person.',
   },
@@ -275,10 +275,11 @@ export default function GcalCaseStudy() {
             </Reveal>
             <div className="gc-pain-cards">
               {PAIN_POINTS.map((p, i) => (
-                <Reveal key={p.num} delay={i * 0.08}>
-                  <div className="gc-pain-card">
-                    <p className="gc-pain-card__num">{p.num}</p>
-                    <p className="gc-pain-card__title">{p.title}</p>
+                <Reveal key={p.title} delay={i * 0.08}>
+                  <div className="gc-pain-card" style={{ '--accent': p.accent } as React.CSSProperties}>
+                    <div className="gc-pain-card__header">
+                      <p className="gc-pain-card__title">{p.title}</p>
+                    </div>
                     <p className="gc-pain-card__body">{p.body}</p>
                   </div>
                 </Reveal>
