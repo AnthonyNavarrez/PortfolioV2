@@ -188,23 +188,20 @@
 .gc-pain-card {
   background: #e7e7ea;
   border-radius: 12px;
-  padding: 22px 20px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
-.gc-pain-card__num {
-  font-size: 11px;
-  font-weight: 510;
-  color: #252530;
-  margin: 0;
+.gc-pain-card__header {
+  background: var(--accent);
+  padding: 22px 20px 20px;
 }
 
 .gc-pain-card__title {
   font-size: 17px;
   font-weight: 600;
-  color: #252530;
+  color: #f8fafd;
   margin: 0;
   line-height: 1.3;
 }
@@ -215,6 +212,8 @@
   line-height: 1.5;
   color: #62626e;
   margin: 0;
+  padding: 20px;
+  flex: 1;
 }
 
 /* ── Stepper ── */

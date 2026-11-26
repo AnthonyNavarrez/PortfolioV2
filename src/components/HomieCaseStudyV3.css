@@ -277,7 +277,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 260px;
+  width: 320px;
   flex-shrink: 0;
 }
 
@@ -289,7 +289,7 @@
 }
 
 .cs-stat-card {
-  background: #e7e7ea;
+  background: linear-gradient(107deg, #faece4 0%, #d2eef5 100%);
   border-radius: 12px;
   height: 72px;
   display: flex;

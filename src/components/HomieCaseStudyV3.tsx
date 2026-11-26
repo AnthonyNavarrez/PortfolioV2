@@ -113,7 +113,7 @@ function HomieCaseStudyV3() {
                 </p>
               </div>
               <div className="cs-problem__right">
-                <p className="cs-body--white">We surveyed 65+ college students</p>
+                <p className="cs-body cs-body--white">We surveyed 65+ college students</p>
                 <div className="cs-stats">
                   <div className="cs-stat-card">
                     <span className="cs-stat-card__number">92%</span>
